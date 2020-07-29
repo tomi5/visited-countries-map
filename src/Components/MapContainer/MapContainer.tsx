@@ -7,9 +7,7 @@ const MapContainer = () => {
   const [country, setCountry] = useState<string[]>([]);
   const [countryOnHover, setCountryOnHover] = useState("");
   const [pickedColor, setPickedColor] = useState("#428C08");
-  const [tooltipPosition, setTooltipPosition] = useState({ x: null, y: null });
-
-  useEffect(() => {}, [countryOnHover, country, pickedColor]);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: any) => {
     const name = e.target.dataset.name;
@@ -26,6 +24,8 @@ const MapContainer = () => {
   const handleColorPicker = (e: { target: any }) => {
     setPickedColor(e.target.dataset.color);
   };
+
+  useEffect(() => {}, [countryOnHover, country, pickedColor]);
 
   return (
     <div>

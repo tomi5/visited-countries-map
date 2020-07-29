@@ -20,13 +20,15 @@ const ColorPicker: React.FC<Props> = ({ pickedColor, handleColorPicker }) => {
     <div className={styles.wrapper}>
       {colorArray.map((HEX, index) => (
         <label
-          className={`${styles.colorBox} ${HEX === pickedColor && styles.checked}`}          
+          className={`${styles.colorBox} ${
+            HEX === pickedColor && styles.checked
+          }`}
           style={{ background: `${HEX}` }}
-          key={index}         
+          key={index}
         >
           <input
             data-color={HEX}
-            checked={HEX === pickedColor}
+            defaultChecked={HEX === pickedColor}
             onClick={handleColorPicker}
             type='radio'
           />
