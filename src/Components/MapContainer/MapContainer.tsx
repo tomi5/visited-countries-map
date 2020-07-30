@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Map } from "../../assets/world.svg";
 import ReactTooltip from "react-tooltip";
 import ColorPicker from "../ColorPicker/ColorPicker";
+import styled from "styled-components";
 
 const MapContainer = () => {
   const [country, setCountry] = useState<string[]>([]);
