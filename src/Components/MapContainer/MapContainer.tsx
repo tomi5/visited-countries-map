@@ -15,6 +15,7 @@ const StyledReactTooltip = styled(ReactTooltip)`
 
 const MapContainer = () => {
   const [country, setCountry] = useState<string[]>([]);
+  console.log("country:", country);
   const [countryOnHover, setCountryOnHover] = useState(null);
   const [pickedColor, setPickedColor] = useState("#428C08");
 

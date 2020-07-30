@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Button from "./Buttons/Buttons";
-import styles from "./Header.module.scss";
+import styled from "styled-components";
+
+const HeaderComponent = styled.header`
+  display: flex;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 type Props = {
   title: string;
@@ -11,7 +18,7 @@ const Header: React.FC<Props> = ({ title }) => {
   const [isLogged, setLoginStatus] = useState(false);
 
   return (
-    <header className={styles.header}>
+    <HeaderComponent>
       <Button
         name='instruction'
         openStatus={isInstructionOpen}
@@ -19,11 +26,11 @@ const Header: React.FC<Props> = ({ title }) => {
       >
         ?
       </Button>
-      <h1 className={styles.h1}>{title}</h1>
+      <h1>{title}</h1>
       <Button name='login' openStatus={isLogged} onClickStatus={setLoginStatus}>
         {!isLogged ? "Log in" : "Log out"}
       </Button>
-    </header>
+    </HeaderComponent>
   );
 };
 
