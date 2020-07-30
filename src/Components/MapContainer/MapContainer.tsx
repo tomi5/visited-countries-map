@@ -4,14 +4,23 @@ import ReactTooltip from "react-tooltip";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import styled from "styled-components";
 
+const StyledReactTooltip = styled(ReactTooltip)`
+  background-color: white !important;
+  color: black !important;
+  box-shadow: 0px 2px 20px lightgray;
+  &:after {
+    border-top-color: white !important;
+  }
+`;
+
 const MapContainer = () => {
   const [country, setCountry] = useState<string[]>([]);
-  const [countryOnHover, setCountryOnHover] = useState("");
+  const [countryOnHover, setCountryOnHover] = useState(null);
   const [pickedColor, setPickedColor] = useState("#428C08");
 
   const handleMouseMove = (e: any) => {
     const name = e.target.dataset.name;
-    name ? setCountryOnHover(name) : setCountryOnHover("");
+    name ? setCountryOnHover(name) : setCountryOnHover(null);
   };
 
   const handleClickOnMap = (e: { target: any }) => {
@@ -38,14 +47,12 @@ const MapContainer = () => {
         pickedColor={pickedColor}
         handleColorPicker={handleColorPicker}
       />
-      {countryOnHover && (
-        <ReactTooltip
-          place='right'
-          effect='float'
-          id='countryTooltip'
-          getContent={() => countryOnHover}
-        />
-      )}
+      <StyledReactTooltip
+        id='countryTooltip'
+        type='warning'
+        effect='float'
+        getContent={() => countryOnHover}
+      />
     </div>
   );
 };
