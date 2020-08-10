@@ -1,27 +1,20 @@
 import React, { useState } from "react";
 import Button from "./Buttons/Buttons";
-import styled from "styled-components";
+import { HeaderComponent } from "./style";
 
-const HeaderComponent = styled.header`
-  display: flex;
-  margin-bottom: 50px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-type Props = {
+type HeaderProps = {
   title: string;
 };
 
-const Header: React.FC<Props> = ({ title }) => {
-  const [isInstructionOpen, setModalStatus] = useState(false);
+const Header = ({ title }: HeaderProps) => {
+  const [isModalOpen, setModalStatus] = useState(false);
   const [isLogged, setLoginStatus] = useState(false);
 
   return (
     <HeaderComponent>
       <Button
         name='instruction'
-        openStatus={isInstructionOpen}
+        openStatus={isModalOpen}
         onClickStatus={setModalStatus}
       >
         ?

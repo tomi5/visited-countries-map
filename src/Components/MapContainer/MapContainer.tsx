@@ -1,53 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ReactComponent as Map } from "../../assets/world.svg";
-import ReactTooltip from "react-tooltip";
-import ColorPicker from "../ColorPicker/ColorPicker";
-import styled from "styled-components";
+import { StyledReactTooltip } from "./style";
 
-const StyledReactTooltip = styled(ReactTooltip)`
-  background-color: white !important;
-  color: black !important;
-  box-shadow: 0px 2px 20px lightgray;
-  &:after {
-    border-top-color: white !important;
-  }
-`;
+type MapContainerProps = {
+  onClick: IEvent<any>;
+};
 
-const MapContainer = () => {
-  const [country, setCountry] = useState<string[]>([]);
-  console.log("country:", country);
-  const [countryOnHover, setCountryOnHover] = useState(null);
-  const [pickedColor, setPickedColor] = useState("#428C08");
+const MapContainer = ({ onClick }: MapContainerProps) => {
+  const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
 
-  const handleMouseMove = (e: any) => {
+  const handleToolTip: IEvent<any> = (e) => {
     const name = e.target.dataset.name;
-    name ? setCountryOnHover(name) : setCountryOnHover(null);
+    typeof name === "string"
+      ? setCountryOnHover(name)
+      : setCountryOnHover(null);
   };
-
-  const handleClickOnMap = (e: { target: any }) => {
-    const id: string = e.target.dataset.id;
-    id && (e.target.style.fill = pickedColor);
-    id && setCountry([...country, id]);
-  };
-
-  const handleColorPicker = (e: { target: any }) => {
-    setPickedColor(e.target.dataset.color);
-  };
-
-  useEffect(() => {}, [countryOnHover, country, pickedColor]);
 
   return (
     <div>
       <Map
-        onMouseMove={handleMouseMove}
-        onClick={handleClickOnMap}
         data-tip
         data-for='countryTooltip'
+        onClick={onClick}
+        onMouseMove={handleToolTip}
       />
-      <ColorPicker
-        pickedColor={pickedColor}
-        handleColorPicker={handleColorPicker}
-      />
+
       <StyledReactTooltip
         id='countryTooltip'
         type='warning'
