@@ -6,10 +6,11 @@ type CountrySearchBarProps = {
 };
 
 const CountrySearchBar = ({ ...props }: CountrySearchBarProps) => {
+  console.log("log z searchbar");
   return (
     <>
       <label>
-        Type Country Name:
+        Search for a country...
         <input type='text' {...props} />
       </label>
     </>

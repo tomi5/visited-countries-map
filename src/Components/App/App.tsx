@@ -1,30 +1,62 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import Header from "../Header/Header";
+import SummaryBox from "../SummaryBox/SummaryBox";
 import MapContainer from "../MapContainer/MapContainer";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import CountrySearchBar from "../CountrySearchBar/CountrySearchBar";
 import SearchResult from "../CountrySearchBar/SearchResult/SearchResult";
-import { useFetch } from "./hooks/useFetch";
+import useFetchCountry from "./hooks/useFetchCountry";
 import { Wrapper } from "./style";
+import Tabels from "../Tabels/Tabels";
 
 const App = () => {
-  const [visitedCountry, setvisitedCountry] = useState<string[]>([]);
+  const [visitedCountries, setvisitedCountries] = useState<ICountry[]>([]);
+  const [selectedCountry, setSelectCountry] = useState<string | null>(null);
 
   const [pickedColor, setPickedColor] = useState("#428C08");
-
   const [searchValue, setSearchValue] = useState("");
 
-  const { error, isLoading, countries } = useFetch(searchValue);
+  const {
+    state: { error, isLoading, countriesToShow },
+    allCountriesNumber,
+  } = useFetchCountry(searchValue);
+
+  const [percentageVisisted, setPercentageVisisted] = useState(0);
+
+  const fillTheCountryOnMapWithColor = (countryCode: string): void => {
+    const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll(
+      "path"
+    );
+    // find countryCode on Map and fill this country with color
+    countryCode &&
+      [...pathSVG].some(
+        (el: SVGElement) =>
+          el.dataset.id === countryCode && (el.style.fill = pickedColor)
+      );
+  };
+
+  const addToVisited = (country: ICountry): void => {
+    if (typeof country.code === "string") {
+      // check if already visited
+      const isVisited = visitedCountries.find(
+        (visited) => visited.code === country.code
+      );
+      !isVisited && setvisitedCountries([...visitedCountries, country]);
+    }
+  };
 
   useEffect(() => {
-    const path: NodeListOf<SVGPathElement> = document.querySelectorAll("path");
-    const selectedCountry = [...visitedCountry].pop();
-    [...path].some(
-      (el: SVGElement) =>
-        el.dataset.id === selectedCountry && (el.style.fill = pickedColor)
-    );
+    visitedCountries.length > 0 &&
+      setPercentageVisisted(
+        (visitedCountries.length * 100) / allCountriesNumber
+      );
+  }, [allCountriesNumber, visitedCountries]);
+
+  useEffect(() => {
+    selectedCountry && fillTheCountryOnMapWithColor(selectedCountry);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visitedCountry]);
+  }, [selectedCountry]);
 
   const handleSearchInputChanges: IEvent<HTMLInputElement> = (e) => {
     const value = e.target.value;
@@ -36,8 +68,24 @@ const App = () => {
   };
 
   const selectCountryFn: IEvent<any> = (e) => {
-    const countryCode: string = e.target.dataset.id;
-    setvisitedCountry([...visitedCountry, countryCode]);
+    const countryCode = e.target.dataset.id;
+    countryCode && setSelectCountry(countryCode);
+
+    const COUNTRY_API_URL: string = "https://restcountries.eu/rest/v2";
+    countryCode &&
+      fetch(`${COUNTRY_API_URL}/alpha/${countryCode}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const country: ICountry = {
+            name: data.name,
+            code: data.alpha2Code,
+            flag: data.flag,
+            region: data.region,
+            subregion: data.subregion,
+          };
+
+          addToVisited(country);
+        });
   };
 
   const SearchComponent = (): JSX.Element => {
@@ -45,17 +93,19 @@ const App = () => {
       <div>
         {error && <p>{error}</p>}
         {isLoading && <p>Loading...</p>}
-        {!isLoading && !error && countries.length
-          ? countries.map(
-              (country: any): ReactElement => (
+        {!isLoading && !error && countriesToShow.length ? (
+          <ul>
+            {countriesToShow.map(
+              (country: ICountry): ReactElement => (
                 <SearchResult
-                  key={country.alpha2Code}
-                  {...country}
+                  key={country.code}
+                  country={country}
                   onClick={selectCountryFn}
                 />
               )
-            )
-          : null}
+            )}
+          </ul>
+        ) : null}
       </div>
     );
   };
@@ -70,6 +120,11 @@ const App = () => {
         onChange={handleSearchInputChanges}
       />
       <SearchComponent />
+      <SummaryBox
+        percentage={percentageVisisted}
+        visitedCountries={visitedCountries.length}
+      />
+      <Tabels visitedCountries={visitedCountries} />
     </Wrapper>
   );
 };
