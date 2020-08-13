@@ -5,9 +5,9 @@ import MapContainer from "../MapContainer/MapContainer";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import CountrySearchBar from "../CountrySearchBar/CountrySearchBar";
 import SearchResult from "../CountrySearchBar/SearchResult/SearchResult";
-import useFetchCountry from "./hooks/useFetchCountry";
 import { Wrapper } from "./style";
 import Tabels from "../Tabels/Tabels";
+import useFetchCountry from "../../hooks/useFetchCountry";
 
 const App = () => {
   const [visitedCountries, setvisitedCountries] = useState<ICountry[]>([]);
@@ -54,7 +54,6 @@ const App = () => {
 
   useEffect(() => {
     selectedCountry && fillTheCountryOnMapWithColor(selectedCountry);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCountry]);
 
@@ -65,6 +64,7 @@ const App = () => {
 
   const handleColorPicker: IEvent<any> = (e) => {
     setPickedColor(e.target.dataset.color);
+    setSelectCountry(null); // reset SelectCountry allow change color on last choosen country
   };
 
   const selectCountryFn: IEvent<any> = (e) => {

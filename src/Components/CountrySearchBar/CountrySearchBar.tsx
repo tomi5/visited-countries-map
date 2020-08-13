@@ -5,16 +5,13 @@ type CountrySearchBarProps = {
   value: string;
 };
 
-const CountrySearchBar = ({ ...props }: CountrySearchBarProps) => {
-  console.log("log z searchbar");
-  return (
-    <>
-      <label>
-        Search for a country...
-        <input type='text' {...props} />
-      </label>
-    </>
-  );
-};
+const CountrySearchBar = ({ ...props }: CountrySearchBarProps) => (
+  <>
+    <label>
+      Search for a country...
+      <input type='text' {...props} />
+    </label>
+  </>
+);
 
 export default CountrySearchBar;

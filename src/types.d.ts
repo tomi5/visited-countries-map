@@ -14,3 +14,14 @@ interface IFetchState {
   isLoading: boolean;
   countriesToShow: ICountry[];
 }
+
+interface ICreateContext {
+  visitedCountries: ICountry[];
+  selectedCountry: string | null;
+  searchValue: string;
+  percentageVisisted: number;
+  pickedColor: string;
+  handleColorPicker: any;
+  selectCountryFn: any;
+  handleSearchInputChanges: any;
+}

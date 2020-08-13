@@ -16,8 +16,6 @@ const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
     "#5948EB",
   ];
 
-  console.log("log z colorpickec");
-
   return (
     <Wrapper>
       {colorArray.map((HEX: string, index: number) => (

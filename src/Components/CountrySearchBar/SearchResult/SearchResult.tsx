@@ -8,7 +8,6 @@ type SearchResultProps = {
 const SearchResult = ({ country, onClick }: SearchResultProps) => {
   const { code, name, flag } = country;
 
-  console.log("log z searchresult");
   return (
     <>
       <li data-id={code} data-name={name} onClick={onClick}>

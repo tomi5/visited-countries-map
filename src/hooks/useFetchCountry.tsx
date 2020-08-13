@@ -13,17 +13,26 @@ const useFetchCountry = (searchValue: string) => {
   const [state, setState] = useState(initialState);
   const [allCountriesNumber, setAllCountriesNumber] = useState(0);
 
+  const fetchData = async () => {
+    let response = await fetch(`${COUNTRY_API_URL}/all`);
+    let responseData = await response.json();
+    setAllCountriesNumber(responseData.length);
+  };
+
   // fetch Total number of countries in the World
   useEffect(() => {
-    fetch(`${COUNTRY_API_URL}/all`)
-      .then((res) => res.json())
-      .then((data) => setAllCountriesNumber(data.length))
-      .catch((err) => {
-        setState({
-          ...initialState,
-          error: err.toString(),
-        });
-      });
+    console.log("Test");
+
+    fetchData();
+    // fetch(`${COUNTRY_API_URL}/all`)
+    //   .then((res) => res.json())
+    //   .then((data) => setAllCountriesNumber(data.length))
+    //   .catch((err) => {
+    //     setState({
+    //       ...initialState,
+    //       error: err.toString(),
+    //     });
+    //   });
   }, []);
 
   // fetch country to show using search input
