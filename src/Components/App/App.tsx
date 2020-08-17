@@ -88,8 +88,15 @@ const App = () => {
         });
   };
 
-  const SearchComponent = (): JSX.Element => {
-    return (
+  return (
+    <Wrapper>
+      <Header title='Interactive Visited Countries Map' />
+      <MapContainer onClick={selectCountryFn} />
+      <ColorPicker pickedColor={pickedColor} onClick={handleColorPicker} />
+      <CountrySearchBar
+        value={searchValue}
+        onChange={handleSearchInputChanges}
+      />
       <div>
         {error && <p>{error}</p>}
         {isLoading && <p>Loading...</p>}
@@ -107,19 +114,6 @@ const App = () => {
           </ul>
         ) : null}
       </div>
-    );
-  };
-
-  return (
-    <Wrapper>
-      <Header title='Interactive Visited Countries Map' />
-      <MapContainer onClick={selectCountryFn} />
-      <ColorPicker pickedColor={pickedColor} onClick={handleColorPicker} />
-      <CountrySearchBar
-        value={searchValue}
-        onChange={handleSearchInputChanges}
-      />
-      <SearchComponent />
       <SummaryBox
         percentage={percentageVisisted}
         visitedCountries={visitedCountries.length}
