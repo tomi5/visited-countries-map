@@ -1,12 +1,9 @@
-interface IfillWithTheColor {
+interface IfillWithColor {
   country: string;
   color: string;
 }
 
-export const fillWithTheColor = ({
-  country,
-  color,
-}: IfillWithTheColor): void => {
+export const fillWithColor = ({ country, color }: IfillWithColor): void => {
   const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll("path");
 
   country &&
