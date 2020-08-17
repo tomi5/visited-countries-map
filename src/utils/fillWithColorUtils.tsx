@@ -7,10 +7,10 @@ export const fillWithTheColor = ({
   country,
   color,
 }: IfillWithTheColor): void => {
-  const pathSvg = document.querySelectorAll(".countryBox");
+  const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll("path");
+
   country &&
-    [...pathSvg].some(
-      (el: any) =>
-        el.textContent === country && (el.style.backgroundColor = color)
+    [...pathSVG].some(
+      (el: SVGElement) => el.textContent === country && (el.style.fill = color)
     );
 };
