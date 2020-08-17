@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ReactComponent as Map } from "../../assets/world.svg";
 import { StyledReactTooltip } from "./style";
+import { SelectedCountryContext } from "../../contexts/SelectedCountryContext";
+import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
+import ColorPicker from "../ColorPicker/ColorPicker";
+import { fillWithColor } from "../../utils/fillWithColorUtils";
 
-type MapContainerProps = {
-  onClick: IEvent<any>;
-};
-
-const MapContainer = ({ onClick }: MapContainerProps) => {
+const MapContainer = () => {
+  console.log("log from MapContainer");
+  const [pickedColor, setPickedColor] = useState("#428C08");
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
+
+  const {
+    selectedCountryCode,
+    resetSelectedCountry,
+    handleSelectCountry,
+  } = useContext(SelectedCountryContext);
+
+  const { handleAddToVisited } = useContext(VisitedCountryContext);
+
+  useEffect(() => {
+    if (selectedCountryCode) {
+      fillWithColor(selectedCountryCode, pickedColor);
+      handleAddToVisited(selectedCountryCode);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCountryCode, countryOnHover]);
+
+  const handleColorPicker: IEvent<any> = (e) => {
+    setPickedColor(e.target.dataset.color);
+    resetSelectedCountry();
+  };
 
   const handleToolTip: IEvent<any> = (e) => {
     const name = e.target.dataset.name;
@@ -21,16 +44,16 @@ const MapContainer = ({ onClick }: MapContainerProps) => {
       <Map
         data-tip
         data-for='countryTooltip'
-        onClick={onClick}
+        onClick={handleSelectCountry}
         onMouseMove={handleToolTip}
       />
-
       <StyledReactTooltip
         id='countryTooltip'
         type='warning'
         effect='float'
         getContent={() => countryOnHover}
       />
+      <ColorPicker pickedColor={pickedColor} onClick={handleColorPicker} />
     </div>
   );
 };

@@ -7,23 +7,32 @@ interface IProps {
 interface IContextProps {
   selectedCountryCode: string | null;
   handleSelectCountry: IEvent<any>;
+  resetSelectedCountry: () => void;
 }
 
 export const SelectedCountryContext = createContext<IContextProps>({
   selectedCountryCode: null,
-  handleSelectCountry: (e) => null,
+  handleSelectCountry: () => null,
+  resetSelectedCountry: () => null,
 });
 
 const SelectedCountryContextProvider = ({ children }: IProps) => {
-  const [selectedCountryCode, setSelectCountryCode] = useState(null);
+  const [selectedCountryCode, setSelectCountryCode] = useState<null | string>(
+    null
+  );
 
   const handleSelectCountry: IEvent<any> = (e) => {
-    // const countryName = e.target
     const countryCode = e.target.dataset.id;
     setSelectCountryCode(countryCode);
   };
 
-  const value = { selectedCountryCode, handleSelectCountry };
+  const resetSelectedCountry = () => setSelectCountryCode(null);
+
+  const value = {
+    selectedCountryCode,
+    handleSelectCountry,
+    resetSelectedCountry,
+  };
 
   return (
     <SelectedCountryContext.Provider value={value}>

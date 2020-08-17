@@ -1,13 +1,7 @@
-interface IfillWithColor {
-  country: string;
-  color: string;
-}
-
-export const fillWithColor = ({ country, color }: IfillWithColor): void => {
+export const fillWithColor = (country: string, color: string) => {
   const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll("path");
-
   country &&
     [...pathSVG].some(
-      (el: SVGElement) => el.textContent === country && (el.style.fill = color)
+      (el: SVGElement) => el.dataset.id === country && (el.style.fill = color)
     );
 };

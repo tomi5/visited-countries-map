@@ -19,8 +19,6 @@ export const VisitedCountryContext = createContext<IContextProps>({
 });
 
 const VisitedCountryContextProvider = ({ children }: IProps) => {
-  console.log("  VisitedContextProvider");
-
   const [visitedCountries, setVsitedCountries] = useState<string[]>([]);
 
   const handleAddToVisited: handleAddToVisited = (countryCode) => {
