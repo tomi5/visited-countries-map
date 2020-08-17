@@ -5,27 +5,25 @@ interface IProps {
 }
 
 interface IContextProps {
-  selectedCountry: string | null;
+  selectedCountryCode: string | null;
   handleSelectCountry: IEvent<any>;
 }
 
 export const SelectedCountryContext = createContext<IContextProps>({
-  selectedCountry: null,
+  selectedCountryCode: null,
   handleSelectCountry: (e) => null,
 });
 
 const SelectedCountryContextProvider = ({ children }: IProps) => {
-  console.log("  CountryContextProvider");
+  const [selectedCountryCode, setSelectCountryCode] = useState(null);
 
-  const [selectedCountry, setSelectCountry] = useState(null);
-
-  const handleSelectCountry = (e) => {
+  const handleSelectCountry: IEvent<any> = (e) => {
     // const countryName = e.target
-    const country = e.target.textContent;
-    setSelectCountry(country);
+    const countryCode = e.target.dataset.id;
+    setSelectCountryCode(countryCode);
   };
 
-  const value = { selectedCountry, handleSelectCountry };
+  const value = { selectedCountryCode, handleSelectCountry };
 
   return (
     <SelectedCountryContext.Provider value={value}>
