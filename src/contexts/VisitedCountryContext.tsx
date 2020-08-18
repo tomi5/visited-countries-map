@@ -31,7 +31,7 @@ const VisitedCountryContextProvider = ({ children }: IProps) => {
 
   const handleAddToVisited: handleAddToVisited = (countryCode) => {
     const country = allCountries.find((el) => el.code === countryCode);
-
+    console.log("country:", country);
     const isVisited = visitedCountries.find(
       (visited) => visited === countryCode
     );

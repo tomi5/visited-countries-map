@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import SummaryBox from "../SummaryBox/SummaryBox";
 import MapContainer from "../MapContainer/MapContainer";
@@ -9,8 +9,6 @@ import SelectedCountryContextProvider from "../../contexts/SelectedCountryContex
 import SearchContainer from "../SearchContainer/SearchContainer";
 
 const App = () => {
-  // const [percentageVisisted, setPercentageVisisted] = useState(0);
-
   // const addToVisited = (country: ICountry): void => {
   //   if (typeof country.code === "string") {
   //     // check if already visited

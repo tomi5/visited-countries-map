@@ -20,13 +20,7 @@ const useFetchCountry = (searchValue: string) => {
       isLoading: true,
     });
     try {
-      const response = await fetch(`${COUNTRY_API_URL}/${param}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-      });
+      const response = await fetch(`${COUNTRY_API_URL}/${param}`);
       const data = await response.json();
       console.log("data:", data);
       if (data.status === 404) {
