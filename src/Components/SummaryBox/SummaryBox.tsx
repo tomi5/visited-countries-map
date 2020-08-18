@@ -1,22 +1,29 @@
-import React from "react";
-import useFetchCountry from "../../hooks/useFetchCountry";
+import React, { useContext, useEffect, useState } from "react";
+import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
 
 type SummaryBoxProps = {
-  percentage: number;
-  visitedCountries: number;
+  allCountries: ICountry[];
 };
 
-const SummaryBox = () => {
-  const { allCountries } = useFetchCountry("");
+const SummaryBox = ({ allCountries }: SummaryBoxProps) => {
+  const { visitedCountries } = useContext(VisitedCountryContext);
+  const [percentageVisisted, setPercentageVisisted] = useState(0);
+
+  useEffect(() => {
+    visitedCountries.length > 0 &&
+      setPercentageVisisted(
+        (visitedCountries.length * 100) / allCountries.length
+      );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allCountries, visitedCountries]);
 
   return (
     <div>
-      <p>{allCountries.length}</p>
-      {/* <p>
-        You have visited: {visitedCountries}{" "}
-        {visitedCountries > 1 ? "countries" : "country"}
+      <p>
+        You have visited: {visitedCountries.length}{" "}
+        {visitedCountries.length > 1 ? "countries" : "country"}
       </p>
-      <p>This is {percentage} % of the world</p> */}
+      <p>This is {percentageVisisted} % of the world</p>
     </div>
   );
 };

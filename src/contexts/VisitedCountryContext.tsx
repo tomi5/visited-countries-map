@@ -1,16 +1,16 @@
 import React, { createContext, useState, ReactNode } from "react";
-import useFetchCountry from "../hooks/useFetchCountry";
+import { findCountryInArray } from "../utils/findCountryInArray";
 
-interface IProps {
+type IProps = {
   children: ReactNode;
-}
+};
 
 type handleAddToVisited = {
-  (countryCode: string): void;
+  (countryCode: string, allCountries: ICountry[]): void;
 };
 
 interface IContextProps {
-  visitedCountries: string[];
+  visitedCountries: ICountry[];
   handleAddToVisited: handleAddToVisited;
 }
 
@@ -20,22 +20,18 @@ export const VisitedCountryContext = createContext<IContextProps>({
 });
 
 const VisitedCountryContextProvider = ({ children }: IProps) => {
-  const [visitedCountries, setVsitedCountries] = useState<string[]>([]);
-  console.log("visitedCountries:", visitedCountries);
-  const { allCountries } = useFetchCountry("");
-  console.log("allCountries:", allCountries);
-  // const findCountryInArray = (countryCode, array) => {
-  //   const country = array.find((el) => el.code === countryCode);
-  //   return country;
-  // };
+  const [visitedCountries, setVsitedCountries] = useState<ICountry[]>([]);
 
-  const handleAddToVisited: handleAddToVisited = (countryCode) => {
-    const country = allCountries.find((el) => el.code === countryCode);
-    console.log("country:", country);
-    const isVisited = visitedCountries.find(
-      (visited) => visited === countryCode
-    );
-    !isVisited && setVsitedCountries([...visitedCountries, countryCode]);
+  const handleAddToVisited: handleAddToVisited = (
+    countryCode,
+    allCountries
+  ) => {
+    const countryDetails = findCountryInArray(allCountries, countryCode);
+    const isVisited = findCountryInArray(visitedCountries, countryCode);
+
+    if (countryDetails !== undefined) {
+      !isVisited && setVsitedCountries([...visitedCountries, countryDetails]);
+    }
   };
 
   const value = { visitedCountries, handleAddToVisited };

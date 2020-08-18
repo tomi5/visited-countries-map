@@ -20,9 +20,6 @@ const SelectedCountryContextProvider = ({ children }: IProps) => {
   const [selectedCountryCode, setSelectCountryCode] = useState<null | string>(
     null
   );
-
-  console.log(selectedCountryCode);
-
   const handleSelectCountry: IEvent<any> = (e) => {
     const countryCode = e.target.dataset.id;
     countryCode && setSelectCountryCode(countryCode);

@@ -24,3 +24,7 @@ interface ICreateContext {
   selectCountryFn: any;
   handleSearchInputChanges: any;
 }
+
+type handleAddToVisited = {
+  (countryCode: string): void;
+};

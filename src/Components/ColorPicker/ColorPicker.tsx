@@ -6,16 +6,16 @@ type ColorPickerProps = {
   pickedColor: string;
 };
 
-const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
-  const colorArray: string[] = [
-    "#B93423",
-    "#DB402B",
-    "#FBCC33",
-    "#428C08",
-    "#1173DE",
-    "#5948EB",
-  ];
+const colorArray: string[] = [
+  "#B93423",
+  "#DB402B",
+  "#FBCC33",
+  "#428C08",
+  "#1173DE",
+  "#5948EB",
+];
 
+const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
   return (
     <Wrapper>
       {colorArray.map((HEX: string, index: number) => (

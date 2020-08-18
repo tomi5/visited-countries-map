@@ -4,10 +4,12 @@ import { StyledReactTooltip } from "./style";
 import { SelectedCountryContext } from "../../contexts/SelectedCountryContext";
 import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
 import ColorPicker from "../ColorPicker/ColorPicker";
-import { fillWithColor } from "../../utils/fillWithColorUtils";
-import useFetchCountry from "../../hooks/useFetchCountry";
+import { fillWithColor } from "../../utils/fillWithColor";
 
-const MapContainer = () => {
+type MapContainerProps = {
+  allCountries: ICountry[];
+};
+const MapContainer = ({ allCountries }: MapContainerProps) => {
   const [pickedColor, setPickedColor] = useState("#428C08");
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
 
@@ -18,12 +20,11 @@ const MapContainer = () => {
   } = useContext(SelectedCountryContext);
 
   const { handleAddToVisited } = useContext(VisitedCountryContext);
-  const { allCountries } = useFetchCountry("");
 
   useEffect(() => {
     if (selectedCountryCode) {
       fillWithColor(selectedCountryCode, pickedColor);
-      handleAddToVisited(selectedCountryCode);
+      handleAddToVisited(selectedCountryCode, allCountries);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCountryCode, countryOnHover]);
