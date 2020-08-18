@@ -12,7 +12,6 @@ interface ICountry {
 interface IFetchState {
   error: string | null;
   isLoading: boolean;
-  countriesToShow: ICountry[];
 }
 
 interface ICreateContext {

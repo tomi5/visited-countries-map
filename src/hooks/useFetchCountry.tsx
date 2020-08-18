@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 const COUNTRY_API_URL: string = "https://restcountries.eu/rest/v2";
@@ -6,83 +5,64 @@ const COUNTRY_API_URL: string = "https://restcountries.eu/rest/v2";
 const initialState: IFetchState = {
   error: null,
   isLoading: false,
-  countriesToShow: [],
 };
 
 const useFetchCountry = (searchValue: string) => {
   const [state, setState] = useState(initialState);
-  const [allCountriesNumber, setAllCountriesNumber] = useState(0);
+  const [countriesToShow, setCountriesToShow] = useState<ICountry[]>([]);
+  const [allCountries, setAllCountries] = useState<ICountry[]>([]);
 
-  const fetchData = async () => {
-    let response = await fetch(`${COUNTRY_API_URL}/all`);
-    let responseData = await response.json();
-    setAllCountriesNumber(responseData.length);
-  };
+  const fetchData = async (querry?: string) => {
+    const param = querry ? `name/${querry}` : "all";
 
-  // fetch Total number of countries in the World
-  useEffect(() => {
-    console.log("Test");
-
-    fetchData();
-    // fetch(`${COUNTRY_API_URL}/all`)
-    //   .then((res) => res.json())
-    //   .then((data) => setAllCountriesNumber(data.length))
-    //   .catch((err) => {
-    //     setState({
-    //       ...initialState,
-    //       error: err.toString(),
-    //     });
-    //   });
-  }, []);
-
-  // fetch country to show using search input
-  useEffect(() => {
-    if (searchValue.length > 2) {
+    setState({
+      ...initialState,
+      isLoading: true,
+    });
+    try {
+      const response = await fetch(`${COUNTRY_API_URL}/${param}`);
+      const data = await response.json();
+      if (data.status === 404) {
+        setState({
+          ...initialState,
+          error: "No countries found...",
+        });
+      } else {
+        const result = data.map((el: any) => {
+          const country: ICountry = {
+            name: el.name,
+            code: el.alpha2Code,
+            flag: el.flag,
+            region: el.region,
+            subregion: el.subregion,
+          };
+          return country;
+        });
+        setState(initialState);
+        querry ? setCountriesToShow(result) : setAllCountries(result);
+      }
+    } catch (err) {
       setState({
         ...initialState,
-        isLoading: true,
+        error: "No countries found...",
       });
-      fetch(`${COUNTRY_API_URL}/name/${searchValue}`)
-        .then((res) => res.json())
-        .then((data) => {
-          // catch error if the country entered was not found
-          if (data.status === 404) {
-            setState({
-              ...initialState,
-              error: "No countries found...",
-            });
-          }
-          // if ok fetch data
-          else {
-            const results: ICountry[] = [];
-            data.map((el: any) => {
-              const country: ICountry = {
-                name: el.name,
-                code: el.alpha2Code,
-                flag: el.flag,
-                region: el.region,
-                subregion: el.subregion,
-              };
-              return results.push(country);
-            });
+      throw new Error(err.toString());
+    }
+  };
 
-            setState({
-              ...initialState,
-              countriesToShow: results,
-            });
-          }
-        }) // catch other error
-        .catch((err) => {
-          setState({
-            ...initialState,
-            error: "No countries found...",
-          });
-          throw new Error(err.toString());
-        });
-    } else setState(initialState);
+  // fetch all countries only after first render
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // fetch country after input search value change
+  useEffect(() => {
+    if (searchValue.length > 2) {
+      fetchData(searchValue);
+    }
   }, [searchValue]);
 
-  return { state, allCountriesNumber };
+  return { state, allCountries, countriesToShow };
 };
 
 export default useFetchCountry;

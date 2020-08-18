@@ -10,6 +10,7 @@ import SearchContainer from "../SearchContainer/SearchContainer";
 
 const App = () => {
   console.log("log from app");
+
   // const [visitedCountries, setvisitedCountries] = useState<ICountry[]>([]);
   // const [selectedCountry, setSelectCountry] = useState<string | null>(null);
   // const [searchValue, setSearchValue] = useState("");
@@ -90,8 +91,8 @@ const App = () => {
           <MapContainer />
           <SearchContainer />
         </SelectedCountryContextProvider>
-        {/* <SummaryBox />
-        <Tabels /> */}
+        <SummaryBox />
+        {/* <Tabels /> */}
       </VisitedCountryContextProvider>
     </Wrapper>
   );

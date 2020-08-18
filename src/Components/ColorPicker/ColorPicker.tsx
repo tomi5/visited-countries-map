@@ -7,7 +7,6 @@ type ColorPickerProps = {
 };
 
 const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
-  console.log("log from ColorPicker");
   const colorArray: string[] = [
     "#B93423",
     "#DB402B",

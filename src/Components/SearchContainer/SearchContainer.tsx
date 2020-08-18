@@ -2,24 +2,28 @@ import React, { useState, useContext } from "react";
 import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
 
-import useFetchCountry from "../../hooks/useFetchCountry";
 import { SelectedCountryContext } from "../../contexts/SelectedCountryContext";
+import useFetchCountry from "../../hooks/useFetchCountry";
 
 const SearchContainer = () => {
   const [value, setValue] = useState("");
 
-  //   const { fetchState } = useFetchCountry(value);
-
   const { handleSelectCountry } = useContext(SelectedCountryContext);
 
-  const handleInputChange = (e) => {
+  const handleInputChange: IEvent<HTMLInputElement> = (e) => {
     setValue(e.target.value);
   };
+
+  const { state, countriesToShow } = useFetchCountry(value);
 
   return (
     <div style={{ border: "1px solid black" }}>
       <SearchBar value={value} onChange={handleInputChange} />
-      <SearchResult {...fetchState} handleSelectCountry={handleSelectCountry} />
+      <SearchResult
+        state={state}
+        countriesToShow={countriesToShow}
+        handleSelectCountry={handleSelectCountry}
+      />
     </div>
   );
 };

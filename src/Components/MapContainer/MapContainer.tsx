@@ -7,7 +7,6 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import { fillWithColor } from "../../utils/fillWithColorUtils";
 
 const MapContainer = () => {
-  console.log("log from MapContainer");
   const [pickedColor, setPickedColor] = useState("#428C08");
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
 
