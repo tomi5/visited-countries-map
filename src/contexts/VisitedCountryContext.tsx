@@ -1,4 +1,5 @@
 import React, { createContext, useState, ReactNode } from "react";
+import useFetchCountry from "../hooks/useFetchCountry";
 
 interface IProps {
   children: ReactNode;
@@ -15,13 +16,21 @@ interface IContextProps {
 
 export const VisitedCountryContext = createContext<IContextProps>({
   visitedCountries: [],
-  handleAddToVisited: (e) => null,
+  handleAddToVisited: () => null,
 });
 
 const VisitedCountryContextProvider = ({ children }: IProps) => {
   const [visitedCountries, setVsitedCountries] = useState<string[]>([]);
+  console.log("visitedCountries:", visitedCountries);
+  const { allCountries } = useFetchCountry("");
+  // const findCountryInArray = (countryCode, array) => {
+  //   const country = array.find((el) => el.code === countryCode);
+  //   return country;
+  // };
 
   const handleAddToVisited: handleAddToVisited = (countryCode) => {
+    const country = allCountries.find((el) => el.code === countryCode);
+    console.log("country:", country);
     const isVisited = visitedCountries.find(
       (visited) => visited === countryCode
     );

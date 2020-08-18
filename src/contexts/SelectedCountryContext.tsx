@@ -21,9 +21,11 @@ const SelectedCountryContextProvider = ({ children }: IProps) => {
     null
   );
 
+  console.log(selectedCountryCode);
+
   const handleSelectCountry: IEvent<any> = (e) => {
     const countryCode = e.target.dataset.id;
-    setSelectCountryCode(countryCode);
+    countryCode && setSelectCountryCode(countryCode);
   };
 
   const resetSelectedCountry = () => setSelectCountryCode(null);

@@ -5,6 +5,7 @@ import { SelectedCountryContext } from "../../contexts/SelectedCountryContext";
 import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import { fillWithColor } from "../../utils/fillWithColorUtils";
+import useFetchCountry from "../../hooks/useFetchCountry";
 
 const MapContainer = () => {
   const [pickedColor, setPickedColor] = useState("#428C08");
@@ -17,6 +18,7 @@ const MapContainer = () => {
   } = useContext(SelectedCountryContext);
 
   const { handleAddToVisited } = useContext(VisitedCountryContext);
+  const { allCountries } = useFetchCountry("");
 
   useEffect(() => {
     if (selectedCountryCode) {

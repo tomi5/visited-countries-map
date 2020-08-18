@@ -9,30 +9,7 @@ import SelectedCountryContextProvider from "../../contexts/SelectedCountryContex
 import SearchContainer from "../SearchContainer/SearchContainer";
 
 const App = () => {
-  console.log("log from app");
-
-  // const [visitedCountries, setvisitedCountries] = useState<ICountry[]>([]);
-  // const [selectedCountry, setSelectCountry] = useState<string | null>(null);
-  // const [searchValue, setSearchValue] = useState("");
-
-  // const {
-  //   state: { error, isLoading, countriesToShow },
-  //   allCountriesNumber,
-  // } = useFetchCountry(searchValue);
-
   // const [percentageVisisted, setPercentageVisisted] = useState(0);
-
-  // const fillTheCountryOnMapWithColor = (countryCode: string): void => {
-  //   const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll(
-  //     "path"
-  //   );
-  //   // find countryCode on Map and fill this country with color
-  //   countryCode &&
-  //     [...pathSVG].some(
-  //       (el: SVGElement) =>
-  //         el.dataset.id === countryCode && (el.style.fill = pickedColor)
-  //     );
-  // };
 
   // const addToVisited = (country: ICountry): void => {
   //   if (typeof country.code === "string") {
@@ -55,11 +32,6 @@ const App = () => {
   //   selectedCountry && fillTheCountryOnMapWithColor(selectedCountry);
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [selectedCountry]);
-
-  // const handleSearchInputChanges: IEvent<HTMLInputElement> = (e) => {
-  //   const value = e.target.value;
-  //   setSearchValue(value);
-  // };
 
   // const selectCountryFn: IEvent<any> = (e) => {
   //   const countryCode = e.target.dataset.id;
@@ -99,32 +71,3 @@ const App = () => {
 };
 
 export default App;
-
-//  <MapContainer onClick={selectCountryFn} />
-//   <ColorPicker pickedColor={pickedColor} onClick={handleColorPicker} />
-//   <CountrySearchBar
-//     value={searchValue}
-//     onChange={handleSearchInputChanges}
-//   />
-//   <div>
-//     {error && <p>{error}</p>}
-//     {isLoading && <p>Loading...</p>}
-//     {!isLoading && !error && countriesToShow.length ? (
-//       <ul>
-//         {countriesToShow.map(
-//           (country: ICountry): ReactElement => (
-//             <SearchResult
-//               key={country.code}
-//               country={country}
-//               onClick={selectCountryFn}
-//             />
-//           )
-//         )}
-//       </ul>
-//     ) : null}
-//   </div>
-//   <SummaryBox
-//     percentage={percentageVisisted}
-//     visitedCountries={visitedCountries.length}
-//   />
-//   <Tabels visitedCountries={visitedCountries} />

@@ -17,14 +17,14 @@ const SearchContainer = () => {
   const { state, countriesToShow } = useFetchCountry(value);
 
   return (
-    <div style={{ border: "1px solid black" }}>
+    <>
       <SearchBar value={value} onChange={handleInputChange} />
       <SearchResult
         state={state}
         countriesToShow={countriesToShow}
         handleSelectCountry={handleSelectCountry}
       />
-    </div>
+    </>
   );
 };
 

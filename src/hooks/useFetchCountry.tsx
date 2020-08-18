@@ -44,9 +44,8 @@ const useFetchCountry = (searchValue: string) => {
     } catch (err) {
       setState({
         ...initialState,
-        error: "No countries found...",
+        error: err.toString(),
       });
-      throw new Error(err.toString());
     }
   };
 
@@ -59,6 +58,8 @@ const useFetchCountry = (searchValue: string) => {
   useEffect(() => {
     if (searchValue.length > 2) {
       fetchData(searchValue);
+    } else {
+      setCountriesToShow([]);
     }
   }, [searchValue]);
 

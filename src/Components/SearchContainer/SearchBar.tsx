@@ -13,5 +13,4 @@ const SearchBar = ({ ...props }: SearchBarProps) => (
     </label>
   </>
 );
-
 export default SearchBar;
