@@ -22,13 +22,7 @@ const useFetchCountry = (searchValue: string) => {
     try {
       const response = await fetch(`${COUNTRY_API_URL}/${param}`);
       const data = await response.json();
-      console.log("data:", data);
-      if (data.status === 404) {
-        setState({
-          ...initialState,
-          error: "No countries found...",
-        });
-      } else {
+      if (response.ok) {
         const result = data.map((el: any) => {
           const country: ICountry = {
             name: el.name,
@@ -41,11 +35,17 @@ const useFetchCountry = (searchValue: string) => {
         });
         setState(initialState);
         querry ? setCountriesToShow(result) : setAllCountries(result);
+      } else {
+        setState({
+          ...initialState,
+          error: "No countries found...",
+        });
       }
     } catch (err) {
+      console.log("err:", err);
       setState({
         ...initialState,
-        error: "No countries found...",
+        error: "something went wrong with the database, please try again later",
       });
     }
   };
@@ -60,6 +60,7 @@ const useFetchCountry = (searchValue: string) => {
     if (searchValue.length > 2) {
       fetchData(searchValue);
     } else {
+      setState(initialState);
       setCountriesToShow([]);
     }
   }, [searchValue]);
