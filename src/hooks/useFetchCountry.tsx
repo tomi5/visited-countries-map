@@ -13,7 +13,7 @@ const useFetchCountry = (searchValue: string) => {
   const [allCountries, setAllCountries] = useState<ICountry[]>([]);
 
   const fetchData = async (query?: string) => {
-    const param = query ? `name/${query}` : "all";
+    const param = query ? `name/${query}` : `all`;
 
     setState({
       ...initialState,
@@ -57,7 +57,7 @@ const useFetchCountry = (searchValue: string) => {
 
   // fetch country after input search value change
   useEffect(() => {
-    if (searchValue.length > 2) {
+    if (searchValue.length > 1) {
       fetchData(searchValue);
     } else {
       setState(initialState);

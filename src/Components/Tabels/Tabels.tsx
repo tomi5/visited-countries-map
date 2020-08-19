@@ -23,3 +23,17 @@ const Tabels = () => {
 };
 
 export default Tabels;
+
+/*
+Africa => AFRICA
+Americas:
+    - South America  => SOUTH AMERICA
+    - Northern America => NORTH AMERICA
+    - Central America =>
+    - Caribbean
+Asia  => ASIA
+Europe  => EUROPE
+Oceania   => OCEANIA
+Polar => ANTARTICA
+"" => ANTARTICA
+*/
