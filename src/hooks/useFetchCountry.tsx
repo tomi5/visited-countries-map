@@ -12,8 +12,8 @@ const useFetchCountry = (searchValue: string) => {
   const [countriesToShow, setCountriesToShow] = useState<ICountry[]>([]);
   const [allCountries, setAllCountries] = useState<ICountry[]>([]);
 
-  const fetchData = async (querry?: string) => {
-    const param = querry ? `name/${querry}` : "all";
+  const fetchData = async (query?: string) => {
+    const param = query ? `name/${query}` : "all";
 
     setState({
       ...initialState,
@@ -34,7 +34,7 @@ const useFetchCountry = (searchValue: string) => {
           return country;
         });
         setState(initialState);
-        querry ? setCountriesToShow(result) : setAllCountries(result);
+        query ? setCountriesToShow(result) : setAllCountries(result);
       } else {
         setState({
           ...initialState,

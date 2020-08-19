@@ -3,6 +3,7 @@ import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
 
 const Tabels = () => {
   const { visitedCountries } = useContext(VisitedCountryContext);
+  console.log("visitedCountries:", visitedCountries);
   return (
     <ul>
       {visitedCountries.map(
