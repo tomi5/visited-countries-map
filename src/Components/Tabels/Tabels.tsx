@@ -5,58 +5,44 @@ import {
   continentReducer,
   initialState,
 } from "../../reducers/countriesByContinent";
+import { addToContinent, getContinentName } from "../../utils/continentUtils";
 
 const Tabels = () => {
   const { visitedCountries } = useContext(VisitedCountryContext);
-  const [lastAdded, setLastAdded] = useState<ICountry>();
+  const [lastAddedCountry, setLastAddedCountry] = useState<ICountry>();
   const [continents, dispatch] = useReducer(continentReducer, initialState);
-  console.log("continents:", continents);
-
-  const getLastAdded = (arr: ICountry[]) => {
-    return [...arr].pop();
-  };
-
-  const pushToArray = (arr: ICountry[], country: ICountry): ICountry[] => {
-    arr.push(country);
-    return arr;
-  };
 
   useEffect(() => {
-    setLastAdded(getLastAdded(visitedCountries));
+    setLastAddedCountry([...visitedCountries].pop());
   }, [visitedCountries]);
 
   useEffect(() => {
-    if (lastAdded !== undefined) {
-      let dispatchType = lastAdded.region as Continents;
-      const arrToPush = continents[dispatchType];
+    if (lastAddedCountry !== undefined) {
+      const continentName = getContinentName(
+        lastAddedCountry
+      ) as ContinentsToShow;
+      const countriesByContinent = continents[continentName];
       dispatch({
-        type: dispatchType,
-        payload: pushToArray(arrToPush, lastAdded),
+        type: continentName,
+        payload: addToContinent(countriesByContinent, lastAddedCountry),
       });
     }
-  }, [lastAdded]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAddedCountry]);
 
   return (
     <>
-      {lastAdded && <p>Last: {lastAdded.name}</p>}
-
-      <Tabel continentName={"Europe"} visitedCountry={continents.Europe} />
+      {Object.entries(continents).map(([continentName, countries]) => {
+        return countries.length ? (
+          <Tabel
+            key={continentName}
+            continentName={continentName}
+            visitedCountry={countries}
+          />
+        ) : null;
+      })}
     </>
   );
 };
 
 export default Tabels;
-
-/*
-Africa => AFRICA
-Americas:
-    - South America  => SOUTH AMERICA
-    - Northern America => NORTH AMERICA
-    - Central America =>
-    - Caribbean
-Asia  => ASIA
-Europe  => EUROPE
-Oceania   => OCEANIA
-Polar => ANTARTICA
-"" => ANTARTICA
-*/

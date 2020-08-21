@@ -9,6 +9,7 @@ import { fillWithColor } from "../../utils/fillWithColor";
 type MapContainerProps = {
   allCountries: ICountry[];
 };
+
 const MapContainer = ({ allCountries }: MapContainerProps) => {
   const [pickedColor, setPickedColor] = useState("#428C08");
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);

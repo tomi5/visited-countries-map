@@ -28,12 +28,29 @@ type HandleAddToVisited = {
   (countryCode: string, allCountries: ICountry[]): void;
 };
 
-type Continents = "Africa" | "Asia" | "Europe" | "Oceania" | "Polar";
+type ContinentsToShow =
+  | "Africa"
+  | "Antarctica"
+  | "America North"
+  | "America South"
+  | "Asia"
+  | "Europe"
+  | "Oceania";
+
+type AmericasSubregion =
+  | "Caribbean"
+  | "Central America"
+  | "Northern America"
+  | "South America";
+
+type ContinetsFromApi =
+  | "Africa"
+  | "Americas"
+  | "Asia"
+  | "Europe"
+  | "Oceania"
+  | "Polar";
 
 type ContinentsInitialState = {
-  [key in Continents]: ICountry[];
-};
-
-type FilrerByContinent = {
-  (countries: ICountry[], continent: Continents): ICountry[];
+  [key in ContinentsToShow]: ICountry[];
 };

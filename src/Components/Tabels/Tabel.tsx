@@ -9,9 +9,9 @@ type TabelProps = {
 const Tabel = ({ continentName, visitedCountry }: TabelProps) => {
   return (
     <ul>
-      <h1>{continentName}</h1>
+      <h1>{continentName === "Polar" ? "Ant" : continentName}</h1>
       {visitedCountry.map(
-        (country: any): JSX.Element => (
+        (country: ICountry): JSX.Element => (
           <li key={country.code}>
             <img
               src={country.flag}
