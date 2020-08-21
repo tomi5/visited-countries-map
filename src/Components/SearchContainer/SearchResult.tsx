@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import CountryItem from "../CountryItem/CountryItem";
 
 type SearchResultProps = {
   state: IFetchState;
@@ -22,21 +23,11 @@ const SearchResult = ({
 
   return countriesToShow.length ? (
     <ul>
-      {countriesToShow.map(({ code, name, flag }) => (
-        <li
-          key={code}
-          data-id={code}
-          data-name={name}
-          onClick={handleSelectCountry}
-        >
-          <img
-            src={flag}
-            alt={`flag of ${name}`}
-            style={{ width: "auto", height: "20px" }}
-          />
-          {name}
-        </li>
-      ))}
+      {countriesToShow.map(
+        (country): ReactNode => (
+          <CountryItem onClick={handleSelectCountry} country={country} />
+        )
+      )}
     </ul>
   ) : null;
 };

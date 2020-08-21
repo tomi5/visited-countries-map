@@ -1,11 +1,11 @@
-import React, { MouseEvent, KeyboardEvent } from "react";
+import React, { MouseEvent, KeyboardEvent, ReactNode } from "react";
 import { Wrapper, ButtonComponent } from "./style";
 
 type ButtonProps = {
   name: string;
   openStatus: boolean;
   onClickStatus: (openStatus: boolean) => void;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const Button = ({ name, openStatus, onClickStatus, children }: ButtonProps) => {
