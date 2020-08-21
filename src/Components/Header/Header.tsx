@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Buttons/Buttons";
+import Button from "../Buttons/Buttons";
 import { HeaderComponent } from "./style";
 
 type HeaderProps = {

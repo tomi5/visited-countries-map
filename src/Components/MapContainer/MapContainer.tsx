@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ReactComponent as Map } from "../../assets/world.svg";
 import { StyledReactTooltip } from "./style";
-import { SelectedCountryContext } from "../../contexts/SelectedCountryContext";
-import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
+import { SelectedCountryContext } from "../../contexts/selectedCountryContext";
+import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import { fillWithColor } from "../../utils/fillWithColor";
 

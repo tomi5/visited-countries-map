@@ -1,13 +1,12 @@
 interface IEvent<T> {
   (e: { target: T }): void;
 }
-interface ICountry {
-  name: string;
-  code: string;
-  flag: string;
-  region: string;
-  subregion: string;
-}
+
+type CountryFeatures = "name" | "code" | "flag" | "region" | "subregion";
+
+type ICountry = {
+  [key in CountryFeatures]: string;
+};
 
 interface IFetchState {
   error: string | null;
@@ -20,11 +19,21 @@ interface ICreateContext {
   searchValue: string;
   percentageVisisted: number;
   pickedColor: string;
-  handleColorPicker: any;
-  selectCountryFn: any;
-  handleSearchInputChanges: any;
+  handleColorPicker: any; // FIXME - fix "any" type
+  selectCountryFn: any; // FIXME - fix "any" type
+  handleSearchInputChanges: any; // FIXME - fix "any" type
 }
 
-type handleAddToVisited = {
-  (countryCode: string): void;
+type HandleAddToVisited = {
+  (countryCode: string, allCountries: ICountry[]): void;
+};
+
+type Continents = "Africa" | "Asia" | "Europe" | "Oceania" | "Polar";
+
+type ContinentsInitialState = {
+  [key in Continents]: ICountry[];
+};
+
+type FilrerByContinent = {
+  (countries: ICountry[], continent: Continents): ICountry[];
 };

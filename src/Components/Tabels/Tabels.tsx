@@ -1,24 +1,47 @@
-import React, { useContext } from "react";
-import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
+import React, { useContext, useReducer, useState, useEffect } from "react";
+import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
+import Tabel from "./Tabel";
+import {
+  continentReducer,
+  initialState,
+} from "../../reducers/countriesByContinent";
 
 const Tabels = () => {
   const { visitedCountries } = useContext(VisitedCountryContext);
-  console.log("visitedCountries:", visitedCountries);
+  const [lastAdded, setLastAdded] = useState<ICountry>();
+  const [continents, dispatch] = useReducer(continentReducer, initialState);
+  console.log("continents:", continents);
+
+  const getLastAdded = (arr: ICountry[]) => {
+    return [...arr].pop();
+  };
+
+  const pushToArray = (arr: ICountry[], country: ICountry): ICountry[] => {
+    arr.push(country);
+    return arr;
+  };
+
+  useEffect(() => {
+    setLastAdded(getLastAdded(visitedCountries));
+  }, [visitedCountries]);
+
+  useEffect(() => {
+    if (lastAdded !== undefined) {
+      let dispatchType = lastAdded.region as Continents;
+      const arrToPush = continents[dispatchType];
+      dispatch({
+        type: dispatchType,
+        payload: pushToArray(arrToPush, lastAdded),
+      });
+    }
+  }, [lastAdded]);
+
   return (
-    <ul>
-      {visitedCountries.map(
-        (country): JSX.Element => (
-          <li key={country.code}>
-            <img
-              src={country.flag}
-              alt={`flag of ${country.name}`}
-              style={{ width: "auto", height: "20px" }}
-            />
-            {country.name}
-          </li>
-        )
-      )}
-    </ul>
+    <>
+      {lastAdded && <p>Last: {lastAdded.name}</p>}
+
+      <Tabel continentName={"Europe"} visitedCountry={continents.Europe} />
+    </>
   );
 };
 

@@ -1,28 +1,23 @@
 import React, { createContext, useState, ReactNode } from "react";
 import { findCountryInArray } from "../utils/findCountryInArray";
 
-type IProps = {
-  children: ReactNode;
-};
-
-type handleAddToVisited = {
-  (countryCode: string, allCountries: ICountry[]): void;
-};
-
 interface IContextProps {
   visitedCountries: ICountry[];
-  handleAddToVisited: handleAddToVisited;
+  handleAddToVisited: HandleAddToVisited;
 }
+type Props = {
+  children: ReactNode;
+};
 
 export const VisitedCountryContext = createContext<IContextProps>({
   visitedCountries: [],
   handleAddToVisited: () => null,
 });
 
-const VisitedCountryContextProvider = ({ children }: IProps) => {
+const VisitedCountryContextProvider = ({ children }: Props) => {
   const [visitedCountries, setVsitedCountries] = useState<ICountry[]>([]);
 
-  const handleAddToVisited: handleAddToVisited = (
+  const handleAddToVisited: HandleAddToVisited = (
     countryCode,
     allCountries
   ) => {

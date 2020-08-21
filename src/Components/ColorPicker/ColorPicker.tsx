@@ -18,8 +18,8 @@ const colorArray: string[] = [
 const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
   return (
     <Wrapper>
-      {colorArray.map((HEX: string, index: number) => (
-        <Label color={HEX} key={index} checked={HEX === pickedColor}>
+      {colorArray.map((HEX: string) => (
+        <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
           <input
             readOnly
             data-color={HEX}

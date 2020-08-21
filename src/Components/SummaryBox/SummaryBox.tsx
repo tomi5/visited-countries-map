@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { VisitedCountryContext } from "../../contexts/VisitedCountryContext";
+import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 
 type SummaryBoxProps = {
   allCountries: ICountry[];
@@ -10,7 +10,7 @@ const SummaryBox = ({ allCountries }: SummaryBoxProps) => {
   const [percentageVisisted, setPercentageVisisted] = useState(0);
 
   useEffect(() => {
-    visitedCountries.length > 0 &&
+    visitedCountries.length &&
       setPercentageVisisted(
         (visitedCountries.length * 100) / allCountries.length
       );

@@ -1,14 +1,13 @@
 import React, { createContext, useState, ReactNode } from "react";
 
-interface IProps {
-  children: ReactNode;
-}
-
 interface IContextProps {
   selectedCountryCode: string | null;
   handleSelectCountry: IEvent<any>;
   resetSelectedCountry: () => void;
 }
+type Props = {
+  children: ReactNode;
+};
 
 export const SelectedCountryContext = createContext<IContextProps>({
   selectedCountryCode: null,
@@ -16,7 +15,7 @@ export const SelectedCountryContext = createContext<IContextProps>({
   resetSelectedCountry: () => null,
 });
 
-const SelectedCountryContextProvider = ({ children }: IProps) => {
+const SelectedCountryContextProvider = ({ children }: Props) => {
   const [selectedCountryCode, setSelectCountryCode] = useState<null | string>(
     null
   );
