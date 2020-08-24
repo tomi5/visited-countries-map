@@ -1,9 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
-
-type SummaryBoxProps = {
-  allCountries: ICountry[];
-};
+import React, { useContext, useEffect, useState } from 'react';
+import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 
 const setPercentage = (divident: ICountry[], divisor: ICountry[]) => {
   if (!divident.length) {
@@ -14,8 +10,8 @@ const setPercentage = (divident: ICountry[], divisor: ICountry[]) => {
   }
 };
 
-const SummaryBox = ({ allCountries }: SummaryBoxProps) => {
-  const { visitedCountries } = useContext(VisitedCountryContext);
+const SummaryBox = () => {
+  const { visitedCountries, allCountries } = useContext(VisitedCountryContext);
   const [percentageVisisted, setPercentageVisisted] = useState(0);
 
   useEffect(() => {
@@ -25,8 +21,8 @@ const SummaryBox = ({ allCountries }: SummaryBoxProps) => {
   return (
     <div>
       <p>
-        You have visited: {visitedCountries.length}{" "}
-        {visitedCountries.length > 1 ? "countries" : "country"}
+        You have visited: {visitedCountries.length}{' '}
+        {visitedCountries.length > 1 ? 'countries' : 'country'}
       </p>
       <p>This is {percentageVisisted} % of the world</p>
     </div>

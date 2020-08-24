@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Button from "../Buttons/Buttons";
-import { HeaderComponent } from "./style";
+import React, { useState } from 'react';
+import Button from '../Buttons/Buttons';
+import { HeaderComponent } from './style';
 
 type HeaderProps = {
   title: string;
@@ -21,7 +21,7 @@ const Header = ({ title }: HeaderProps) => {
       </Button>
       <h1>{title}</h1>
       <Button name='login' openStatus={isLogged} onClickStatus={setLoginStatus}>
-        {!isLogged ? "Log in" : "Log out"}
+        {!isLogged ? 'Log in' : 'Log out'}
       </Button>
     </HeaderComponent>
   );

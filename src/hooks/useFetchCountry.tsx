@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-const COUNTRY_API_URL: string = "https://restcountries.eu/rest/v2";
+const COUNTRY_API_URL: string = 'https://restcountries.eu/rest/v2';
 
 const initialState: IFetchState = {
   error: null,
@@ -38,14 +38,14 @@ const useFetchCountry = (searchValue: string) => {
       } else {
         setState({
           ...initialState,
-          error: "No countries found...",
+          error: 'No countries found...',
         });
       }
     } catch (err) {
-      console.log("err:", err);
+      console.log('err:', err);
       setState({
         ...initialState,
-        error: "something went wrong with the database, please try again later",
+        error: 'something went wrong with the database, please try again later',
       });
     }
   };

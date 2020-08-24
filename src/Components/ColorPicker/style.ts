@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface Props {
   color: string;
@@ -19,7 +19,7 @@ export const Label = styled.label`
   flex: 1;
   cursor: pointer;
   background: ${(props: Props) => props.color};
-  box-shadow: ${(props: Props) => props.checked && "inset 0 0 0 3px #ffff"};
+  box-shadow: ${(props: Props) => props.checked && 'inset 0 0 0 3px #ffff'};
   &:first-of-type {
     border-radius: 5px 0 0 5px;
   }

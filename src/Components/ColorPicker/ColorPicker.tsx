@@ -1,5 +1,5 @@
-import React from "react";
-import { Wrapper, Label } from "./style";
+import React from 'react';
+import { Wrapper, Label } from './style';
 
 type ColorPickerProps = {
   onClick: IEvent<any>;
@@ -7,12 +7,12 @@ type ColorPickerProps = {
 };
 
 const colorArr: string[] = [
-  "#B93423",
-  "#DB402B",
-  "#FBCC33",
-  "#428C08",
-  "#1173DE",
-  "#5948EB",
+  '#B93423',
+  '#DB402B',
+  '#FBCC33',
+  '#428C08',
+  '#1173DE',
+  '#5948EB',
 ];
 
 const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {

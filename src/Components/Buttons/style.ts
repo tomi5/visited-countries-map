@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 interface Props {
   readonly name: string;
@@ -22,7 +22,7 @@ export const ButtonComponent = styled.button`
   transition: background-color 0.3s;
 
   ${(props: Props) =>
-    props.name === "instruction" &&
+    props.name === 'instruction' &&
     css`
       border-radius: 50%;
       color: #ff0e0e;
@@ -31,7 +31,7 @@ export const ButtonComponent = styled.button`
     `}
 
   ${(props: Props) =>
-    props.name === "login" &&
+    props.name === 'login' &&
     css`
       border-radius: 29px;
       color: #058b0e;

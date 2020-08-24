@@ -1,18 +1,13 @@
-import React, { ReactElement, useContext } from "react";
-import CountryItem from "../CountryItem/CountryItem";
-import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
+import React, { ReactElement, useContext } from 'react';
+import CountryItem from '../CountryItem/CountryItem';
+import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 
 type SearchResultProps = {
   state: IFetchState;
   countriesToShow: ICountry[];
-  allCountries: ICountry[];
 };
 
-const SearchResult = ({
-  state,
-  countriesToShow,
-  allCountries,
-}: SearchResultProps) => {
+const SearchResult = ({ state, countriesToShow }: SearchResultProps) => {
   const { error, isLoading } = state;
 
   const { handleAddToVisited } = useContext(VisitedCountryContext);
@@ -30,7 +25,7 @@ const SearchResult = ({
         (country): ReactElement => (
           <CountryItem
             key={country.code}
-            onClick={(e) => handleAddToVisited(e, allCountries)}
+            onClick={handleAddToVisited}
             country={country}
           />
         )

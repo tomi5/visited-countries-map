@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
-import RemoveButton from "../Buttons/RemoveButton";
-import CountryItem from "../CountryItem/CountryItem";
+import React, { ReactElement } from 'react';
+import RemoveButton from '../Buttons/RemoveButton';
+import CountryItem from '../CountryItem/CountryItem';
 
 type TabelProps = {
   continentName: string;

@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
-  onClick?: (e: any) => void; // FIXME fix any type
+  onClick?: IEvent<any>;
   children?: ReactElement;
 };
 
@@ -15,7 +15,7 @@ const CountryItem = ({ country, continent, ...props }: CountryItemProps) => {
       <img
         src={flag}
         alt={`flag of ${name}`}
-        style={{ width: "auto", height: "20px" }}
+        style={{ width: 'auto', height: '20px' }}
       />
       {name}
       {props.children}

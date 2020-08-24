@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import ReactTooltip from "react-tooltip";
+import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 
 export const StyledReactTooltip = styled(ReactTooltip)`
   background-color: white !important;

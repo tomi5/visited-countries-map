@@ -1,5 +1,5 @@
-import React, { MouseEvent, KeyboardEvent, ReactNode } from "react";
-import { Wrapper, ButtonComponent } from "./style";
+import React, { MouseEvent, KeyboardEvent, ReactNode } from 'react';
+import { Wrapper, ButtonComponent } from './style';
 
 type ButtonProps = {
   name: string;
