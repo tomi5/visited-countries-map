@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState, useEffect } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 import Tabel from "./Tabel";
 import {
@@ -7,21 +7,22 @@ import {
 } from "../../reducers/countriesByContinent";
 import { addToContinent, getContinentName } from "../../utils/continentUtils";
 import { fillWithColor } from "../../utils/fillWithColor";
-import { SelectedCountryContext } from "../../contexts/selectedCountryContext";
+
 import { removeCountryFromArray } from "../../utils/findCountryInArray";
 
 const Tabels = () => {
-  const { visitedCountries, updateVisited } = useContext(VisitedCountryContext);
-  const { resetSelectedCountry } = useContext(SelectedCountryContext);
-  const [lastAddedCountry, setLastAddedCountry] = useState<ICountry>();
+  const {
+    visitedCountries,
+    updateVisited,
+    resetSelectedCountry,
+    lastAddedCountry,
+    resetLastAddedCountry,
+  } = useContext(VisitedCountryContext);
+
   const [continents, dispatch] = useReducer(continentReducer, initialState);
 
   useEffect(() => {
-    setLastAddedCountry([...visitedCountries].pop());
-  }, [visitedCountries]);
-
-  useEffect(() => {
-    if (lastAddedCountry !== undefined) {
+    if (lastAddedCountry !== null) {
       const continentName = getContinentName(
         lastAddedCountry
       ) as ContinentsToShow;
@@ -37,7 +38,7 @@ const Tabels = () => {
   const handleRemoveFromVisited: RemoveButton = (e) => {
     e.preventDefault();
     resetSelectedCountry();
-    setLastAddedCountry(undefined);
+    resetLastAddedCountry();
     const countryToRemove = e.target.parentNode;
     const countryToRemoveID = countryToRemove.dataset.id;
     const countryToRemoveContinent = countryToRemove.dataset

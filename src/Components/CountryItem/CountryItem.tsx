@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
-  onClick?: IEvent<any>;
+  onClick?: (e: any) => void; // FIXME fix any type
   children?: ReactElement;
 };
 

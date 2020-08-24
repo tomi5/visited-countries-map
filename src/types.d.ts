@@ -27,7 +27,7 @@ interface ICreateContext {
 }
 
 type HandleAddToVisited = {
-  (countryCode: string, allCountries: ICountry[]): void;
+  (e: { target: any }, allCountries: ICountry[]): void;
 };
 
 type UpdateVisited = {

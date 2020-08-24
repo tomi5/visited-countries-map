@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
-import { SelectedCountryContext } from "../../contexts/selectedCountryContext";
 import useFetchCountry from "../../hooks/useFetchCountry";
 
-const SearchContainer = () => {
+type SearchContainerProps = {
+  allCountries: ICountry[];
+};
+const SearchContainer = ({ allCountries }: SearchContainerProps) => {
   const [value, setValue] = useState("");
-
-  const { handleSelectCountry } = useContext(SelectedCountryContext);
 
   const handleInputChange: IEvent<HTMLInputElement> = (e) => {
     setValue(e.target.value);
@@ -21,7 +21,7 @@ const SearchContainer = () => {
       <SearchResult
         state={state}
         countriesToShow={countriesToShow}
-        handleSelectCountry={handleSelectCountry}
+        allCountries={allCountries}
       />
     </>
   );

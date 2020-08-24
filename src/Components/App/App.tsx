@@ -4,7 +4,6 @@ import SummaryBox from "../SummaryBox/SummaryBox";
 import MapContainer from "../MapContainer/MapContainer";
 import { Wrapper } from "./style";
 import VisitedCountryContextProvider from "../../contexts/visitedCountryContext";
-import SelectedCountryContextProvider from "../../contexts/selectedCountryContext";
 import SearchContainer from "../SearchContainer/SearchContainer";
 import Tabels from "../Tabels/Tabels";
 import useFetchCountry from "../../hooks/useFetchCountry";
@@ -16,12 +15,10 @@ const App = () => {
     <Wrapper>
       <Header title='Interactive Visited Countries Map' />
       <VisitedCountryContextProvider>
-        <SelectedCountryContextProvider>
-          <MapContainer allCountries={allCountries} />
-          <SearchContainer />
-          <SummaryBox allCountries={allCountries} />
-          <Tabels />
-        </SelectedCountryContextProvider>
+        <MapContainer allCountries={allCountries} />
+        <SearchContainer allCountries={allCountries} />
+        <SummaryBox allCountries={allCountries} />
+        <Tabels />
       </VisitedCountryContextProvider>
     </Wrapper>
   );

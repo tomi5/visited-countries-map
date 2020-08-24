@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ReactComponent as Map } from "../../assets/world.svg";
 import { StyledReactTooltip } from "./style";
-import { SelectedCountryContext } from "../../contexts/selectedCountryContext";
+
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import { fillWithColor } from "../../utils/fillWithColor";
@@ -15,17 +15,14 @@ const MapContainer = ({ allCountries }: MapContainerProps) => {
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
 
   const {
+    handleAddToVisited,
     selectedCountryCode,
     resetSelectedCountry,
-    handleSelectCountry,
-  } = useContext(SelectedCountryContext);
-
-  const { handleAddToVisited } = useContext(VisitedCountryContext);
+  } = useContext(VisitedCountryContext);
 
   useEffect(() => {
     if (selectedCountryCode) {
       fillWithColor(selectedCountryCode, pickedColor);
-      handleAddToVisited(selectedCountryCode, allCountries);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCountryCode]);
@@ -47,7 +44,7 @@ const MapContainer = ({ allCountries }: MapContainerProps) => {
       <Map
         data-tip
         data-for='countryTooltip'
-        onClick={handleSelectCountry}
+        onClick={(e) => handleAddToVisited(e, allCountries)}
         onMouseMove={handleToolTip}
       />
       <StyledReactTooltip
