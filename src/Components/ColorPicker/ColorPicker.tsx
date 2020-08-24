@@ -6,7 +6,7 @@ type ColorPickerProps = {
   pickedColor: string;
 };
 
-const colorArray: string[] = [
+const colorArr: string[] = [
   "#B93423",
   "#DB402B",
   "#FBCC33",
@@ -18,7 +18,7 @@ const colorArray: string[] = [
 const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
   return (
     <Wrapper>
-      {colorArray.map((HEX: string) => (
+      {colorArr.map((HEX: string) => (
         <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
           <input
             readOnly

@@ -4,6 +4,7 @@ import { findCountryInArray } from "../utils/findCountryInArray";
 interface IContextProps {
   visitedCountries: ICountry[];
   handleAddToVisited: HandleAddToVisited;
+  updateVisited: UpdateVisited;
 }
 type Props = {
   children: ReactNode;
@@ -12,6 +13,7 @@ type Props = {
 export const VisitedCountryContext = createContext<IContextProps>({
   visitedCountries: [],
   handleAddToVisited: () => null,
+  updateVisited: () => null,
 });
 
 const VisitedCountryContextProvider = ({ children }: Props) => {
@@ -24,12 +26,20 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
     const countryDetails = findCountryInArray(allCountries, countryCode);
     const isVisited = findCountryInArray(visitedCountries, countryCode);
 
-    if (countryDetails !== undefined) {
-      !isVisited && setVsitedCountries([...visitedCountries, countryDetails]);
+    if (countryDetails !== undefined && !isVisited) {
+      setVsitedCountries([...visitedCountries, countryDetails]);
     }
   };
 
-  const value = { visitedCountries, handleAddToVisited };
+  const updateVisited: UpdateVisited = (arr) => {
+    setVsitedCountries(arr);
+  };
+
+  const value = {
+    visitedCountries,
+    handleAddToVisited,
+    updateVisited,
+  };
 
   return (
     <VisitedCountryContext.Provider value={value}>

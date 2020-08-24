@@ -10,23 +10,29 @@ export const initialState: ContinentsInitialState = {
 
 export const continentReducer = (
   state = initialState,
-  action: { type: ContinentsToShow; payload: ICountry[] }
+  action: {
+    type: ReducerActionTypes;
+    continent: ContinentsToShow;
+    payload: ICountry[] | null;
+  }
 ) => {
   switch (action.type) {
     case "Antarctica":
-      return { ...state, Antarctica: action.payload };
+      return { ...state, [action.continent]: action.payload };
     case "Africa":
-      return { ...state, Africa: action.payload };
+      return { ...state, [action.continent]: action.payload };
     case "America North":
-      return { ...state, "America North": action.payload };
+      return { ...state, [action.continent]: action.payload };
     case "America South":
-      return { ...state, "America South": action.payload };
+      return { ...state, [action.continent]: action.payload };
     case "Asia":
-      return { ...state, Asia: action.payload };
+      return { ...state, [action.continent]: action.payload };
     case "Europe":
-      return { ...state, Europe: action.payload };
+      return { ...state, [action.continent]: action.payload };
     case "Oceania":
-      return { ...state, Oceania: action.payload };
+      return { ...state, [action.continent]: action.payload };
+    case "Remove":
+      return { ...state, [action.continent]: action.payload };
     default:
       return state;
   }

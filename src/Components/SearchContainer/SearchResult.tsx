@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement } from "react";
 import CountryItem from "../CountryItem/CountryItem";
 
 type SearchResultProps = {
@@ -24,8 +24,12 @@ const SearchResult = ({
   return countriesToShow.length ? (
     <ul>
       {countriesToShow.map(
-        (country): ReactNode => (
-          <CountryItem onClick={handleSelectCountry} country={country} />
+        (country): ReactElement => (
+          <CountryItem
+            key={country.code}
+            onClick={handleSelectCountry}
+            country={country}
+          />
         )
       )}
     </ul>

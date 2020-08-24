@@ -1,4 +1,5 @@
 import sortBy from "lodash.sortby";
+import { findCountryInArray } from "./findCountryInArray";
 
 export const getContinentName = (country: ICountry): ContinentsToShow => {
   switch (country.region as ContinetsFromApi) {
@@ -29,8 +30,11 @@ export const assignSubregionToContinent = (
 export const addToContinent = (
   arr: ICountry[],
   country: ICountry
-): ICountry[] => {
-  arr.push(country);
-  arr = sortBy(arr, "name");
-  return arr;
+): ICountry[] | null => {
+  const isVisted = findCountryInArray(arr, country.code);
+  if (!isVisted) {
+    arr.push(country);
+    arr = sortBy(arr, "name");
+    return arr;
+  } else return arr;
 };

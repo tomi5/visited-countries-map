@@ -1,16 +1,17 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement } from "react";
 
 type CountryItemProps = {
   country: ICountry;
+  continent?: string;
   onClick?: IEvent<any>;
-  children?: ReactNode;
+  children?: ReactElement;
 };
 
-const CountryItem = ({ country, ...props }: CountryItemProps) => {
+const CountryItem = ({ country, continent, ...props }: CountryItemProps) => {
   const { name, code, flag } = country;
 
   return (
-    <li key={code} data-id={code} data-name={name} {...props}>
+    <li data-id={code} data-name={name} data-continent={continent} {...props}>
       <img
         src={flag}
         alt={`flag of ${name}`}

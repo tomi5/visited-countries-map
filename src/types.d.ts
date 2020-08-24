@@ -1,8 +1,10 @@
 interface IEvent<T> {
-  (e: { target: T }): void;
+  (e: { target: T });
 }
 
-type CountryFeatures = "name" | "code" | "flag" | "region" | "subregion";
+interface RemoveButton {
+  (e: { preventDefault: () => void; target: any });
+}
 
 type ICountry = {
   [key in CountryFeatures]: string;
@@ -28,6 +30,10 @@ type HandleAddToVisited = {
   (countryCode: string, allCountries: ICountry[]): void;
 };
 
+type UpdateVisited = {
+  (arr: ICountry[]): void;
+};
+
 type ContinentsToShow =
   | "Africa"
   | "Antarctica"
@@ -50,6 +56,10 @@ type ContinetsFromApi =
   | "Europe"
   | "Oceania"
   | "Polar";
+
+type Remove = "Remove";
+
+type ReducerActionTypes = ContinentsToShow | Remove;
 
 type ContinentsInitialState = {
   [key in ContinentsToShow]: ICountry[];

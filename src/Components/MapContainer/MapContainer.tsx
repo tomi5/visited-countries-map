@@ -28,7 +28,7 @@ const MapContainer = ({ allCountries }: MapContainerProps) => {
       handleAddToVisited(selectedCountryCode, allCountries);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCountryCode, countryOnHover]);
+  }, [selectedCountryCode]);
 
   const handleColorPicker: IEvent<any> = (e) => {
     setPickedColor(e.target.dataset.color);

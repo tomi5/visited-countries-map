@@ -1,20 +1,27 @@
-import React, { ReactNode } from "react";
-import DeleteButton from "../Buttons/DeleteButton";
+import React, { ReactElement } from "react";
+import RemoveButton from "../Buttons/RemoveButton";
 import CountryItem from "../CountryItem/CountryItem";
 
 type TabelProps = {
   continentName: string;
   visitedCountry: ICountry[];
+  onClick: any;
 };
 
-const Tabel = ({ continentName, visitedCountry }: TabelProps) => {
+const Tabel = ({ continentName, visitedCountry, ...props }: TabelProps) => {
   return (
-    <ul>
-      <h1>{continentName}</h1>
+    <ul key={continentName}>
+      <h2>
+        {continentName} ({visitedCountry.length})
+      </h2>
       {visitedCountry.map(
-        (country): ReactNode => (
-          <CountryItem country={country}>
-            <DeleteButton />
+        (country): ReactElement => (
+          <CountryItem
+            key={country.code}
+            country={country}
+            continent={continentName}
+          >
+            <RemoveButton {...props} />
           </CountryItem>
         )
       )}

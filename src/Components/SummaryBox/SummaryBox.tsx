@@ -5,16 +5,21 @@ type SummaryBoxProps = {
   allCountries: ICountry[];
 };
 
+const setPercentage = (divident: ICountry[], divisor: ICountry[]) => {
+  if (!divident.length) {
+    return 0;
+  } else {
+    const result = (divident.length * 100) / divisor.length;
+    return result;
+  }
+};
+
 const SummaryBox = ({ allCountries }: SummaryBoxProps) => {
   const { visitedCountries } = useContext(VisitedCountryContext);
   const [percentageVisisted, setPercentageVisisted] = useState(0);
 
   useEffect(() => {
-    visitedCountries.length &&
-      setPercentageVisisted(
-        (visitedCountries.length * 100) / allCountries.length
-      );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setPercentageVisisted(setPercentage(visitedCountries, allCountries));
   }, [allCountries, visitedCountries]);
 
   return (

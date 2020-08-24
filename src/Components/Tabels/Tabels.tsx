@@ -6,9 +6,13 @@ import {
   initialState,
 } from "../../reducers/countriesByContinent";
 import { addToContinent, getContinentName } from "../../utils/continentUtils";
+import { fillWithColor } from "../../utils/fillWithColor";
+import { SelectedCountryContext } from "../../contexts/selectedCountryContext";
+import { removeCountryFromArray } from "../../utils/findCountryInArray";
 
 const Tabels = () => {
-  const { visitedCountries } = useContext(VisitedCountryContext);
+  const { visitedCountries, updateVisited } = useContext(VisitedCountryContext);
+  const { resetSelectedCountry } = useContext(SelectedCountryContext);
   const [lastAddedCountry, setLastAddedCountry] = useState<ICountry>();
   const [continents, dispatch] = useReducer(continentReducer, initialState);
 
@@ -21,14 +25,34 @@ const Tabels = () => {
       const continentName = getContinentName(
         lastAddedCountry
       ) as ContinentsToShow;
-      const countriesByContinent = continents[continentName];
       dispatch({
         type: continentName,
-        payload: addToContinent(countriesByContinent, lastAddedCountry),
+        continent: continentName,
+        payload: addToContinent(continents[continentName], lastAddedCountry),
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastAddedCountry]);
+
+  const handleRemoveFromVisited: RemoveButton = (e) => {
+    e.preventDefault();
+    resetSelectedCountry();
+    setLastAddedCountry(undefined);
+    const countryToRemove = e.target.parentNode;
+    const countryToRemoveID = countryToRemove.dataset.id;
+    const countryToRemoveContinent = countryToRemove.dataset
+      .continent as ContinentsToShow;
+    dispatch({
+      type: countryToRemoveContinent,
+      continent: countryToRemoveContinent,
+      payload: removeCountryFromArray(
+        continents[countryToRemoveContinent],
+        countryToRemoveID
+      ),
+    });
+    updateVisited(removeCountryFromArray(visitedCountries, countryToRemoveID));
+    fillWithColor(countryToRemoveID);
+  };
 
   return (
     <>
@@ -38,6 +62,7 @@ const Tabels = () => {
             key={continentName}
             continentName={continentName}
             visitedCountry={countries}
+            onClick={handleRemoveFromVisited}
           />
         ) : null;
       })}

@@ -19,9 +19,9 @@ const App = () => {
         <SelectedCountryContextProvider>
           <MapContainer allCountries={allCountries} />
           <SearchContainer />
+          <SummaryBox allCountries={allCountries} />
+          <Tabels />
         </SelectedCountryContextProvider>
-        <SummaryBox allCountries={allCountries} />
-        <Tabels />
       </VisitedCountryContextProvider>
     </Wrapper>
   );
