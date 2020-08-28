@@ -42,7 +42,6 @@ const useFetchCountry = (searchValue: string) => {
         });
       }
     } catch (err) {
-      console.log('err:', err);
       setState({
         ...initialState,
         error: 'something went wrong with the database, please try again later',

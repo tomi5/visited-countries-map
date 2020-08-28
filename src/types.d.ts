@@ -2,7 +2,7 @@ interface IEvent<T> {
   (e: { target: T });
 }
 
-type NodeTypes = 'path' | 'button' | 'li';
+type NodeTypes = 'path' | 'button';
 
 interface IFetchState {
   error: string | null;
@@ -60,17 +60,21 @@ type ActionType = 'Add' | 'Remove';
 type ReducerAction = {
   type: ActionType;
   continent: ContinentsToShow;
-  payload: ICountry[];
+  payload?: ICountry[];
 };
 
 type MethodsOnArray<T, E> = {
   (arr: ICountry[], country: T): E;
 };
 
-interface IDispatchFn {
-  actionType: ActionType;
-  continentName: ContinentsToShow;
+interface IDispatchObj extends ReducerAction {
   continentsState: CountriesByContinent;
   country: string | ICountry;
   payloadFn: MethodsOnArray<T, ICountry[]>;
+  dispatchfn: (obj: ReducerAction) => void;
 }
+
+type CountryToRemove = {
+  countryToRemoveID: string;
+  continentName: ContinentsToShow;
+};

@@ -9,20 +9,39 @@ import {
 } from '../utils/utils';
 import useFetchCountry from '../hooks/useFetchCountry';
 
-interface IContextProps {
-  allCountries: ICountry[];
-  visitedCountries: ICountry[];
-  lastAddedCountry: ICountry | null;
-  selectedCountryCode: string | null;
-  countriesByContinent: CountriesByContinent | null;
-  updateVisited: UpdateVisited;
-  resetSelectAndLastAdded: () => void;
-  handleAddToVisited: IEvent<any>;
-  handleRemoveFromVisited: (e: any) => void;
-}
-
 type Props = {
   children: React.ReactNode;
+};
+
+interface updateVisitedAfterRemove {
+  arrToUpdate: ICountry[];
+  countryToRemoveID: string;
+  setStateFn: {
+    (value: React.SetStateAction<ICountry[]>): void;
+    (arg0: ICountry[]): void;
+  };
+}
+
+const dispatchFn = (object: IDispatchObj) => {
+  const {
+    type,
+    continent,
+    continentsState,
+    country,
+    payloadFn,
+    dispatchfn,
+  } = object;
+  dispatchfn({
+    type,
+    continent,
+    payload: payloadFn(continentsState[continent], country),
+  });
+};
+
+const updateVisitedAfterRemove = (obj: updateVisitedAfterRemove) => {
+  const { arrToUpdate, countryToRemoveID, setStateFn } = obj;
+  const updatedArr = removeCountryFromArray(arrToUpdate, countryToRemoveID);
+  setStateFn(updatedArr);
 };
 
 const VisitedCountryContextProvider = ({ children }: Props) => {
@@ -36,50 +55,87 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
     setCountriesByContinent,
   ] = useState<CountriesByContinent | null>(null);
 
-  const updateVisited: UpdateVisited = arr => {
-    setVsitedCountries(arr);
-  };
+  const [countryToRemove, setCountryToRemove] = useState<CountryToRemove | null>(
+    null
+  );
+  const [isModalActive, setIsModalActive] = useState(false);
 
-  const resetSelectAndLastAdded = () => {
-    setSelectCountryCode(null);
-    setLastAddedCountry(null);
-  };
+  useEffect(() => {
+    const lastItem = [...visitedCountries].pop();
+    if (!lastItem) return;
+    setLastAddedCountry(lastItem);
+  }, [visitedCountries]);
 
-  const dispatchFn = ({
-    actionType,
-    continentName,
-    continentsState,
-    country,
-    payloadFn,
-  }: IDispatchFn) => {
-    dispatch({
-      type: actionType,
+  useEffect(() => {
+    setCountriesByContinent(continentsState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visitedCountries]);
+
+  // ADD LAST ADDED COUNTRY TO RELEVANT TABLE BY CONTINENT
+  useEffect(() => {
+    if (!lastAddedCountry) return;
+    const continentName = getContinentName(lastAddedCountry) as ContinentsToShow;
+    const dispatchObj: IDispatchObj = {
+      type: 'Add',
       continent: continentName,
-      payload: payloadFn(continentsState[continentName], country),
-    });
-  };
+      continentsState: continentsState,
+      country: lastAddedCountry,
+      payloadFn: addToContinent,
+      dispatchfn: dispatch,
+    };
+    dispatchFn(dispatchObj);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAddedCountry]);
 
   const handleAddToVisited: IEvent<any> = e => {
     const countryCode = e.target.dataset.id;
     countryCode && setSelectCountryCode(countryCode);
     const countryDetails = findCountryInArray(allCountries, countryCode);
     const isVisited = findCountryInArray(visitedCountries, countryCode);
-    if (countryDetails !== undefined) {
-      !isVisited
-        ? setVsitedCountries([...visitedCountries, countryDetails])
-        : handleRemoveFromVisited(e);
-    }
+    if (!countryDetails) return;
+    !isVisited && setVsitedCountries([...visitedCountries, countryDetails]);
   };
 
-  const handleRemoveFromVisited: IEvent<any> = e => {
-    resetSelectAndLastAdded();
+  const handleToggleModal = () => setIsModalActive(state => !state);
+
+  const resetSelectedAndLastAdded = () => {
+    setSelectCountryCode(null);
+    setLastAddedCountry(null);
+  };
+
+  const handleConfirmRemoveFromVisited = (countryToRemove: any) => {
+    const { continentName, countryToRemoveID } = countryToRemove;
+    resetSelectedAndLastAdded();
+
+    const dispatchObj: IDispatchObj = {
+      type: 'Remove',
+      continent: continentName,
+      continentsState: continentsState,
+      country: countryToRemoveID,
+      payloadFn: removeCountryFromArray,
+      dispatchfn: dispatch,
+    };
+
+    dispatchFn(dispatchObj);
+
+    updateVisitedAfterRemove({
+      arrToUpdate: visitedCountries,
+      countryToRemoveID,
+      setStateFn: setVsitedCountries,
+    });
+
+    fillWithColor(countryToRemoveID);
+  };
+
+  const handleWantToRemoveFromVisited: IEvent<any> = e => {
+    handleToggleModal();
+
     const node: NodeTypes = e.target.nodeName.toLowerCase();
     let countryToRemoveID: string;
     let continentName: ContinentsToShow;
 
     switch (node) {
       case 'path':
-      case 'li':
         countryToRemoveID = e.target.dataset.id;
         const countryDetails = findCountryInArray(allCountries, countryToRemoveID);
         continentName = getContinentName(countryDetails as ICountry);
@@ -91,49 +147,21 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
       default:
         return;
     }
-
-    dispatchFn({
-      actionType: 'Remove',
-      continentName: continentName,
-      continentsState: continentsState,
-      country: countryToRemoveID,
-      payloadFn: removeCountryFromArray,
-    });
-    updateVisited(removeCountryFromArray(visitedCountries, countryToRemoveID));
-    fillWithColor(countryToRemoveID);
+    setCountryToRemove({ countryToRemoveID, continentName });
   };
-
-  useEffect(() => {
-    const lastItem = [...visitedCountries].pop();
-    lastItem !== undefined && setLastAddedCountry(lastItem);
-    setCountriesByContinent(continentsState);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visitedCountries]);
-
-  useEffect(() => {
-    if (lastAddedCountry !== null) {
-      const continentName = getContinentName(lastAddedCountry) as ContinentsToShow;
-      dispatchFn({
-        actionType: 'Add',
-        continentName: continentName,
-        continentsState: continentsState,
-        country: lastAddedCountry,
-        payloadFn: addToContinent,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lastAddedCountry]);
 
   const value = {
     allCountries,
     visitedCountries,
-    lastAddedCountry,
     selectedCountryCode,
     countriesByContinent,
-    updateVisited,
-    resetSelectAndLastAdded,
+    countryToRemove,
+    isModalActive,
     handleAddToVisited,
-    handleRemoveFromVisited,
+    handleToggleModal,
+    resetSelectedAndLastAdded,
+    handleWantToRemoveFromVisited,
+    handleConfirmRemoveFromVisited,
   };
 
   return (
@@ -145,14 +173,30 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
 
 export default VisitedCountryContextProvider;
 
+interface IContextProps {
+  allCountries: ICountry[];
+  visitedCountries: ICountry[];
+  selectedCountryCode: string | null;
+  countriesByContinent: CountriesByContinent | null;
+  countryToRemove: CountryToRemove | null;
+  isModalActive: boolean;
+  handleAddToVisited: IEvent<any>;
+  handleToggleModal: () => void;
+  resetSelectedAndLastAdded: () => void;
+  handleWantToRemoveFromVisited: (e: any) => void;
+  handleConfirmRemoveFromVisited: (refContainer: any) => void;
+}
+
 export const VisitedCountryContext = createContext<IContextProps>({
   allCountries: [],
   visitedCountries: [],
-  lastAddedCountry: null,
   selectedCountryCode: null,
   countriesByContinent: null,
-  updateVisited: () => null,
-  resetSelectAndLastAdded: () => null,
+  countryToRemove: null,
+  isModalActive: false,
   handleAddToVisited: () => null,
-  handleRemoveFromVisited: () => null,
+  handleToggleModal: () => null,
+  resetSelectedAndLastAdded: () => null,
+  handleWantToRemoveFromVisited: () => null,
+  handleConfirmRemoveFromVisited: () => null,
 });

@@ -23,4 +23,4 @@ const CountryItem = ({ country, continent, ...props }: CountryItemProps) => {
   );
 };
 
-export default CountryItem;
+export default React.memo(CountryItem);

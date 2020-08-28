@@ -4,17 +4,17 @@ import SearchResult from './SearchResult';
 import useFetchCountry from '../../hooks/useFetchCountry';
 
 const SearchContainer = () => {
-  const [value, setValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange: IEvent<HTMLInputElement> = e => {
-    setValue(e.target.value);
+    setSearchValue(e.target.value);
   };
 
-  const { state, countriesToShow } = useFetchCountry(value);
+  const { state, countriesToShow } = useFetchCountry(searchValue);
 
   return (
     <>
-      <SearchBar value={value} onChange={handleInputChange} />
+      <SearchBar value={searchValue} onChange={handleInputChange} />
       <SearchResult state={state} countriesToShow={countriesToShow} />
     </>
   );

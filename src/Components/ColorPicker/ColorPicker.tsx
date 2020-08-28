@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Wrapper, Label } from './style';
 
 type ColorPickerProps = {
@@ -15,22 +15,20 @@ const colorArr: string[] = [
   '#5948EB',
 ];
 
-const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => {
-  return (
-    <Wrapper>
-      {colorArr.map((HEX: string) => (
-        <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
-          <input
-            readOnly
-            data-color={HEX}
-            checked={HEX === pickedColor}
-            type='radio'
-            {...props}
-          />
-        </Label>
-      ))}
-    </Wrapper>
-  );
-};
+const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => (
+  <Wrapper>
+    {colorArr.map((HEX: string) => (
+      <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
+        <input
+          readOnly
+          data-color={HEX}
+          checked={HEX === pickedColor}
+          type='radio'
+          {...props}
+        />
+      </Label>
+    ))}
+  </Wrapper>
+);
 
-export default ColorPicker;
+export default memo(ColorPicker);

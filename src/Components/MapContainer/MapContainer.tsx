@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { ReactComponent as Map } from '../../assets/world.svg';
 import { StyledReactTooltip } from './style';
 import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
@@ -12,20 +12,25 @@ const MapContainer = () => {
   const {
     handleAddToVisited,
     selectedCountryCode,
-    resetSelectAndLastAdded,
+    resetSelectedAndLastAdded,
+    handleWantToRemoveFromVisited,
   } = useContext(VisitedCountryContext);
 
   useEffect(() => {
-    if (selectedCountryCode) {
-      fillWithColor(selectedCountryCode, pickedColor);
-    }
+    if (!selectedCountryCode) return;
+    fillWithColor(selectedCountryCode, pickedColor);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCountryCode]);
 
   const handleColorPicker: IEvent<any> = e => {
     setPickedColor(e.target.dataset.color);
-    resetSelectAndLastAdded();
+    resetSelectedAndLastAdded();
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const memoizedHandleColorPicker = useCallback(e => handleColorPicker(e), [
+    setPickedColor,
+  ]);
 
   const handleToolTip: IEvent<any> = e => {
     const name = e.target.dataset.name;
@@ -33,12 +38,13 @@ const MapContainer = () => {
   };
 
   return (
-    <div>
+    <>
       <Map
         data-tip
         data-for='countryTooltip'
         onClick={handleAddToVisited}
         onMouseMove={handleToolTip}
+        onDoubleClick={handleWantToRemoveFromVisited}
       />
       <StyledReactTooltip
         id='countryTooltip'
@@ -46,8 +52,8 @@ const MapContainer = () => {
         effect='float'
         getContent={() => countryOnHover}
       />
-      <ColorPicker pickedColor={pickedColor} onClick={handleColorPicker} />
-    </div>
+      <ColorPicker pickedColor={pickedColor} onClick={memoizedHandleColorPicker} />
+    </>
   );
 };
 

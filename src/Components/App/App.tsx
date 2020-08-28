@@ -6,19 +6,19 @@ import { Wrapper } from './style';
 import VisitedCountryContextProvider from '../../contexts/visitedCountryContext';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import Tabels from '../Tabels/Tabels';
+import ModalConfirmRemove from '../Modals/ModalRemoveCountry';
 
-const App = () => {
-  return (
-    <Wrapper>
-      <Header title='Interactive Visited Countries Map' />
-      <VisitedCountryContextProvider>
-        <MapContainer />
-        <SearchContainer />
-        <SummaryBox />
-        <Tabels />
-      </VisitedCountryContextProvider>
-    </Wrapper>
-  );
-};
+const App = () => (
+  <Wrapper>
+    <Header title='Interactive Visited Countries Map' />
+    <VisitedCountryContextProvider>
+      <MapContainer />
+      <SearchContainer />
+      <SummaryBox />
+      <Tabels />
+      <ModalConfirmRemove />
+    </VisitedCountryContextProvider>
+  </Wrapper>
+);
 
 export default App;

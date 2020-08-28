@@ -4,8 +4,8 @@ type RemoveButtonProps = {
   onClick: any;
 };
 
-const RemoveButton = ({ ...props }: RemoveButtonProps) => {
-  return <button {...props}>Delete</button>;
-};
+const RemoveButton = ({ ...props }: RemoveButtonProps) => (
+  <button {...props}>Delete</button>
+);
 
 export default RemoveButton;

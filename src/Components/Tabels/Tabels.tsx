@@ -3,7 +3,7 @@ import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 import Tabel from './Tabel';
 
 const Tabels = () => {
-  const { handleRemoveFromVisited, countriesByContinent } = useContext(
+  const { handleWantToRemoveFromVisited, countriesByContinent } = useContext(
     VisitedCountryContext
   );
 
@@ -16,7 +16,7 @@ const Tabels = () => {
               key={continentName}
               continentName={continentName}
               visitedCountry={countries}
-              onClick={handleRemoveFromVisited}
+              onClick={handleWantToRemoveFromVisited}
             />
           ) : null;
         })}

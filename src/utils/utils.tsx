@@ -64,3 +64,12 @@ export const fillWithColor = (countryCode: string, color = defaultColor) => {
       (el: SVGElement) => el.dataset.id === countryCode && (el.style.fill = color)
     );
 };
+
+export const setPercentage = (divident: ICountry[], divisor: ICountry[]) => {
+  if (!divident.length) {
+    return 0;
+  } else {
+    const result = (divident.length * 100) / divisor.length;
+    return result;
+  }
+};
