@@ -1,18 +1,18 @@
 import React from 'react';
 
-type ModalConfirmRemoveProps = {
-  isModalActive: boolean;
+type ConfirmDialogProps = {
+  isDialogOpen: boolean;
   action: Exclude<ActionTypes, 'add'>;
   handleClick: (action: 'confirm' | 'cancel') => void;
 };
 
 const ModalConfirmRemove = ({
   action,
-  isModalActive,
+  isDialogOpen,
   handleClick
-}: ModalConfirmRemoveProps) => {
+}: ConfirmDialogProps) => {
   return (
-    <div style={{ display: !isModalActive ? 'none' : 'block' }}>
+    <div style={{ display: !isDialogOpen ? 'none' : 'block' }}>
       <p>
         Are you sure to{' '}
         {action === 'delete' ? 'delete the country?' : 'reset the map?'}

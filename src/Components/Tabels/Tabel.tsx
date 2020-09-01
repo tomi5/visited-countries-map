@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import CountryItem from '../CountryItem/CountryItem';
-import RemoveContainer from '../Remove/RemoveContainer';
+import RemoveContainer from '../Delete/DeleteContainer';
 
 type TabelProps = {
   continentName: string;

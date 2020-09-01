@@ -4,13 +4,13 @@ import { StyledReactTooltip } from './style';
 import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 import ColorPicker from '../ColorPicker/ColorPicker';
 import { fillWithColor, addColorProperties } from '../../utils/utils';
-import RemoveContainer from '../Remove/RemoveContainer';
+import RemoveContainer from '../Delete/DeleteContainer';
 
 const MapContainer = () => {
   const {
     addToVisited,
     selectedCountryCode,
-    resetSelectedAndLastAdded,
+    resetHelpingStates,
     visitedCountries,
     shouldDeleteFromVisited
   } = useContext(VisitedCountryContext);
@@ -27,7 +27,7 @@ const MapContainer = () => {
 
   const handleColorPicker: IEvent<any> = e => {
     setPickedColor(e.target.dataset.color);
-    resetSelectedAndLastAdded();
+    resetHelpingStates();
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

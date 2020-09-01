@@ -10,6 +10,7 @@ import {
 } from '../utils/utils';
 import useFetchCountry from '../hooks/useFetchCountry';
 import useLocalStorage from '../hooks/useLocalStorage';
+import useHelpingStates from '../hooks/useHelpingStates';
 
 type Props = {
   children: React.ReactNode;
@@ -23,8 +24,7 @@ interface updateVisitedAfterRemove {
     (arg0: ICountry[]): void;
   };
 }
-
-const dispatchFn = (object: IDispatchObj) => {
+export const dispatchFn = (object: IDispatchObj) => {
   const {
     type,
     continent,
@@ -47,37 +47,43 @@ const updateVisitedAfterRemove = (obj: updateVisitedAfterRemove) => {
 };
 
 const VisitedCountryContextProvider = ({ children }: Props) => {
-  const { allCountries } = useFetchCountry('');
   const [storedValue, setLocalStorage] = useLocalStorage('visited', []);
-  const [continentsState, dispatch] = useReducer(continentReducer, initialState);
-  const [visitedCountries, setVsitedCountries] = useState<ICountry[]>([]);
-  const [lastAddedCountry, setLastAddedCountry] = useState<ICountry | null>(null);
-  const [selectedCountryCode, setSelectCountryCode] = useState<null | string>(null);
+  const { allCountries } = useFetchCountry('');
+  const {
+    lastAddedCountry,
+    setLastAddedCountry,
+    selectedCountryCode,
+    setSelectCountryCode,
+    countryToRemove,
+    setCountryToRemove,
+    resetHelpingStates
+  } = useHelpingStates();
 
+  const [continentsState, dispatch] = useReducer(continentReducer, initialState);
+
+  const [visitedCountries, setVsitedCountries] = useState<ICountry[]>([]);
   const [
     countriesByContinent,
     setCountriesByContinent
   ] = useState<CountriesByContinent | null>(null);
 
-  const [countryToRemove, setCountryToRemove] = useState<CountryToRemove | null>(
-    null
-  );
+  const matchCountryAndContinent = (country: ICountry) => {
+    const continentName = getContinentName(country) as ContinentsToShow;
+    const dispatchObj: IDispatchObj = {
+      type: 'add',
+      continent: continentName,
+      continentsState: continentsState,
+      country: country,
+      payloadFn: addToContinent,
+      dispatchfn: dispatch
+    };
+    return [dispatchFn(dispatchObj), fillWithColor(country.code, country.color)];
+  };
 
-  // USE LOCALSTORAGE DATA
+  // SET INITIAL STATE WITH LOCALSTORAGE
   useEffect(() => {
     setVsitedCountries(storedValue);
-    storedValue.map((el: ICountry) => {
-      const continentName = getContinentName(el) as ContinentsToShow;
-      const dispatchObj: IDispatchObj = {
-        type: 'add',
-        continent: continentName,
-        continentsState: continentsState,
-        country: el,
-        payloadFn: addToContinent,
-        dispatchfn: dispatch
-      };
-      return [dispatchFn(dispatchObj), fillWithColor(el.code, el.color)];
-    });
+    storedValue.map((country: ICountry) => matchCountryAndContinent(country));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -97,16 +103,7 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
   // ADD LAST ADDED COUNTRY TO RELEVANT TABLE BY CONTINENT
   useEffect(() => {
     if (!lastAddedCountry) return;
-    const continentName = getContinentName(lastAddedCountry) as ContinentsToShow;
-    const dispatchObj: IDispatchObj = {
-      type: 'add',
-      continent: continentName,
-      continentsState: continentsState,
-      country: lastAddedCountry,
-      payloadFn: addToContinent,
-      dispatchfn: dispatch
-    };
-    dispatchFn(dispatchObj);
+    matchCountryAndContinent(lastAddedCountry);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastAddedCountry]);
 
@@ -119,14 +116,8 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
     !isVisited && setVsitedCountries([...visitedCountries, countryDetails]);
   };
 
-  const resetSelectedAndLastAdded = () => {
-    setSelectCountryCode(null);
-    setLastAddedCountry(null);
-    setCountryToRemove(null);
-  };
-
-  const handleResetAllData = () => {
-    resetSelectedAndLastAdded();
+  const resetAllData = () => {
+    resetHelpingStates();
     setVsitedCountries([]);
     dispatch({ type: 'reset' });
     resetMapColoring();
@@ -134,9 +125,8 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
 
   const deleteFromVisited = (countryToRemove: CountryToRemove | null) => {
     if (!countryToRemove) {
-      return handleResetAllData();
+      return resetAllData();
     }
-
     const { continentName, countryToRemoveID } = countryToRemove;
 
     const dispatchObj: IDispatchObj = {
@@ -147,7 +137,6 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
       payloadFn: removeCountryFromArray,
       dispatchfn: dispatch
     };
-
     dispatchFn(dispatchObj);
 
     updateVisitedAfterRemove({
@@ -155,14 +144,12 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
       countryToRemoveID,
       setStateFn: setVsitedCountries
     });
-
     fillWithColor(countryToRemoveID);
-
-    resetSelectedAndLastAdded();
+    resetHelpingStates();
   };
 
   const shouldDeleteFromVisited = (e: any, action?: Exclude<ActionTypes, 'add'>) => {
-    resetSelectedAndLastAdded();
+    resetHelpingStates();
     if (action === 'reset') return;
     const node: NodeTypes = e.target.nodeName.toLowerCase();
     let countryToRemoveID: string;
@@ -191,7 +178,7 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
     countriesByContinent,
     countryToRemove,
     addToVisited,
-    resetSelectedAndLastAdded,
+    resetHelpingStates,
     shouldDeleteFromVisited,
     deleteFromVisited
   };
@@ -212,7 +199,7 @@ interface IContextProps {
   countriesByContinent: CountriesByContinent | null;
   countryToRemove: CountryToRemove | null;
   addToVisited: IEvent<any>;
-  resetSelectedAndLastAdded: () => void;
+  resetHelpingStates: () => void;
   shouldDeleteFromVisited: (e: any, action?: Exclude<ActionTypes, 'add'>) => void;
   deleteFromVisited: (countryToRemove: CountryToRemove | null) => void;
 }
@@ -224,7 +211,7 @@ export const VisitedCountryContext = createContext<IContextProps>({
   countriesByContinent: null,
   countryToRemove: null,
   addToVisited: () => null,
-  resetSelectedAndLastAdded: () => null,
+  resetHelpingStates: () => null,
   shouldDeleteFromVisited: () => null,
   deleteFromVisited: () => null
 });

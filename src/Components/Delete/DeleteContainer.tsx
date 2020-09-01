@@ -1,31 +1,32 @@
 import React, { useState, useContext } from 'react';
-import RemoveButton from '../Buttons/RemoveButton';
-import ModalConfirmRemove from '../Modals/ModalRemoveCountry';
-import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 
-type RemoveContainerProps = {
+import ConfirmDialog from '../Dialog/ConfirmDialog';
+import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
+import DeleteButton from '../Buttons/DeleteButton';
+
+type DeleteContainerProps = {
   action: Exclude<ActionTypes, 'add'>;
   removeUsingMap?: any;
 };
 
-const RemoveContainer = ({ action, removeUsingMap }: RemoveContainerProps) => {
-  const initialModalState = removeUsingMap ? true : false;
-  const [isModalActive, setIsModalActive] = useState(initialModalState);
+const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
+  const initialDialogState = removeUsingMap ? true : false;
+  const [isDialogOpen, setIsDialogOpen] = useState(initialDialogState);
   const { shouldDeleteFromVisited, deleteFromVisited, countryToRemove } = useContext(
     VisitedCountryContext
   );
 
-  const handleToggleModal = () => {
-    setIsModalActive(isModalActive => !isModalActive);
+  const handleToggleDialog = () => {
+    setIsDialogOpen(isDialogOpen => !isDialogOpen);
   };
 
   const handleShouldDelete = (e: any) => {
-    handleToggleModal();
+    handleToggleDialog();
     shouldDeleteFromVisited(e, action);
   };
 
   const onConfirm = (shouldDelete: ActionConfirm) => {
-    handleToggleModal();
+    handleToggleDialog();
     if (shouldDelete === 'cancel') return;
     deleteFromVisited(countryToRemove);
   };
@@ -33,19 +34,19 @@ const RemoveContainer = ({ action, removeUsingMap }: RemoveContainerProps) => {
   return (
     <>
       {!removeUsingMap && (
-        <RemoveButton
+        <DeleteButton
           handleClick={(e: any) => handleShouldDelete(e)}
           action={action}
-          isModalActive={isModalActive}
+          isDialogOpen={isDialogOpen}
         />
       )}
-      <ModalConfirmRemove
+      <ConfirmDialog
         action={action}
-        isModalActive={isModalActive}
+        isDialogOpen={isDialogOpen}
         handleClick={onConfirm}
       />
     </>
   );
 };
 
-export default RemoveContainer;
+export default DeleteContainer;
