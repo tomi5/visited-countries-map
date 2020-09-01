@@ -57,6 +57,15 @@ export const getContinentName = (country: ICountry): ContinentsToShow => {
 
 const defaultColor = 'rgba(158,158,158,0.63)';
 
+export const addColorProperties = (
+  arr: ICountry[],
+  codeToCheck: string,
+  color: string
+) => {
+  const index = arr.findIndex(el => el.code === codeToCheck);
+  arr[index].color = color;
+};
+
 export const fillWithColor = (countryCode: string, color = defaultColor) => {
   const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll('path');
   countryCode &&
@@ -65,8 +74,13 @@ export const fillWithColor = (countryCode: string, color = defaultColor) => {
     );
 };
 
+export const resetMapColoring = () => {
+  const pathSVG: NodeListOf<SVGPathElement> = document.querySelectorAll('path');
+  [...pathSVG].map((el: SVGElement) => (el.style.fill = defaultColor));
+};
+
 export const setPercentage = (divident: ICountry[], divisor: ICountry[]) => {
-  if (!divident.length) {
+  if (!divident.length || !divisor.length) {
     return 0;
   } else {
     const result = (divident.length * 100) / divisor.length;

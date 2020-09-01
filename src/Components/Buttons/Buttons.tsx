@@ -9,7 +9,7 @@ type ButtonProps = {
 };
 
 const Button = ({ name, openStatus, onClickStatus, children }: ButtonProps) => {
-  const handleButtonClick = (e: MouseEvent | KeyboardEvent): void => {
+  const handleClick = (e: MouseEvent | KeyboardEvent): void => {
     e.preventDefault();
     onClickStatus(!openStatus);
   };
@@ -19,7 +19,7 @@ const Button = ({ name, openStatus, onClickStatus, children }: ButtonProps) => {
       <ButtonComponent
         name={name}
         openStatus={openStatus}
-        onClick={handleButtonClick}
+        onClick={handleClick}
         aria-expanded={openStatus}
       >
         {children}

@@ -1,11 +1,17 @@
 import React from 'react';
 
 type RemoveButtonProps = {
-  onClick: any;
+  action: Exclude<ActionTypes, 'add'>;
+  handleClick: any;
+  isModalActive?: boolean;
 };
 
-const RemoveButton = ({ ...props }: RemoveButtonProps) => (
-  <button {...props}>Delete</button>
+const RemoveButton = ({ action, handleClick, isModalActive }: RemoveButtonProps) => (
+  <>
+    <button disabled={isModalActive} onClick={handleClick}>
+      {action === 'delete' ? 'Delete' : 'Reset the map'}
+    </button>
+  </>
 );
 
 export default RemoveButton;

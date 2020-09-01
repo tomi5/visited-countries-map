@@ -1,24 +1,32 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
-  onClick?: IEvent<any>;
-  children?: ReactElement;
+  handleClick?: IEvent<any>;
+  children?: any;
 };
 
-const CountryItem = ({ country, continent, ...props }: CountryItemProps) => {
-  const { name, code, flag } = country;
-
+const CountryItem = ({
+  country: { name, code, flag },
+  continent,
+  handleClick,
+  children
+}: CountryItemProps) => {
   return (
-    <li data-id={code} data-name={name} data-continent={continent} {...props}>
+    <li
+      data-id={code}
+      data-name={name}
+      data-continent={continent}
+      onClick={handleClick}
+    >
       <img
         src={flag}
         alt={`flag of ${name}`}
         style={{ width: 'auto', height: '20px' }}
       />
       {name}
-      {props.children}
+      {children}
     </li>
   );
 };

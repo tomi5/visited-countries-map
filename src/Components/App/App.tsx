@@ -6,7 +6,6 @@ import { Wrapper } from './style';
 import VisitedCountryContextProvider from '../../contexts/visitedCountryContext';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import Tabels from '../Tabels/Tabels';
-import ModalConfirmRemove from '../Modals/ModalRemoveCountry';
 
 const App = () => (
   <Wrapper>
@@ -16,7 +15,6 @@ const App = () => (
       <SearchContainer />
       <SummaryBox />
       <Tabels />
-      <ModalConfirmRemove />
     </VisitedCountryContextProvider>
   </Wrapper>
 );

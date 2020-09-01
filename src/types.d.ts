@@ -55,11 +55,12 @@ type CountriesByContinent = {
   [key in ContinentsToShow]: ICountry[];
 };
 
-type ActionType = 'Add' | 'Remove';
+type ActionTypes = 'add' | 'delete' | 'reset';
+type ActionConfirm = 'confirm' | 'cancel';
 
 type ReducerAction = {
-  type: ActionType;
-  continent: ContinentsToShow;
+  type: ActionTypes;
+  continent?: ContinentsToShow;
   payload?: ICountry[];
 };
 

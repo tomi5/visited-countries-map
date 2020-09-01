@@ -1,30 +1,24 @@
-import React, { useContext } from 'react';
-import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
+import React from 'react';
 
-const ModalConfirmRemove = () => {
-  const {
-    handleToggleModal,
-    isModalActive,
-    handleConfirmRemoveFromVisited,
-    countryToRemove,
-  } = useContext(VisitedCountryContext);
+type ModalConfirmRemoveProps = {
+  isModalActive: boolean;
+  action: Exclude<ActionTypes, 'add'>;
+  handleClick: (action: 'confirm' | 'cancel') => void;
+};
 
-  enum Act {
-    Confirm,
-    Cancel,
-  }
-
-  const handleClick = (action: Act) => {
-    handleToggleModal();
-    if (action === Act.Cancel) return;
-    handleConfirmRemoveFromVisited(countryToRemove);
-  };
-
+const ModalConfirmRemove = ({
+  action,
+  isModalActive,
+  handleClick
+}: ModalConfirmRemoveProps) => {
   return (
     <div style={{ display: !isModalActive ? 'none' : 'block' }}>
-      <p>Are you sure to delete?</p>
-      <button onClick={() => handleClick(Act.Confirm)}>Confirm</button>
-      <button onClick={() => handleClick(Act.Cancel)}>Cancel</button>
+      <p>
+        Are you sure to{' '}
+        {action === 'delete' ? 'delete the country?' : 'reset the map?'}
+      </p>
+      <button onClick={() => handleClick('confirm')}>Confirm</button>
+      <button onClick={() => handleClick('cancel')}>Cancel</button>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Wrapper, Label } from './style';
 
 type ColorPickerProps = {
-  onClick: IEvent<any>;
+  handleClick: IEvent<any>;
   pickedColor: string;
 };
 
@@ -12,10 +12,10 @@ const colorArr: string[] = [
   '#FBCC33',
   '#428C08',
   '#1173DE',
-  '#5948EB',
+  '#5948EB'
 ];
 
-const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => (
+const ColorPicker = ({ pickedColor, handleClick }: ColorPickerProps) => (
   <Wrapper>
     {colorArr.map((HEX: string) => (
       <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
@@ -24,7 +24,7 @@ const ColorPicker = ({ pickedColor, ...props }: ColorPickerProps) => (
           data-color={HEX}
           checked={HEX === pickedColor}
           type='radio'
-          {...props}
+          onClick={handleClick}
         />
       </Label>
     ))}

@@ -2,22 +2,22 @@ import { useState, useEffect } from 'react';
 
 const COUNTRY_API_URL: string = 'https://restcountries.eu/rest/v2';
 
-const initialState: IFetchState = {
+const initialFetchState: IFetchState = {
   error: null,
-  isLoading: false,
+  isLoading: false
 };
 
 const useFetchCountry = (searchValue: string) => {
-  const [state, setState] = useState(initialState);
+  const [fetchState, setFetchState] = useState(initialFetchState);
   const [countriesToShow, setCountriesToShow] = useState<ICountry[]>([]);
   const [allCountries, setAllCountries] = useState<ICountry[]>([]);
 
   const fetchData = async (query?: string) => {
     const param = query ? `name/${query}` : `all`;
 
-    setState({
-      ...initialState,
-      isLoading: true,
+    setFetchState({
+      ...initialFetchState,
+      isLoading: true
     });
     try {
       const response = await fetch(`${COUNTRY_API_URL}/${param}`);
@@ -29,22 +29,22 @@ const useFetchCountry = (searchValue: string) => {
             code: el.alpha2Code,
             flag: el.flag,
             region: el.region,
-            subregion: el.subregion,
+            subregion: el.subregion
           };
           return country;
         });
-        setState(initialState);
+        setFetchState(initialFetchState);
         query ? setCountriesToShow(result) : setAllCountries(result);
       } else {
-        setState({
-          ...initialState,
-          error: 'No countries found...',
+        setFetchState({
+          ...initialFetchState,
+          error: 'No countries found...'
         });
       }
     } catch (err) {
-      setState({
-        ...initialState,
-        error: 'something went wrong with the database, please try again later',
+      setFetchState({
+        ...initialFetchState,
+        error: 'something went wrong with the database, please try again later'
       });
     }
   };
@@ -59,12 +59,12 @@ const useFetchCountry = (searchValue: string) => {
     if (searchValue.length > 1) {
       fetchData(searchValue);
     } else {
-      setState(initialState);
+      setFetchState(initialFetchState);
       setCountriesToShow([]);
     }
   }, [searchValue]);
 
-  return { state, allCountries, countriesToShow };
+  return { fetchState, allCountries, countriesToShow };
 };
 
 export default useFetchCountry;

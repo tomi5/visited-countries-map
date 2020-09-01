@@ -5,15 +5,25 @@ export const initialState: CountriesByContinent = {
   'America South': [],
   Asia: [],
   Europe: [],
-  Oceania: [],
+  Oceania: []
 };
 
 export const continentReducer = (state = initialState, action: ReducerAction) => {
   switch (action.type) {
-    case 'Add':
-      return { ...state, [action.continent]: action.payload };
-    case 'Remove':
-      return { ...state, [action.continent]: action.payload };
+    case 'add':
+      return { ...state, [action.continent as ContinentsToShow]: action.payload };
+    case 'delete':
+      return { ...state, [action.continent as ContinentsToShow]: action.payload };
+    case 'reset':
+      return {
+        Antarctica: [],
+        Africa: [],
+        'America North': [],
+        'America South': [],
+        Asia: [],
+        Europe: [],
+        Oceania: []
+      };
     default:
       return state;
   }

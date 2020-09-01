@@ -10,12 +10,12 @@ const SearchContainer = () => {
     setSearchValue(e.target.value);
   };
 
-  const { state, countriesToShow } = useFetchCountry(searchValue);
+  const { fetchState, countriesToShow } = useFetchCountry(searchValue);
 
   return (
     <>
-      <SearchBar value={searchValue} onChange={handleInputChange} />
-      <SearchResult state={state} countriesToShow={countriesToShow} />
+      <SearchBar value={searchValue} handleInputChange={handleInputChange} />
+      <SearchResult fetchState={fetchState} countriesToShow={countriesToShow} />
     </>
   );
 };

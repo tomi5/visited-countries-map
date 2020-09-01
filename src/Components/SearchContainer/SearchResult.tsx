@@ -4,13 +4,13 @@ import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 import FetchStatus from './FetchStatus';
 
 type SearchResultProps = {
-  state: IFetchState;
+  fetchState: IFetchState;
   countriesToShow: ICountry[];
 };
 
-const SearchResult = ({ state, countriesToShow }: SearchResultProps) => {
-  const { error, isLoading } = state;
-  const { handleAddToVisited } = useContext(VisitedCountryContext);
+const SearchResult = ({ fetchState, countriesToShow }: SearchResultProps) => {
+  const { error, isLoading } = fetchState;
+  const { addToVisited } = useContext(VisitedCountryContext);
 
   return useMemo(() => {
     if (error || isLoading) {
@@ -22,7 +22,7 @@ const SearchResult = ({ state, countriesToShow }: SearchResultProps) => {
           (country): ReactElement => (
             <CountryItem
               key={country.code}
-              onClick={handleAddToVisited}
+              handleClick={addToVisited}
               country={country}
             />
           )

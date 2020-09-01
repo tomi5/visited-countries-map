@@ -16,7 +16,7 @@ const SummaryBox = () => {
         You have visited: {visitedCountries.length}{' '}
         {visitedCountries.length > 1 ? 'countries' : 'country'}
       </p>
-      <p>This is {percentageVisisted} % of the world</p>
+      <p>This is {percentageVisisted ? percentageVisisted : 0} % of the world</p>
     </>
   );
 };
