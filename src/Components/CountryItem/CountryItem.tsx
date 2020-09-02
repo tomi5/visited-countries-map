@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
   handleClick?: IEvent<any>; // FIXME - fix "any" type
-  children?: any; // FIXME - fix "any" type
+  children?: ReactNode;
 };
 
 const CountryItem = ({
