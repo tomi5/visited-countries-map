@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
 import useFetchCountry from '../../hooks/useFetchCountry';
-import { VisitedCountryContext } from '../../contexts/VisitedCountryContext';
+import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 
 const SearchContainer = () => {
   const [searchValue, setSearchValue] = useState('');

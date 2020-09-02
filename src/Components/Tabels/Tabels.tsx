@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { VisitedCountryContext } from '../../contexts/VisitedCountryContext';
+import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 import Tabel from './Tabel';
 
 const Tabels = () => {
