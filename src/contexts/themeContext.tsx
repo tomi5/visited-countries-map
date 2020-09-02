@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-
 import { ThemeProvider as ThemeProviderSC } from 'styled-components';
 import { darkTheme, lightTheme } from '../theme/theme';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -15,25 +14,19 @@ export const ThemeContext = createContext<ContextTypes>({
   toggleTheme: () => null
 });
 
-const darkMode = { ...darkTheme };
-const lightMode = { ...lightTheme };
-
 const ThemeProvider = ({ children }: Props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [appTheme, setAppTheme] = useState(lightMode);
-  const [storedValue, setLocalStorage] = useLocalStorage('appMode', []);
+  const [appTheme, setAppTheme] = useState(lightTheme);
+  const [storedValue, setLocalStorage] = useLocalStorage('theme', lightTheme);
 
-  const setTheme = (
-    mode: React.SetStateAction<{ body: string; text: string }>,
-    isDark: boolean
-  ) => {
+  const setTheme = (mode: any, isDark: boolean) => {
     setLocalStorage({ theme: mode, isDarkTheme: isDark });
     setIsDarkTheme(isDark);
     setAppTheme(mode);
   };
 
   const toggleTheme = () => {
-    isDarkTheme ? setTheme(lightMode, false) : setTheme(darkMode, true);
+    isDarkTheme ? setTheme(lightTheme, false) : setTheme(darkTheme, true);
   };
 
   useEffect(() => {

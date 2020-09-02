@@ -39,7 +39,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-interface updateVisitedAfterRemove {
+interface IUpdateVisitedAfterRemove {
   arrToUpdate: ICountry[];
   countryToRemoveID: string;
   setStateFn: {
@@ -63,7 +63,7 @@ export const dispatchFn = (object: IDispatchObj) => {
   });
 };
 
-const updateVisitedAfterRemove = (obj: updateVisitedAfterRemove) => {
+const updateVisitedAfterRemove = (obj: IUpdateVisitedAfterRemove) => {
   const { arrToUpdate, countryToRemoveID, setStateFn } = obj;
   const updatedArr = removeCountryFromArray(arrToUpdate, countryToRemoveID);
   setStateFn(updatedArr);
@@ -107,7 +107,6 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
   useEffect(() => {
     setVsitedCountries(storedValue);
     storedValue.map((country: ICountry) => matchCountryAndContinent(country));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

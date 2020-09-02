@@ -4,31 +4,31 @@ import ButtonInfo from '../Buttons/ButtonInfo';
 import { ThemeContext } from '../../contexts/themeContext';
 
 type HeaderProps = {
-  title: string;
+   title: string;
 };
 
 const Header = ({ title }: HeaderProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { toggleTheme } = useContext(ThemeContext);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const { toggleTheme } = useContext(ThemeContext);
 
-  const handleToggleModal = () => {
-    setIsModalOpen(isModalOpen => !isModalOpen);
-  };
+   const handleToggleModal = () => {
+      setIsModalOpen((isModalOpen) => !isModalOpen);
+   };
 
-  return (
-    <HeaderComponent>
-      <ButtonInfo
-        name={'info'}
-        openStatus={isModalOpen}
-        handleToggleModal={handleToggleModal}
-      >
-        ?
-      </ButtonInfo>
-      <h1>{title}</h1>
+   return (
+      <HeaderComponent>
+         <ButtonInfo
+            name={'info'}
+            openStatus={isModalOpen}
+            handleToggleModal={handleToggleModal}
+         >
+            ?
+         </ButtonInfo>
+         <h1>{title}</h1>
 
-      <button onClick={toggleTheme}>Mode</button>
-    </HeaderComponent>
-  );
+         <button onClick={toggleTheme}>Mode</button>
+      </HeaderComponent>
+   );
 };
 
 export default Header;

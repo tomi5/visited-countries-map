@@ -45,6 +45,9 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash.sortby": "^4.7.6"
+    "@types/lodash.sortby": "^4.7.6",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.1"
   }
 }

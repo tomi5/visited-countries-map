@@ -13,8 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 
   
 body {
-  background: ${({ theme }) => theme.body};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }: any) => theme.body};
+  color: ${({ theme }: any) => theme.text};
   margin: 0;
   padding: 0;
   font-size: 1.6rem;

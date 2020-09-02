@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-interface Props {
+type Props = {
   readonly name: string;
   readonly openStatus: boolean;
-}
+};
 
 export const Wrapper = styled.div`
   flex: 1;

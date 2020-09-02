@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const COUNTRY_API_URL: string = 'https://restcountries.eu/rest/v2';
+const COUNTRY_API_URL = 'https://restcountries.eu/rest/v2';
 
 const initialFetchState: IFetchState = {
   error: null,

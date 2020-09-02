@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-interface Props {
+type Props = {
   color: string;
   checked: boolean;
-}
+};
 
 export const Wrapper = styled.div`
   display: flex;
