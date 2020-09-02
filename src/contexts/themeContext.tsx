@@ -8,25 +8,32 @@ type Props = {
 };
 type ContextTypes = {
   toggleTheme: () => void;
+  isDarkTheme: boolean;
 };
-
 export const ThemeContext = createContext<ContextTypes>({
-  toggleTheme: () => null
+  toggleTheme: () => null,
+  isDarkTheme: false
 });
+
+const darkMode = darkTheme;
+const lightMode = lightTheme;
 
 const ThemeProvider = ({ children }: Props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [appTheme, setAppTheme] = useState(lightTheme);
   const [storedValue, setLocalStorage] = useLocalStorage('theme', lightTheme);
 
-  const setTheme = (mode: any, isDark: boolean) => {
+  const setTheme = (
+    mode: React.SetStateAction<{ body: string; text: string }>,
+    isDark: boolean
+  ) => {
     setLocalStorage({ theme: mode, isDarkTheme: isDark });
     setIsDarkTheme(isDark);
     setAppTheme(mode);
   };
 
   const toggleTheme = () => {
-    isDarkTheme ? setTheme(lightTheme, false) : setTheme(darkTheme, true);
+    isDarkTheme ? setTheme(lightMode, false) : setTheme(darkMode, true);
   };
 
   useEffect(() => {

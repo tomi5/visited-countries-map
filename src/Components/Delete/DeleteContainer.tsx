@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 import ConfirmDialog from '../Dialog/ConfirmDialog';
-import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
+import { VisitedCountryContext } from '../../contexts/VisitedCountryContext';
 import ButtonDelete from '../Buttons/ButtonDelete';
 
 type DeleteContainerProps = {
