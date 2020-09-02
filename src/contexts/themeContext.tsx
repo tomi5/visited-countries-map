@@ -8,15 +8,11 @@ type Props = {
 };
 type ContextTypes = {
   toggleTheme: () => void;
-  isDarkTheme: boolean;
 };
-export const ThemeContext = createContext<ContextTypes>({
-  toggleTheme: () => null,
-  isDarkTheme: false
-});
 
-const darkMode = darkTheme;
-const lightMode = lightTheme;
+export const ThemeContext = createContext<ContextTypes>({
+  toggleTheme: () => null
+});
 
 const ThemeProvider = ({ children }: Props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -33,7 +29,7 @@ const ThemeProvider = ({ children }: Props) => {
   };
 
   const toggleTheme = () => {
-    isDarkTheme ? setTheme(lightMode, false) : setTheme(darkMode, true);
+    isDarkTheme ? setTheme(lightTheme, false) : setTheme(darkTheme, true);
   };
 
   useEffect(() => {
@@ -44,11 +40,11 @@ const ThemeProvider = ({ children }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const value = { isDarkTheme, toggleTheme };
-
   return (
     <ThemeProviderSC theme={appTheme}>
-      <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={{ toggleTheme }}>
+        {children}
+      </ThemeContext.Provider>
     </ThemeProviderSC>
   );
 };
