@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 import { setPercentage } from '../../utils/utils';
+import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
 
 const SummaryBox = () => {
   const { visitedCountries, allCountries } = useContext(VisitedCountryContext);
