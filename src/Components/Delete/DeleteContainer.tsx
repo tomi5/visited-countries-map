@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 
 import ConfirmDialog from '../Dialog/ConfirmDialog';
 import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
-import DeleteButton from '../Buttons/DeleteButton';
+import ButtonDelete from '../Buttons/ButtonDelete';
 
 type DeleteContainerProps = {
   action: Exclude<ActionTypes, 'add'>;
-  removeUsingMap?: any;
+  removeUsingMap?: any; // FIXME - fix "any" type
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
@@ -21,6 +21,7 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
   };
 
   const handleShouldDelete = (e: any) => {
+    // FIXME - fix "any" type
     handleToggleDialog();
     shouldDeleteFromVisited(e, action);
   };
@@ -34,8 +35,8 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
   return (
     <>
       {!removeUsingMap && (
-        <DeleteButton
-          handleClick={(e: any) => handleShouldDelete(e)}
+        <ButtonDelete
+          handleClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type
           action={action}
           isDialogOpen={isDialogOpen}
         />

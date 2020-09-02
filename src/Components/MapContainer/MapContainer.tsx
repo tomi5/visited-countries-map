@@ -26,6 +26,7 @@ const MapContainer = () => {
   }, [selectedCountryCode]);
 
   const handleColorPicker: IEvent<any> = e => {
+    // FIXME - fix "any" type
     setPickedColor(e.target.dataset.color);
     resetHelpingStates();
   };
@@ -36,11 +37,13 @@ const MapContainer = () => {
   ]);
 
   const handleToolTip: IEvent<any> = e => {
+    // FIXME - fix "any" type
     const name = e.target.dataset.name;
     typeof name === 'string' ? setCountryOnHover(name) : setCountryOnHover(null);
   };
 
   const handleDoubleCLick = (e: any) => {
+    // FIXME - fix "any" type
     setIsDoubleClicked(state => !state);
     shouldDeleteFromVisited(e);
   };

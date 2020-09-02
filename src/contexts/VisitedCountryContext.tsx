@@ -12,6 +12,29 @@ import useFetchCountry from '../hooks/useFetchCountry';
 import useLocalStorage from '../hooks/useLocalStorage';
 import useHelpingStates from '../hooks/useHelpingStates';
 
+type ContextTypes = {
+  allCountries: ICountry[];
+  visitedCountries: ICountry[];
+  selectedCountryCode: string | null;
+  countriesByContinent: CountriesByContinent | null;
+  countryToRemove: CountryToRemove | null;
+  addToVisited: IEvent<any>; // FIXME - fix "any" type
+  resetHelpingStates: () => void;
+  shouldDeleteFromVisited: (e: any, action?: Exclude<ActionTypes, 'add'>) => void; // FIXME - fix "any" type
+  deleteFromVisited: (countryToRemove: CountryToRemove | null) => void;
+};
+
+export const VisitedCountryContext = createContext<ContextTypes>({
+  allCountries: [],
+  visitedCountries: [],
+  selectedCountryCode: null,
+  countriesByContinent: null,
+  countryToRemove: null,
+  addToVisited: () => null,
+  resetHelpingStates: () => null,
+  shouldDeleteFromVisited: () => null,
+  deleteFromVisited: () => null
+});
 type Props = {
   children: React.ReactNode;
 };
@@ -108,6 +131,7 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
   }, [lastAddedCountry]);
 
   const addToVisited: IEvent<any> = e => {
+    // FIXME - fix "any" type
     const countryCode = e.target.dataset.id;
     countryCode && setSelectCountryCode(countryCode);
     const countryDetails = findCountryInArray(allCountries, countryCode);
@@ -149,6 +173,7 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
   };
 
   const shouldDeleteFromVisited = (e: any, action?: Exclude<ActionTypes, 'add'>) => {
+    // FIXME - fix "any" type
     resetHelpingStates();
     if (action === 'reset') return;
     const node: NodeTypes = e.target.nodeName.toLowerCase();
@@ -191,27 +216,3 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
 };
 
 export default VisitedCountryContextProvider;
-
-interface IContextProps {
-  allCountries: ICountry[];
-  visitedCountries: ICountry[];
-  selectedCountryCode: string | null;
-  countriesByContinent: CountriesByContinent | null;
-  countryToRemove: CountryToRemove | null;
-  addToVisited: IEvent<any>;
-  resetHelpingStates: () => void;
-  shouldDeleteFromVisited: (e: any, action?: Exclude<ActionTypes, 'add'>) => void;
-  deleteFromVisited: (countryToRemove: CountryToRemove | null) => void;
-}
-
-export const VisitedCountryContext = createContext<IContextProps>({
-  allCountries: [],
-  visitedCountries: [],
-  selectedCountryCode: null,
-  countriesByContinent: null,
-  countryToRemove: null,
-  addToVisited: () => null,
-  resetHelpingStates: () => null,
-  shouldDeleteFromVisited: () => null,
-  deleteFromVisited: () => null
-});

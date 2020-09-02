@@ -3,8 +3,8 @@ import React from 'react';
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
-  handleClick?: IEvent<any>;
-  children?: any;
+  handleClick?: IEvent<any>; // FIXME - fix "any" type
+  children?: any; // FIXME - fix "any" type
 };
 
 const CountryItem = ({

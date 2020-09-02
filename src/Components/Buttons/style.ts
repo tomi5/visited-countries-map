@@ -22,7 +22,7 @@ export const ButtonComponent = styled.button`
   transition: background-color 0.3s;
 
   ${(props: Props) =>
-    props.name === 'instruction' &&
+    props.name === 'info' &&
     css`
       border-radius: 50%;
       color: #ff0e0e;
@@ -30,17 +30,6 @@ export const ButtonComponent = styled.button`
       align-self: flex-start;
     `}
 
-  ${(props: Props) =>
-    props.name === 'login' &&
-    css`
-      border-radius: 29px;
-      color: #058b0e;
-      text-transform: uppercase;
-      padding: 0 40px;
-      align-self: flex-end;
-    `}
-
-    
   ${(props: Props) =>
     props.openStatus &&
     css`

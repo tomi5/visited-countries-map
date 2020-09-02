@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const useLocalStorage = (key: string, initialValue: any) => {
+  // FIXME - fix "any" type
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -12,6 +13,7 @@ const useLocalStorage = (key: string, initialValue: any) => {
   });
 
   const setLocalStorage = (value: (arg0: any) => any) => {
+    // FIXME - fix "any" type
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);

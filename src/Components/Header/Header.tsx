@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
-import Button from '../Buttons/Buttons';
+import React, { useState, useContext } from 'react';
 import { HeaderComponent } from './style';
+import ButtonInfo from '../Buttons/ButtonInfo';
+import { ThemeContext } from '../../contexts/themeContext';
 
 type HeaderProps = {
   title: string;
 };
 
 const Header = ({ title }: HeaderProps) => {
-  const [isModalOpen, setModalStatus] = useState(false);
-  const [isLogged, setLoginStatus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toggleTheme } = useContext(ThemeContext);
+
+  const handleToggleModal = () => {
+    setIsModalOpen(isModalOpen => !isModalOpen);
+  };
 
   return (
     <HeaderComponent>
-      <Button
-        name='instruction'
+      <ButtonInfo
+        name={'info'}
         openStatus={isModalOpen}
-        onClickStatus={setModalStatus}
+        handleToggleModal={handleToggleModal}
       >
         ?
-      </Button>
+      </ButtonInfo>
       <h1>{title}</h1>
-      <Button name='login' openStatus={isLogged} onClickStatus={setLoginStatus}>
-        {!isLogged ? 'Log in' : 'Log out'}
-      </Button>
+
+      <button onClick={toggleTheme}>Mode</button>
     </HeaderComponent>
   );
 };
