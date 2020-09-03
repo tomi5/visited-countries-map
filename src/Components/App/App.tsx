@@ -1,25 +1,27 @@
-import React from 'react';
-import Header from '../Header/Header';
-import SummaryBox from '../SummaryBox/SummaryBox';
-import MapContainer from '../MapContainer/MapContainer';
-import { Wrapper } from './style';
-import VisitedCountryContextProvider from '../../contexts/visitedCountryContext';
-import SearchContainer from '../SearchContainer/SearchContainer';
-import Tabels from '../Tabels/Tabels';
-import GlobalStyle from '../../theme/global';
-import ThemeProvider from '../../contexts/themeContext';
+import React from "react";
+import ThemeProvider from "../../contexts/themeContext";
+import GlobalStyle from "../../theme/global";
+import { Wrapper } from "./style";
+import AppBar from "../AppBar/AppBar";
+import VisitedCountryContextProvider from "../../contexts/visitedCountryContext";
+import MapContainer from "../MapContainer/MapContainer";
+import SearchContainer from "../SearchContainer/SearchContainer";
+import SummaryBox from "../SummaryBox/SummaryBox";
+import Tabels from "../Tabels/Tabels";
 
 const App = () => {
   return (
     <ThemeProvider>
       <GlobalStyle />
       <Wrapper>
-        <Header title='Interactive Visited Countries Map' />
+        <AppBar />
         <VisitedCountryContextProvider>
-          <MapContainer />
-          <SearchContainer />
-          <SummaryBox />
-          <Tabels />
+          <main>
+            <MapContainer />
+            <SearchContainer />
+            <SummaryBox />
+            <Tabels />
+          </main>
         </VisitedCountryContextProvider>
       </Wrapper>
     </ThemeProvider>

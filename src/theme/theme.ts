@@ -1,9 +1,20 @@
-export const lightTheme = {
-  body: '#fafafa',
-  text: '#363537'
+const colors = {
+  white: "#ffffff",
+  light: "#fafafa",
+  dark: "#363537",
+  gray: "#858585",
 };
 
-export const darkTheme = {
-  body: '#363537',
-  text: '#fafafa'
+export const lightTheme: Theme = {
+  body: colors.light,
+  text: colors.dark,
+  input: colors.gray,
+  element: colors.dark,
+};
+
+export const darkTheme: Theme = {
+  body: colors.dark,
+  text: colors.light,
+  input: colors.gray,
+  element: colors.light,
 };

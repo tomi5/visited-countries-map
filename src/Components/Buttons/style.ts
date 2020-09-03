@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 type Props = {
-  readonly name: string;
-  readonly openStatus: boolean;
+  name: string;
+  openStatus: boolean;
 };
 
 export const Wrapper = styled.div`
@@ -21,8 +21,8 @@ export const ButtonComponent = styled.button`
   cursor: pointer;
   transition: background-color 0.3s;
 
-  ${(props: Props) =>
-    props.name === 'info' &&
+  ${({ name }: Props) =>
+    name === 'info' &&
     css`
       border-radius: 50%;
       color: #ff0e0e;
@@ -30,8 +30,8 @@ export const ButtonComponent = styled.button`
       align-self: flex-start;
     `}
 
-  ${(props: Props) =>
-    props.openStatus &&
+  ${({ openStatus }: Props) =>
+    openStatus &&
     css`
       background-color: #c7c7c7;
       color: white;

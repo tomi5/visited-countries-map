@@ -1,9 +1,18 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type Props = {
   color: string;
   checked: boolean;
 };
+
+export const colorsToPicked = [
+  "#B93423",
+  "#DB402B",
+  "#FBCC33",
+  "#428C08",
+  "#1173DE",
+  "#5948EB",
+];
 
 export const Wrapper = styled.div`
   display: flex;
@@ -18,8 +27,8 @@ export const Wrapper = styled.div`
 export const Label = styled.label`
   flex: 1;
   cursor: pointer;
-  background: ${(props: Props) => props.color};
-  box-shadow: ${(props: Props) => props.checked && 'inset 0 0 0 3px #ffff'};
+  background: ${({ color }: Props) => color};
+  box-shadow: ${({ checked }: Props) => checked && "inset 0 0 0 3px #ffff"};
   &:first-of-type {
     border-radius: 5px 0 0 5px;
   }

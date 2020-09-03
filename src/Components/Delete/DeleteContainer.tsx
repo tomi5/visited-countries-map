@@ -1,23 +1,24 @@
-import React, { useState, useContext } from 'react';
-
-import ConfirmDialog from '../Dialog/ConfirmDialog';
-import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
-import ButtonDelete from '../Buttons/ButtonDelete';
+import React, { useState, useContext } from "react";
+import ConfirmDialog from "../Modals/DialogConfirm";
+import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
+import ButtonDelete from "../Buttons/ButtonDelete";
 
 type DeleteContainerProps = {
-  action: Exclude<ActionTypes, 'add'>;
+  action: Exclude<ActionTypes, "add">;
   removeUsingMap?: any; // FIXME - fix "any" type
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
   const initialDialogState = removeUsingMap ? true : false;
   const [isDialogOpen, setIsDialogOpen] = useState(initialDialogState);
-  const { shouldDeleteFromVisited, deleteFromVisited, countryToRemove } = useContext(
-    VisitedCountryContext
-  );
+  const {
+    shouldDeleteFromVisited,
+    deleteFromVisited,
+    countryToRemove,
+  } = useContext(VisitedCountryContext);
 
   const handleToggleDialog = () => {
-    setIsDialogOpen(isDialogOpen => !isDialogOpen);
+    setIsDialogOpen((isDialogOpen) => !isDialogOpen);
   };
 
   const handleShouldDelete = (e: any) => {
@@ -28,7 +29,7 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
 
   const onConfirm = (shouldDelete: ActionConfirm) => {
     handleToggleDialog();
-    if (shouldDelete === 'cancel') return;
+    if (shouldDelete === "cancel") return;
     deleteFromVisited(countryToRemove);
   };
 

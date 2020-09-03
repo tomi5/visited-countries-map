@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
-import { ReactComponent as Map } from '../../assets/world.svg';
-import { StyledReactTooltip } from './style';
-import { VisitedCountryContext } from '../../contexts/visitedCountryContext';
-import ColorPicker from '../ColorPicker/ColorPicker';
-import { fillWithColor, addColorProperties } from '../../utils/utils';
-import RemoveContainer from '../Delete/DeleteContainer';
+import React, { useState, useContext, useEffect, useCallback } from "react";
+import { ReactComponent as Map } from "../../assets/world.svg";
+import { StyledReactTooltip } from "./style";
+import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
+import ColorPicker from "../ColorPicker/ColorPicker";
+import { fillWithColor, addColorProperties } from "../../utils/utils";
+import RemoveContainer from "../Delete/DeleteContainer";
 
 const MapContainer = () => {
   const {
@@ -12,9 +12,9 @@ const MapContainer = () => {
     selectedCountryCode,
     resetHelpingStates,
     visitedCountries,
-    shouldDeleteFromVisited
+    shouldDeleteFromVisited,
   } = useContext(VisitedCountryContext);
-  const [pickedColor, setPickedColor] = useState('#428C08');
+  const [pickedColor, setPickedColor] = useState("#428C08");
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
   const [isDoubleClicked, setIsDoubleClicked] = useState(false);
 
@@ -25,45 +25,47 @@ const MapContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCountryCode]);
 
-  const handleColorPicker: IEvent<any> = e => {
+  const handleColorPicker: IEvent<any> = (e) => {
     // FIXME - fix "any" type
     setPickedColor(e.target.dataset.color);
     resetHelpingStates();
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const memoizedHandleColorPicker = useCallback(e => handleColorPicker(e), [
-    setPickedColor
+  const memoizedHandleColorPicker = useCallback((e) => handleColorPicker(e), [
+    setPickedColor,
   ]);
 
-  const handleToolTip: IEvent<any> = e => {
+  const handleToolTip: IEvent<any> = (e) => {
     // FIXME - fix "any" type
     const name = e.target.dataset.name;
-    typeof name === 'string' ? setCountryOnHover(name) : setCountryOnHover(null);
+    typeof name === "string"
+      ? setCountryOnHover(name)
+      : setCountryOnHover(null);
   };
 
   const handleDoubleCLick = (e: any) => {
     // FIXME - fix "any" type
-    setIsDoubleClicked(state => !state);
+    setIsDoubleClicked((state) => !state);
     shouldDeleteFromVisited(e);
   };
 
   return (
     <>
-      {visitedCountries.length ? <RemoveContainer action={'reset'} /> : null}
+      {visitedCountries.length ? <RemoveContainer action={"reset"} /> : null}
       <Map
         data-tip
-        data-for='countryTooltip'
+        data-for="countryTooltip"
         onClick={addToVisited}
         onMouseMove={handleToolTip}
         onDoubleClick={handleDoubleCLick}
       />
-      {isDoubleClicked && <RemoveContainer removeUsingMap action={'delete'} />}
+      {isDoubleClicked && <RemoveContainer removeUsingMap action={"delete"} />}
 
       <StyledReactTooltip
-        id='countryTooltip'
-        type='warning'
-        effect='float'
+        id="countryTooltip"
+        type="warning"
+        effect="float"
         getContent={() => countryOnHover}
       />
       <ColorPicker

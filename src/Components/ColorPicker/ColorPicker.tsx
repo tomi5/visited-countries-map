@@ -1,29 +1,20 @@
-import React, { memo } from 'react';
-import { Wrapper, Label } from './style';
+import React, { memo } from "react";
+import { Wrapper, Label, colorsToPicked } from "./style";
 
 type ColorPickerProps = {
   handleClick: IEvent<any>; // FIXME - fix "any" type
   pickedColor: string;
 };
 
-const colorArr: string[] = [
-  '#B93423',
-  '#DB402B',
-  '#FBCC33',
-  '#428C08',
-  '#1173DE',
-  '#5948EB'
-];
-
 const ColorPicker = ({ pickedColor, handleClick }: ColorPickerProps) => (
   <Wrapper>
-    {colorArr.map((HEX: string) => (
+    {colorsToPicked.map((HEX: string) => (
       <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
         <input
           readOnly
           data-color={HEX}
           checked={HEX === pickedColor}
-          type='radio'
+          type="radio"
           onClick={handleClick}
         />
       </Label>

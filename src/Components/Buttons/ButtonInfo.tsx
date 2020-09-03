@@ -1,30 +1,28 @@
-import React, { ReactNode } from 'react';
-import { Wrapper, ButtonComponent } from './style';
+import React from "react";
+import { ButtonComponent } from "./style";
 
 type ButtonInfoProps = {
   name: string;
-  openStatus: boolean;
+  // openStatus: boolean;
   handleToggleModal: () => void;
-  children: ReactNode;
+  text: string;
 };
 
 const ButtonInfo = ({
   name,
-  openStatus,
+  // openStatus,
   handleToggleModal,
-  children
+  text,
 }: ButtonInfoProps) => {
   return (
-    <Wrapper>
-      <ButtonComponent
-        name={name}
-        openStatus={openStatus}
-        onClick={handleToggleModal}
-        aria-expanded={openStatus}
-      >
-        {children}
-      </ButtonComponent>
-    </Wrapper>
+    <ButtonComponent
+      name={name}
+      // openStatus={openStatus}
+      onClick={handleToggleModal}
+      // aria-expanded={openStatus}
+    >
+      {text}
+    </ButtonComponent>
   );
 };
 

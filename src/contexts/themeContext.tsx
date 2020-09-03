@@ -1,7 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { ThemeProvider as ThemeProviderSC } from 'styled-components';
-import { darkTheme, lightTheme } from '../theme/theme';
-import useLocalStorage from '../hooks/useLocalStorage';
+import React, { createContext, useState, useEffect } from "react";
+import { ThemeProvider as ThemeProviderSC } from "styled-components";
+import { darkTheme, lightTheme } from "../theme/theme";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 type Props = {
   children: React.ReactNode;
@@ -11,18 +11,15 @@ type ContextTypes = {
 };
 
 export const ThemeContext = createContext<ContextTypes>({
-  toggleTheme: () => null
+  toggleTheme: () => null,
 });
 
 const ThemeProvider = ({ children }: Props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [appTheme, setAppTheme] = useState(lightTheme);
-  const [storedValue, setLocalStorage] = useLocalStorage('theme', lightTheme);
+  const [storedValue, setLocalStorage] = useLocalStorage("theme", lightTheme);
 
-  const setTheme = (
-    mode: React.SetStateAction<{ body: string; text: string }>,
-    isDark: boolean
-  ) => {
+  const setTheme = (mode: Theme, isDark: boolean) => {
     setLocalStorage({ theme: mode, isDarkTheme: isDark });
     setIsDarkTheme(isDark);
     setAppTheme(mode);

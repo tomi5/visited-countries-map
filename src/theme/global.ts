@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
    
@@ -8,17 +8,18 @@ export const GlobalStyle = createGlobalStyle`
   }
    
   html {
-    font-size: 62.5%;
+   font-size: 62.5%;
   }
 
   
 body {
-  background: ${({ theme }: any) => theme.body};
-  color: ${({ theme }: any) => theme.text};
+  background: ${({ theme }: { theme: Theme }) => theme.body};
+  color: ${({ theme }: { theme: Theme }) => theme.text};
   margin: 0;
   padding: 0;
   font-size: 1.6rem;
   overflow-x: hidden;
+ 
 }
 
 path {
