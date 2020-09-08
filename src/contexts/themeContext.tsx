@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { ThemeProvider as ThemeProviderSC } from "styled-components";
-import { darkTheme, lightTheme } from "../theme/theme";
+import { darkTheme, lightTheme, Theme } from "../theme/theme";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 };
 type ContextTypes = {
   toggleTheme: () => void;
+  isDarkTheme: boolean;
 };
 
 const defaultStoredValue = {
@@ -17,12 +18,12 @@ const defaultStoredValue = {
 
 export const ThemeContext = createContext<ContextTypes>({
   toggleTheme: () => null,
+  isDarkTheme: false,
 });
 
 const ThemeProvider = ({ children }: Props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [appTheme, setAppTheme] = useState(lightTheme);
-  console.log("appTheme:", appTheme);
   const [storedValue, setLocalStorage] = useLocalStorage(
     "theme",
     defaultStoredValue
@@ -48,7 +49,7 @@ const ThemeProvider = ({ children }: Props) => {
 
   return (
     <ThemeProviderSC theme={appTheme}>
-      <ThemeContext.Provider value={{ toggleTheme }}>
+      <ThemeContext.Provider value={{ toggleTheme, isDarkTheme }}>
         {children}
       </ThemeContext.Provider>
     </ThemeProviderSC>

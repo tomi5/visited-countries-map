@@ -55,8 +55,13 @@ const HowToUse = () => {
   );
 
   return (
-    <div>
-      <ButtonInfo name={"info"} text={"?"} handleToggleModal={handleOpen} />
+    <>
+      <ButtonInfo
+        name={"info"}
+        text={"?"}
+        handleToggleModal={handleOpen}
+        openStatus={open}
+      />
 
       <Modal
         open={open}
@@ -66,7 +71,7 @@ const HowToUse = () => {
       >
         {body}
       </Modal>
-    </div>
+    </>
   );
 };
 

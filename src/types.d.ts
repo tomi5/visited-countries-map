@@ -1,6 +1,4 @@
-type Theme = {
-  [key: string]: string;
-};
+
 
 interface IEvent<T> {
   (e: { target: T });

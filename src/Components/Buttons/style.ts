@@ -1,43 +1,62 @@
 import styled, { css } from "styled-components";
 
-type Props = {
-  name: string;
-  openStatus: boolean;
-};
-
-export const Wrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
 export const ButtonComponent = styled.button`
   font-size: 22px;
   border: none;
-  box-shadow: 0 3px 6px #0000006e;
-  background-color: #ffff;
-  height: 40px;
+  height: 35px;
   cursor: pointer;
-  transition: background-color 0.3s;
 
-  ${({ name }: Props) =>
-    name === "info" &&
+  ${({ name, theme }) =>
+    name &&
     css`
-      border-radius: 50%;
-      color: #ff0e0e;
-      width: 40px;
-      align-self: flex-start;
-    `}
+      position: absolute;
+      top: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.buttonBcg};
+      color: ${theme.text};
+      transform: translateY(-50%);
+      transition: 0.3s background ease, 0.3s color ease;
+      font-size: ${theme.fontSize.m};
+      font-weight: ${theme.fontWeight.medium};
+    `};
 
-  ${({ openStatus }: Props) =>
-    openStatus &&
-    css`
-      background-color: #c7c7c7;
-      color: white;
-    `}
+  ${({ name, theme }) => {
+    switch (name) {
+      case "info":
+        return `left: 0;     
+      border-radius: 50%;     
+      width: 35px;        
+      &:hover {
+        background: #428c08;
+        color: white;
+      }`;
+      case "mode":
+        return `right: 0;
+        padding: 5px 15px;
+        min-width: 130px;
+        border-radius: 10px;  
+        &:hover {
+        background: ${theme.buttonBcgHover};        
+      }`;
+      default:
+        return;
+    }
+  }};
 
-    &:focus {
+  &:focus {
     outline: 1px solid #c7c7c7;
   }
+`;
+
+export const Icon = styled.span`
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background: ${({ bg }) => `url(${bg}) no-repeat center`};
+  background-size: 100%;
+  transition: 0.3s;
+  filter: ${({ isDark }) => (isDark ? "invert(1)" : "invert(0)")};
 `;

@@ -3,23 +3,22 @@ import { ButtonComponent } from "./style";
 
 type ButtonInfoProps = {
   name: string;
-  // openStatus: boolean;
+  openStatus: boolean;
   handleToggleModal: () => void;
   text: string;
 };
 
 const ButtonInfo = ({
   name,
-  // openStatus,
+  openStatus,
   handleToggleModal,
   text,
 }: ButtonInfoProps) => {
   return (
     <ButtonComponent
       name={name}
-      // openStatus={openStatus}
       onClick={handleToggleModal}
-      // aria-expanded={openStatus}
+      aria-expanded={openStatus}
     >
       {text}
     </ButtonComponent>

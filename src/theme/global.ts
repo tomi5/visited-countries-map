@@ -1,7 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-   
+
+  @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
   *, *::before, *::after {
     box-sizing: border-box;
     border: 0;
@@ -17,8 +19,10 @@ body {
   color: ${({ theme }) => theme.text};
   margin: 0;
   padding: 0;
+  font-family: 'Mali', cursive;
   font-size: 1.6rem;
   overflow-x: hidden;
+  transition: .3s background ease, .3s color ease;
  
 }
 
