@@ -7,10 +7,10 @@ import ButtonInfo from "../Buttons/ButtonInfo";
 const ModalWrapper = styled.div`
   position: absolute;
   width: 400px;
-  background-color: ${({ theme }: { theme: Theme }) => theme.element};
+  background-color: ${({ theme }: { theme: any }) => theme.element};
   top: 50%;
   left: 50%;
-  color: ${({ theme }: { theme: Theme }) => theme.text};
+  color: ${({ theme }: { theme: any }) => theme.text};
   transform: translate(-50%, -50%);
 `;
 

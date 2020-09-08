@@ -10,6 +10,11 @@ type ContextTypes = {
   toggleTheme: () => void;
 };
 
+const defaultStoredValue = {
+  theme: lightTheme,
+  isDarkTheme: false,
+};
+
 export const ThemeContext = createContext<ContextTypes>({
   toggleTheme: () => null,
 });
@@ -17,7 +22,11 @@ export const ThemeContext = createContext<ContextTypes>({
 const ThemeProvider = ({ children }: Props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [appTheme, setAppTheme] = useState(lightTheme);
-  const [storedValue, setLocalStorage] = useLocalStorage("theme", lightTheme);
+  console.log("appTheme:", appTheme);
+  const [storedValue, setLocalStorage] = useLocalStorage(
+    "theme",
+    defaultStoredValue
+  );
 
   const setTheme = (mode: Theme, isDark: boolean) => {
     setLocalStorage({ theme: mode, isDarkTheme: isDark });

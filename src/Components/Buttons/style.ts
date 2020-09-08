@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 type Props = {
   name: string;
@@ -22,7 +22,7 @@ export const ButtonComponent = styled.button`
   transition: background-color 0.3s;
 
   ${({ name }: Props) =>
-    name === 'info' &&
+    name === "info" &&
     css`
       border-radius: 50%;
       color: #ff0e0e;

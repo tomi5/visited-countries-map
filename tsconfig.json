@@ -16,11 +16,12 @@
     "jsx": "react",
     "downlevelIteration": true,
     "declaration": true,
+    "noImplicitAny": false,
     "plugins": [
       {
         "name": "typescript-styled-plugin"
       }
     ]
   },
-  "include": ["src"]
+  "include": ["src", "**/*.ts"]
 }

@@ -1,15 +1,19 @@
-import React from 'react';
+import React from "react";
 
 type ButtonDeleteProps = {
-  action: Exclude<ActionTypes, 'add'>;
+  action: Exclude<ActionTypes, "add">;
   handleClick: any; // FIXME - fix "any" type
   isDialogOpen?: boolean;
 };
 
-const ButtonDelete = ({ action, handleClick, isDialogOpen }: ButtonDeleteProps) => (
+const ButtonDelete = ({
+  action,
+  handleClick,
+  isDialogOpen,
+}: ButtonDeleteProps) => (
   <>
     <button disabled={isDialogOpen} onClick={handleClick}>
-      {action === 'delete' ? 'Delete' : 'Reset the map'}
+      {action === "delete" ? "Delete" : "Reset the map"}
     </button>
   </>
 );
