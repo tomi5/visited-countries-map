@@ -1,27 +1,29 @@
 import React from "react";
-import { ButtonComponent } from "./style";
+import { Button, IconStyleWrapper } from "./style";
+import { Help } from "@styled-icons/entypo/Help";
 
 type ButtonInfoProps = {
   name: string;
   openStatus: boolean;
   handleToggleModal: () => void;
-  text: string;
 };
 
 const ButtonInfo = ({
   name,
   openStatus,
   handleToggleModal,
-  text,
 }: ButtonInfoProps) => {
   return (
-    <ButtonComponent
+    <Button
       name={name}
+      posAbsolute
       onClick={handleToggleModal}
       aria-expanded={openStatus}
     >
-      {text}
-    </ButtonComponent>
+      <IconStyleWrapper padding={"7px"}>
+        <Help />
+      </IconStyleWrapper>
+    </Button>
   );
 };
 

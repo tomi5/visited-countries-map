@@ -23,6 +23,7 @@ const colors = {
 };
 
 const sheredTheme = {
+  gray: colors.gray,
   fontWeight: {
     regular: 400,
     medium: 500,

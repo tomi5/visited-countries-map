@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import ConfirmDialog from "../Modals/DialogConfirm";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 import ButtonDelete from "../Buttons/ButtonDelete";
+import Modal from "../Modals/Modal";
 
 type DeleteContainerProps = {
   action: Exclude<ActionTypes, "add">;
@@ -9,26 +9,27 @@ type DeleteContainerProps = {
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
-  const initialDialogState = removeUsingMap ? true : false;
-  const [isDialogOpen, setIsDialogOpen] = useState(initialDialogState);
+  const initialModalState = removeUsingMap ? true : false;
+  const [isModalOpen, setIsModalOpen] = useState(initialModalState);
+
   const {
     shouldDeleteFromVisited,
     deleteFromVisited,
     countryToRemove,
   } = useContext(VisitedCountryContext);
 
-  const handleToggleDialog = () => {
-    setIsDialogOpen((isDialogOpen) => !isDialogOpen);
+  const handleToggleModal = () => {
+    setIsModalOpen((isModalOpen) => !isModalOpen);
   };
 
   const handleShouldDelete = (e: any) => {
     // FIXME - fix "any" type
-    handleToggleDialog();
+    handleToggleModal();
     shouldDeleteFromVisited(e, action);
   };
 
   const onConfirm = (shouldDelete: ActionConfirm) => {
-    handleToggleDialog();
+    handleToggleModal();
     if (shouldDelete === "cancel") return;
     deleteFromVisited(countryToRemove);
   };
@@ -39,12 +40,14 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
         <ButtonDelete
           handleClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type
           action={action}
-          isDialogOpen={isDialogOpen}
+          isModalOpen={isModalOpen}
         />
       )}
-      <ConfirmDialog
+      <Modal
+        confirmDialog
+        handleToggleModal={handleToggleModal}
         action={action}
-        isDialogOpen={isDialogOpen}
+        isModalOpen={isModalOpen}
         handleClick={onConfirm}
       />
     </>

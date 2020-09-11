@@ -1,7 +1,7 @@
 import React from "react";
-import moonIcon from "../../assets/icons/moon-icon.svg";
-import sunIcon from "../../assets/icons/sun-icon.svg";
-import { ButtonComponent, Icon } from "./style";
+import { Button, IconStyleWrapper } from "./style";
+import { MoonOutline } from "@styled-icons/evaicons-outline/MoonOutline";
+import { Sun } from "@styled-icons/boxicons-regular/Sun";
 
 type ButtonModeToggleProps = {
   name: string;
@@ -14,11 +14,21 @@ const ButtonModeToggle = ({
   onClick,
   isDarkTheme,
 }: ButtonModeToggleProps) => {
+  const buttonText = isDarkTheme ? `Light Mode` : `Dark Mode`;
+
+  const attrTitle = `Switch to ${buttonText}`;
+
   return (
-    <ButtonComponent name={name} onClick={onClick}>
-      <Icon isDark={isDarkTheme} bg={isDarkTheme ? sunIcon : moonIcon} />
-      {isDarkTheme ? `Light Mode` : `Dark Mode`}
-    </ButtonComponent>
+    <Button name={name} posAbsolute onClick={onClick} padding={"5px 15px"}>
+      <IconStyleWrapper padding={"0 5px 0 0"}>
+        {isDarkTheme ? (
+          <MoonOutline title={attrTitle} />
+        ) : (
+          <Sun title={attrTitle} />
+        )}
+      </IconStyleWrapper>
+      {buttonText}
+    </Button>
   );
 };
 

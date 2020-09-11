@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import ReactTooltip from 'react-tooltip';
+import styled from "styled-components";
+import ReactTooltip from "react-tooltip";
 
 export const StyledReactTooltip = styled(ReactTooltip)`
-  background-color: white !important;
-  color: black !important;
-  box-shadow: 0px 2px 20px lightgray;
+  background-color: ${({ theme }) => theme.element} !important;
+  color: ${({ theme }) => theme.text} !important;
+
   &:after {
-    border-top-color: white !important;
+    border-top-color: ${({ theme }) => theme.element} !important;
   }
 `;

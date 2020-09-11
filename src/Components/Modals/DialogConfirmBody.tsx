@@ -1,26 +1,22 @@
 import React from "react";
+import { ModalBodyWrapper } from "./style";
 
-type ConfirmDialogProps = {
-  isDialogOpen: boolean;
-  action: Exclude<ActionTypes, "add">;
+type DialogConfirmBodyProps = {
+  action: Exclude<ActionTypes, "add" | undefined>;
   handleClick: (action: "confirm" | "cancel") => void;
 };
 
-const DialogConfirm = ({
-  action,
-  isDialogOpen,
-  handleClick,
-}: ConfirmDialogProps) => {
+const DialogConfirmBody = ({ action, handleClick }: DialogConfirmBodyProps) => {
   return (
-    <div style={{ display: !isDialogOpen ? "none" : "block" }}>
+    <ModalBodyWrapper>
       <p>
         Are you sure to{" "}
         {action === "delete" ? "delete the country?" : "reset the map?"}
       </p>
       <button onClick={() => handleClick("confirm")}>Confirm</button>
       <button onClick={() => handleClick("cancel")}>Cancel</button>
-    </div>
+    </ModalBodyWrapper>
   );
 };
 
-export default DialogConfirm;
+export default DialogConfirmBody;
