@@ -20,7 +20,6 @@ export const Header = styled.header`
   position: relative;
   flex: 1;
   max-width: 1440px;
-  margin: 0px 20px;
   display: flex;
   justify-content: center;
   align-items: center;

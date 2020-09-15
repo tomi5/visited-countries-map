@@ -46,8 +46,8 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
       <Modal
         confirmDialog
         handleToggleModal={handleToggleModal}
-        action={action}
         isModalOpen={isModalOpen}
+        action={action}
         handleClick={onConfirm}
       />
     </>

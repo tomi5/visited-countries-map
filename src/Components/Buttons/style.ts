@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { StyledIconBase } from "@styled-icons/styled-icon";
+
 export const Button = styled.button`
   display: flex;
   align-items: center;
@@ -34,11 +35,11 @@ export const Button = styled.button`
   ${({ name }) =>
     name === "info" &&
     css`
-      left: 0;
+      left: 20px;
       border-radius: 50%;
 
       &:hover {
-        background: #428c08;
+        background: ${({ theme }) => theme.green};
         color: white;
       }
     `}
@@ -47,9 +48,20 @@ export const Button = styled.button`
   ${({ name }) =>
     name === "mode" &&
     css`
-      right: 0;
-      min-width: 130px;
-      border-radius: 10px;
+      right: 20px;
+      border-radius: 50%;
+      width: 35px;
+      font-size: 0;
+      ${({ theme }) => theme.mq.s} {
+        font-size: inherit;
+        width: auto;
+        min-width: 130px;
+        border-radius: 10px;
+
+        & svg {
+          padding-right: 5px;
+        }
+      }
     `}
     
   /* styles for close button */
@@ -57,7 +69,38 @@ export const Button = styled.button`
     name === "close" &&
     css`
       border-radius: 50%;
+    `} /* styles for regular button */
+  ${({ name }) =>
+    name === "regular" &&
+    css`
+      margin: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      color: ${({ theme }) => theme.light};
     `}
+
+    ${({ type }) => {
+    if (type === "cancel") {
+      return css`
+        background: ${({ theme }) => theme.red100};
+        transition: opacity 0.3s ease;
+        &:hover {
+          background: ${({ theme }) => theme.red100};
+          opacity: 0.9;
+        }
+      `;
+    }
+    if (type === "confirm") {
+      return css`
+        background: ${({ theme }) => theme.green};
+        transition: opacity 0.3s ease;
+        &:hover {
+          background: ${({ theme }) => theme.green};
+          opacity: 0.9;
+        }
+      `;
+    }
+  }}
 `;
 
 export const ButtonCLose = styled(Button)`

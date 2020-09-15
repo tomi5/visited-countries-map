@@ -1,22 +1,33 @@
 import React from "react";
-import { ModalBodyWrapper } from "./style";
+import RegularButton from "../Buttons/RegularButton";
+import { ModalBodyWrapper, Text, ButtonsContainer } from "./style";
 
 type DialogConfirmBodyProps = {
-  action: Exclude<ActionTypes, "add" | undefined>;
-  handleClick: (action: "confirm" | "cancel") => void;
+  action: DeleteOrReset;
+  handleClick: (shouldDelete: ActionConfirm) => void;
+  children?: React.ReactElement;
 };
 
-const DialogConfirmBody = ({ action, handleClick }: DialogConfirmBodyProps) => {
+const DialogConfirmBody = React.forwardRef<
+  HTMLDivElement,
+  DialogConfirmBodyProps
+>(({ action, handleClick = () => null }, ref) => {
   return (
-    <ModalBodyWrapper>
-      <p>
+    <ModalBodyWrapper ref={ref} tabIndex={-1}>
+      <Text id="simple-modal-title">
         Are you sure to{" "}
         {action === "delete" ? "delete the country?" : "reset the map?"}
-      </p>
-      <button onClick={() => handleClick("confirm")}>Confirm</button>
-      <button onClick={() => handleClick("cancel")}>Cancel</button>
+      </Text>
+      <ButtonsContainer>
+        <RegularButton type={"confirm"} handleClick={handleClick}>
+          Confirm
+        </RegularButton>
+        <RegularButton type={"cancel"} handleClick={handleClick}>
+          Cancel
+        </RegularButton>
+      </ButtonsContainer>
     </ModalBodyWrapper>
   );
-};
+});
 
 export default DialogConfirmBody;

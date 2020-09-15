@@ -1,7 +1,7 @@
 import React from "react";
 import ThemeProvider from "../../contexts/themeContext";
 import GlobalStyle from "../../theme/global";
-import { Wrapper } from "./style";
+import { Wrapper, Main } from "./style";
 import AppBar from "../AppBar/AppBar";
 import VisitedCountryContextProvider from "../../contexts/visitedCountryContext";
 import MapContainer from "../MapContainer/MapContainer";
@@ -16,12 +16,12 @@ const App = () => {
       <Wrapper>
         <AppBar />
         <VisitedCountryContextProvider>
-          <main>
-            <MapContainer />
+          <Main>
             <SearchContainer />
             <SummaryBox />
+            <MapContainer />
             <Tabels />
-          </main>
+          </Main>
         </VisitedCountryContextProvider>
       </Wrapper>
     </ThemeProvider>

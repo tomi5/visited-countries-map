@@ -1,5 +1,3 @@
-
-
 interface IEvent<T> {
   (e: { target: T });
 }
@@ -59,6 +57,7 @@ type CountriesByContinent = {
 
 type ActionTypes = "add" | "delete" | "reset";
 type ActionConfirm = "confirm" | "cancel";
+type DeleteOrReset = Exclude<ActionTypes, "add">;
 
 type ReducerAction = {
   type: ActionTypes;

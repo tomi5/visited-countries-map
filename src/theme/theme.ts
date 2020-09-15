@@ -10,7 +10,7 @@ const breakpoints: MediaQuery = {
   xl: 1200,
 };
 
-const colors = {
+export const colors = {
   white: "#ffffff",
   light: "#fafafa",
   light100: "#e6e8ed",
@@ -20,10 +20,20 @@ const colors = {
   gray: "#626262",
   gray100: "#3a3b3c",
   gray200: "#242526",
+  red: "#B93423",
+  red100: "#DB402B",
+  yellow: "#FBCC33",
+  green: "#428c08",
+  blue: "#1173DE",
+  blue100: "#5948EB",
 };
 
 const sheredTheme = {
   gray: colors.gray,
+  green: colors.green,
+  red100: colors.red100,
+  light: colors.light200,
+  shadow: colors.gray100,
   fontWeight: {
     regular: 400,
     medium: 500,
@@ -37,7 +47,6 @@ const sheredTheme = {
     lg: "2rem",
     xl: "2.4rem",
   },
-  shadow: colors.gray100,
   mq: Object.keys(breakpoints).reduce<Record<string, string>>(
     (acc, breakpoint) => {
       acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;

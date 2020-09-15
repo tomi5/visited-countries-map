@@ -7,7 +7,7 @@ type ColorPickerProps = {
 };
 
 const ColorPicker = ({ pickedColor, handleClick }: ColorPickerProps) => (
-  <Wrapper>
+  <Wrapper title={"choose visited country's color"}>
     {colorsToPicked.map((HEX: string) => (
       <Label color={HEX} key={HEX} checked={HEX === pickedColor}>
         <input

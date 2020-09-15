@@ -1,7 +1,7 @@
-import React, { ReactElement, useMemo } from 'react';
-import CountryItem from '../CountryItem/CountryItem';
-
-import FetchStatus from './FetchStatus';
+import React, { ReactElement } from "react";
+import CountryItem from "../CountryItem/CountryItem";
+import FetchStatus from "./FetchStatus";
+import { ListContainer } from "./style";
 
 type SearchResultProps = {
   fetchState: IFetchState;
@@ -12,29 +12,40 @@ type SearchResultProps = {
 const SearchResult = ({
   fetchState,
   countriesToShow,
-  handleClick
+  handleClick,
 }: SearchResultProps) => {
   const { error, isLoading } = fetchState;
 
-  return useMemo(() => {
+  function ListBody({ error, isLoading, countriesToShow }) {
     if (error || isLoading) {
-      return <FetchStatus text={error ? error : 'Loading...'} />;
-    }
-    return countriesToShow.length ? (
-      <ul>
-        {countriesToShow.map(
-          (country): ReactElement => (
-            <CountryItem
-              key={country.code}
-              handleClick={handleClick}
-              country={country}
-            />
+      return <FetchStatus text={error ? error : "Loading..."} />;
+    } else {
+      return countriesToShow.length
+        ? countriesToShow.map(
+            (country): ReactElement => (
+              <CountryItem
+                listType={"searchResult"}
+                key={country.code}
+                country={country}
+                handleClick={handleClick}
+              />
+            )
           )
-        )}
-      </ul>
-    ) : null;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countriesToShow]);
+        : null;
+    }
+  }
+
+  return (
+    <ListContainer>
+      <ListBody
+        error={error}
+        isLoading={isLoading}
+        countriesToShow={countriesToShow}
+      />
+    </ListContainer>
+  );
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 };
 
 export default SearchResult;

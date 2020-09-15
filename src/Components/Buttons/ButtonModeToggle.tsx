@@ -16,16 +16,10 @@ const ButtonModeToggle = ({
 }: ButtonModeToggleProps) => {
   const buttonText = isDarkTheme ? `Light Mode` : `Dark Mode`;
 
-  const attrTitle = `Switch to ${buttonText}`;
-
   return (
-    <Button name={name} posAbsolute onClick={onClick} padding={"5px 15px"}>
-      <IconStyleWrapper padding={"0 5px 0 0"}>
-        {isDarkTheme ? (
-          <MoonOutline title={attrTitle} />
-        ) : (
-          <Sun title={attrTitle} />
-        )}
+    <Button name={name} posAbsolute onClick={onClick} padding={"5px 0px"}>
+      <IconStyleWrapper>
+        {isDarkTheme ? <MoonOutline /> : <Sun />}
       </IconStyleWrapper>
       {buttonText}
     </Button>

@@ -1,10 +1,13 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import { ReactComponent as Map } from "../../assets/world.svg";
-import { StyledReactTooltip } from "./style";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import { fillWithColor, addColorProperties } from "../../utils/utils";
-import RemoveContainer from "../Delete/DeleteContainer";
+import DeleteContainer from "../Delete/DeleteContainer";
+import { Wrapper, StyledReactTooltip } from "./style";
+import { colors } from "../../theme/theme";
+
+const initialPickedColor = colors.green;
 
 const MapContainer = () => {
   const {
@@ -14,7 +17,7 @@ const MapContainer = () => {
     visitedCountries,
     shouldDeleteFromVisited,
   } = useContext(VisitedCountryContext);
-  const [pickedColor, setPickedColor] = useState("#428C08");
+  const [pickedColor, setPickedColor] = useState(initialPickedColor);
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
   const [isDoubleClicked, setIsDoubleClicked] = useState(false);
 
@@ -51,8 +54,7 @@ const MapContainer = () => {
   };
 
   return (
-    <>
-      {visitedCountries.length ? <RemoveContainer action={"reset"} /> : null}
+    <Wrapper>
       <Map
         data-tip
         data-for="countryTooltip"
@@ -60,8 +62,7 @@ const MapContainer = () => {
         onMouseMove={handleToolTip}
         onDoubleClick={handleDoubleCLick}
       />
-      {isDoubleClicked && <RemoveContainer removeUsingMap action={"delete"} />}
-
+      {isDoubleClicked && <DeleteContainer removeUsingMap action={"delete"} />}
       <StyledReactTooltip
         id="countryTooltip"
         type="warning"
@@ -72,7 +73,7 @@ const MapContainer = () => {
         pickedColor={pickedColor}
         handleClick={memoizedHandleColorPicker}
       />
-    </>
+    </Wrapper>
   );
 };
 

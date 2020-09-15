@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-const COUNTRY_API_URL = 'https://restcountries.eu/rest/v2';
+const COUNTRY_API_URL = "https://restcountries.eu/rest/v2";
 
 const initialFetchState: IFetchState = {
   error: null,
-  isLoading: false
+  isLoading: false,
 };
 
 const useFetchCountry = (searchValue: string) => {
@@ -17,11 +17,12 @@ const useFetchCountry = (searchValue: string) => {
 
     setFetchState({
       ...initialFetchState,
-      isLoading: true
+      isLoading: true,
     });
     try {
       const response = await fetch(`${COUNTRY_API_URL}/${param}`);
       const data = await response.json();
+
       if (response.ok) {
         const result = data.map((el: any) => {
           // FIXME - fix "any" type
@@ -30,7 +31,7 @@ const useFetchCountry = (searchValue: string) => {
             code: el.alpha2Code,
             flag: el.flag,
             region: el.region,
-            subregion: el.subregion
+            subregion: el.subregion,
           };
           return country;
         });
@@ -39,13 +40,13 @@ const useFetchCountry = (searchValue: string) => {
       } else {
         setFetchState({
           ...initialFetchState,
-          error: 'No countries found...'
+          error: "No countries found...",
         });
       }
     } catch (err) {
       setFetchState({
         ...initialFetchState,
-        error: 'something went wrong with the database, please try again later'
+        error: "something went wrong with the database, please try again later",
       });
     }
   };
