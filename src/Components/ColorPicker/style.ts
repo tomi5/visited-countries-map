@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../theme/theme";
+import { flexMixin } from "../../theme/mixins";
 
 type Props = {
   color: string;
@@ -11,12 +12,14 @@ const { red, red100, yellow, green, blue, blue100 } = colors;
 export const colorsToPicked = [red, red100, yellow, green, blue, blue100];
 
 export const Wrapper = styled.div`
+  ${flexMixin({
+    direction: "column",
+    wrap: "nowrap",
+  })};
+
   position: absolute;
   bottom: 15%;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   border: 3px solid #707070;
   background: #707070;
   border-radius: 5px;

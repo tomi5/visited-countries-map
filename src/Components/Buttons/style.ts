@@ -1,20 +1,26 @@
 import styled, { css } from "styled-components";
 import { StyledIconBase } from "@styled-icons/styled-icon";
+import { flexMixin, transitionMixin } from "../../theme/mixins";
 
 export const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${flexMixin({
+    align: "center",
+    justify: "center",
+  })};
+
+  ${({ theme }) => css`
+    background: ${theme.buttonBcg};
+    color: ${theme.text};
+    font-size: ${theme.fontSize.m};
+    font-weight: ${theme.fontWeight.medium};
+  `};
+
   padding: ${({ padding }) => padding || 0};
   height: 35px;
-  background: ${({ theme }) => theme.buttonBcg};
-  color: ${({ theme }) => theme.text};
   line-height: 0;
-  font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
   border: none;
   cursor: pointer;
-  transition: 0.3s background ease, 0.3s color ease;
+  ${transitionMixin(["background", "color"])};
   &:hover {
     background: ${({ theme }) => theme.buttonBcgHover};
   }
@@ -83,7 +89,7 @@ export const Button = styled.button`
     if (type === "cancel") {
       return css`
         background: ${({ theme }) => theme.red100};
-        transition: opacity 0.3s ease;
+        ${transitionMixin(["opacity"])};
         &:hover {
           background: ${({ theme }) => theme.red100};
           opacity: 0.9;
@@ -93,7 +99,7 @@ export const Button = styled.button`
     if (type === "confirm") {
       return css`
         background: ${({ theme }) => theme.green};
-        transition: opacity 0.3s ease;
+        ${transitionMixin(["opacity"])};
         &:hover {
           background: ${({ theme }) => theme.green};
           opacity: 0.9;

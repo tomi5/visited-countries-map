@@ -1,18 +1,19 @@
 import styled, { css } from "styled-components";
 import { paddingVertical, paddingHorizontal } from "../SearchContainer/style";
+import { flexMixin, transitionMixin } from "../../theme/mixins";
 
 const FlagWidth = "45px";
 
 export const ListItem = styled.li`
   z-index: 1;
 
-  ${({ listType }) =>
+  ${({ listType, theme }) =>
     listType === "searchResult" &&
     css`
-      background: ${({ theme }) => theme.buttonBcgHover};
+      background: ${theme.buttonBcgHover};
 
       &:nth-child(1) {
-        border-top: 1px solid ${({ theme }) => theme.element};
+        border-top: 1px solid ${theme.element};
       }
 
       &:nth-last-child(1) {
@@ -21,7 +22,7 @@ export const ListItem = styled.li`
 
       &:hover,
       &:focus {
-        background: ${({ theme }) => theme.buttonBcg};
+        background: ${theme.buttonBcg};
       }
     `}
 `;
@@ -37,14 +38,16 @@ export const CountryName = styled.p`
 `;
 
 export const StyledButton = styled.button`
+  ${flexMixin({
+    align: "center",
+  })}
   display: flex;
   padding: ${paddingHorizontal};
   width: 100%;
   height: 100%;
   background: transparent;
   color: inherit;
-  transition: background 0.3s ease;
-  align-items: center;
+  ${transitionMixin(["background"])};
   cursor: pointer;
 
   &:active {

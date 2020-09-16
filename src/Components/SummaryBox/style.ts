@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
+import { flexMixin } from "../../theme/mixins";
 
 const keyframe = keyframes`
   0% {
@@ -14,8 +15,9 @@ const animation = css`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexMixin({
+    direction: "column",
+  })};
   margin: 15px 0;
 
   & p:first-of-type {

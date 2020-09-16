@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import ButtonInfo from "../Buttons/ButtonInfo";
 import Modal from "../Modals/Modal";
 
-const HowToUse = () => {
+type HowToUseProps = {
+  title: string;
+};
+const HowToUse = ({ title }: HowToUseProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggleModal = () => {
@@ -16,7 +19,11 @@ const HowToUse = () => {
         handleToggleModal={handleToggleModal}
         openStatus={isModalOpen}
       />
-      <Modal isModalOpen={isModalOpen} handleToggleModal={handleToggleModal} />
+      <Modal
+        title={title}
+        isModalOpen={isModalOpen}
+        handleToggleModal={handleToggleModal}
+      />
     </>
   );
 };

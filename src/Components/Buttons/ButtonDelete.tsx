@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./style";
 
 type ButtonDeleteProps = {
   action: Exclude<ActionTypes, "add">;
@@ -12,9 +13,9 @@ const ButtonDelete = ({
   isModalOpen,
 }: ButtonDeleteProps) => (
   <>
-    <button disabled={isModalOpen} onClick={handleClick}>
+    <Button name="delete" disabled={isModalOpen} onClick={handleClick}>
       {action === "delete" ? "Delete" : "Reset the map"}
-    </button>
+    </Button>
   </>
 );
 

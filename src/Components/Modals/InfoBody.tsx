@@ -1,40 +1,64 @@
 import React from "react";
 import ButtonClose from "../Buttons/ButtonClose";
-import { ModalBodyWrapper } from "./style";
+import {
+  ModalBodyWrapper,
+  Heading,
+  StyledP,
+  InfoList,
+  ListItemTitle,
+  ListItem,
+} from "./style";
 
 type InfoBodyProps = {
   handleToggleModal: () => void;
+  title: string;
   children?: React.ReactElement;
 };
 
 const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
-  ({ handleToggleModal }, ref) => {
+  ({ handleToggleModal, title }, ref) => {
     return (
       <ModalBodyWrapper ref={ref} tabIndex={-1}>
         <ButtonClose handleClose={handleToggleModal} />
-        <ul id="simple-modal-description">
-          <li>
+        <Heading>{title}</Heading>
+        <StyledP>
+          Using this map you can find out how many countries you have already
+          visited and how many % of the world it is. If you have 1 country
+          visited at least, the table will shown below the map.
+        </StyledP>
+        <StyledP>FAQ:</StyledP>
+        <InfoList id="simple-modal-description">
+          <ListItemTitle>How can I select a country?</ListItemTitle>
+          <ListItem>
             To select the countries you visited you can use a search box to type
             in the country name (or only part of the name) or two-letter country
             code (ISO 3166-1 alpha-2).
-          </li>
-          <li>
+          </ListItem>
+          <ListItemTitle>
+            How Can I change a color of selected country?
+          </ListItemTitle>
+          <ListItem>
             You can also select the country directly from the map (by clicking
             on it).
-          </li>
-          <li>
+          </ListItem>
+          <ListItemTitle>How Can I remove a country?</ListItemTitle>
+          <ListItem>
             Selected countries are displayed both in the table divided into
             continents and higlihted on the map.
-          </li>
-          <li>
+          </ListItem>
+          <ListItemTitle>
+            When I close a map the result will save?
+          </ListItemTitle>
+          <ListItem>
             To remove the country from the list click the trash icon next to the
             country name (in the table).
-          </li>
-          <li>
+          </ListItem>
+          <ListItemTitle>What the reset the map button is?</ListItemTitle>
+          <ListItem>
             You can check how many countries you traveled to and what percentage
             of countries you visited with a counter.
-          </li>
-        </ul>
+          </ListItem>
+        </InfoList>
       </ModalBodyWrapper>
     );
   }

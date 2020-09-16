@@ -9,6 +9,7 @@ type ModalProps = {
   confirmDialog?: boolean;
   action?: DeleteOrReset;
   handleClick?: (shouldDelete: ActionConfirm) => void;
+  title?: string;
 };
 
 const Modal = ({
@@ -17,6 +18,7 @@ const Modal = ({
   confirmDialog,
   action,
   handleClick = () => null,
+  title,
 }: ModalProps) => {
   return (
     <ModalMaterialUi
@@ -31,7 +33,10 @@ const Modal = ({
           handleClick={handleClick}
         />
       ) : (
-        <InfoBody handleToggleModal={handleToggleModal} />
+        <InfoBody
+          title={title as string}
+          handleToggleModal={handleToggleModal}
+        />
       )}
     </ModalMaterialUi>
   );

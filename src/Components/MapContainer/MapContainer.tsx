@@ -1,10 +1,9 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
-import { ReactComponent as Map } from "../../assets/world.svg";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import { fillWithColor, addColorProperties } from "../../utils/utils";
 import DeleteContainer from "../Delete/DeleteContainer";
-import { Wrapper, StyledReactTooltip } from "./style";
+import { Wrapper, StyledReactTooltip, StyledMap } from "./style";
 import { colors } from "../../theme/theme";
 
 const initialPickedColor = colors.green;
@@ -55,7 +54,7 @@ const MapContainer = () => {
 
   return (
     <Wrapper>
-      <Map
+      <StyledMap
         data-tip
         data-for="countryTooltip"
         onClick={addToVisited}

@@ -1,16 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ReactTooltip from "react-tooltip";
+import { ReactComponent as Map } from "../../assets/world.svg";
+import { flexMixin } from "../../theme/mixins";
 
 export const Wrapper = styled.div`
+  ${flexMixin({
+    direction: "column",
+  })}
   position: relative;
-  display: flex;
-  flex-direction: column;
   flex: 1 0 100%;
 `;
 
+export const StyledMap = styled(Map)`
+  height: calc(100% - 80px);
+`;
+
 export const StyledReactTooltip = styled(ReactTooltip)`
-  background: ${({ theme }) => theme.element} !important;
-  color: ${({ theme }) => theme.text} !important;
+  ${({ theme }) => css`
+    background: ${theme.element} !important;
+    color: ${theme.text} !important;
+  `};
 
   &:after {
     border-top-color: ${({ theme }) => theme.element} !important;

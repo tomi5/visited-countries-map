@@ -1,5 +1,6 @@
 import React from "react";
-import { Input, InputWrapper, Label } from "./style";
+
+import { Input, InputWrapper, Label, StyledIcon } from "./style";
 
 type SearchBarProps = {
   value: string;
@@ -9,6 +10,7 @@ type SearchBarProps = {
 const SearchBar = ({ value, handleInputChange }: SearchBarProps) => {
   return (
     <InputWrapper>
+      <StyledIcon />
       <Label htmlFor="search" labelFloat={value ? true : false}>
         Search for a country...
       </Label>

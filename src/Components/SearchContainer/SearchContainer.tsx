@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
 import useFetchCountry from "../../hooks/useFetchCountry";
@@ -8,6 +8,8 @@ import { Wrapper } from "./style";
 const SearchContainer = () => {
   const [searchValue, setSearchValue] = useState("");
   const { addToVisited } = useContext(VisitedCountryContext);
+  const { fetchState, countriesToShow } = useFetchCountry(searchValue);
+  const searchContainerRef = useRef(null);
 
   const handleInputChange: IEvent<HTMLInputElement> = (e) => {
     setSearchValue(e.target.value);
@@ -17,13 +19,26 @@ const SearchContainer = () => {
     // FIXME - fix "any" type
     addToVisited(e);
     setSearchValue("");
-    console.log(e.target);
   };
 
-  const { fetchState, countriesToShow } = useFetchCountry(searchValue);
+  const handleClickOutside = (e, ref) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setSearchValue("");
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) =>
+      handleClickOutside(e, searchContainerRef)
+    );
+    return () => {
+      document.removeEventListener("mousedown", (e) =>
+        handleClickOutside(e, searchContainerRef)
+      );
+    };
+  }, [searchContainerRef]);
 
   return (
-    <Wrapper>
+    <Wrapper ref={searchContainerRef}>
       <SearchBar value={searchValue} handleInputChange={handleInputChange} />
       <SearchResult
         fetchState={fetchState}
