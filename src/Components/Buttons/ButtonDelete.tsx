@@ -12,11 +12,11 @@ const ButtonDelete = ({
   handleClick,
   isModalOpen,
 }: ButtonDeleteProps) => (
-  <>
-    <Button name="delete" disabled={isModalOpen} onClick={handleClick}>
-      {action === "delete" ? "Delete" : "Reset the map"}
-    </Button>
-  </>
-);
+    <>
+      <Button name="delete" disabled={isModalOpen} onClick={handleClick}>
+        {action === "delete" ? "Delete" : "Reset the map"}
+      </Button>
+    </>
+  );
 
 export default ButtonDelete;

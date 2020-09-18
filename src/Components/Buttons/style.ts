@@ -1,11 +1,22 @@
-import styled, { css } from "styled-components";
-import { StyledIconBase } from "@styled-icons/styled-icon";
-import { flexMixin, transitionMixin } from "../../theme/mixins";
+import styled, { css } from 'styled-components';
+import { StyledIconBase } from '@styled-icons/styled-icon';
+import { flexMixin, transitionMixin } from '../../theme/mixins';
 
-export const Button = styled.button`
+type ButtonProps = {
+  padding?: string;
+  name?: string;
+  posAbsolute?: boolean;
+  action?: ActionConfirm;
+};
+
+type IconProps = Pick<ButtonProps, 'padding'> & {
+  marginRight?: 'string';
+};
+
+export const Button = styled.button<ButtonProps>`
   ${flexMixin({
-    align: "center",
-    justify: "center",
+    align: 'center',
+    justify: 'center',
   })};
 
   ${({ theme }) => css`
@@ -20,7 +31,7 @@ export const Button = styled.button`
   line-height: 0;
   border: none;
   cursor: pointer;
-  ${transitionMixin(["background", "color"])};
+  ${transitionMixin({ properties: ['background', 'color'] })};
   &:hover {
     background: ${({ theme }) => theme.buttonBcgHover};
   }
@@ -39,7 +50,7 @@ export const Button = styled.button`
 
   /* styles for information button */
   ${({ name }) =>
-    name === "info" &&
+    name === 'info' &&
     css`
       left: 20px;
       border-radius: 50%;
@@ -52,7 +63,7 @@ export const Button = styled.button`
 
   /* styles for toogleMode button */ 
   ${({ name }) =>
-    name === "mode" &&
+    name === 'mode' &&
     css`
       right: 20px;
       border-radius: 50%;
@@ -72,12 +83,12 @@ export const Button = styled.button`
     
   /* styles for close button */
   ${({ name }) =>
-    name === "close" &&
+    name === 'close' &&
     css`
       border-radius: 50%;
     `} /* styles for regular button */
   ${({ name }) =>
-    name === "regular" &&
+    name === 'regular' &&
     css`
       margin: 10px;
       padding: 10px 15px;
@@ -85,21 +96,21 @@ export const Button = styled.button`
       color: ${({ theme }) => theme.light};
     `}
 
-    ${({ type }) => {
-    if (type === "cancel") {
+    ${({ action }) => {
+    if (action === 'cancel') {
       return css`
         background: ${({ theme }) => theme.red100};
-        ${transitionMixin(["opacity"])};
+        ${transitionMixin({ properties: ['opacity'] })};
         &:hover {
           background: ${({ theme }) => theme.red100};
           opacity: 0.9;
         }
       `;
     }
-    if (type === "confirm") {
+    if (action === 'confirm') {
       return css`
         background: ${({ theme }) => theme.green};
-        ${transitionMixin(["opacity"])};
+        ${transitionMixin({ properties: ['opacity'] })};
         &:hover {
           background: ${({ theme }) => theme.green};
           opacity: 0.9;
@@ -113,11 +124,11 @@ export const ButtonCLose = styled(Button)`
   align-self: flex-end;
 `;
 
-export const IconStyleWrapper = styled.div`
+export const IconStyleWrapper = styled.div<IconProps>`
   height: 100%;
-  padding: ${({ padding }) => (padding ? padding : "0")};
+  padding: ${({ padding }) => (padding ? padding : '0')};
   ${StyledIconBase} {
     height: 100%;
-    margin-right: ${({ marginRight }) => (marginRight ? marginRight : "0")};
+    margin-right: ${({ marginRight }) => (marginRight ? marginRight : '0')};
   }
 `;

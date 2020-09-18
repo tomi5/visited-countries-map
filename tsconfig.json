@@ -1,27 +1,21 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "es2015", "es2017", "dom.iterable"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "downlevelIteration": true,
-    "declaration": true,
     "noImplicitAny": false,
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ]
+    "downlevelIteration": true
   },
-  "include": ["src", "**/*.ts"]
+  "include": ["src"]
 }

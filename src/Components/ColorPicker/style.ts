@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { colors } from "../../theme/theme";
-import { flexMixin } from "../../theme/mixins";
+import styled from 'styled-components';
+import { colors } from '../../theme/theme';
+import { flexMixin } from '../../theme/mixins';
 
-type Props = {
+type LabelProps = {
   color: string;
   checked: boolean;
 };
@@ -13,8 +13,8 @@ export const colorsToPicked = [red, red100, yellow, green, blue, blue100];
 
 export const Wrapper = styled.div`
   ${flexMixin({
-    direction: "column",
-    wrap: "nowrap",
+    direction: 'column',
+    wrap: 'nowrap',
   })};
 
   position: absolute;
@@ -27,11 +27,11 @@ export const Wrapper = styled.div`
   height: 150px;
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<LabelProps>`
   flex: 1;
   cursor: pointer;
-  background: ${({ color }: Props) => color};
-  box-shadow: ${({ checked }: Props) => checked && "inset 0 0 0 3px #ffff"};
+  background: ${({ color }) => color};
+  box-shadow: ${({ checked }) => checked && 'inset 0 0 0 3px #ffff'};
   &:first-of-type {
     border-radius: 5px 5px 0 0;
   }

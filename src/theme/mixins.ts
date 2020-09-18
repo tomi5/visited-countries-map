@@ -1,24 +1,19 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
+import { Property } from 'csstype';
 
-type FlexTypes = {
-  direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  align?: "stretch" | "flex-start" | "flex-end" | "center" | "baseline";
-  justify?:
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "space-between"
-    | "space-around"
-    | "space-evenly";
+type FlexProps = {
+  direction?: Property.FlexDirection;
+  wrap?: Property.FlexWrap;
+  align?: Property.AlignItems;
+  justify?: Property.JustifyContent;
 };
 
 export const flexMixin = ({
-  direction = "row",
-  wrap = "wrap",
-  align = "stretch",
-  justify = "flex-start",
-}: FlexTypes) => {
+  direction = 'row',
+  wrap = 'wrap',
+  align = 'stretch',
+  justify = 'flex-start',
+}: FlexProps) => {
   return css`
     display: flex;
     flex-direction: ${direction};
@@ -28,15 +23,35 @@ export const flexMixin = ({
   `;
 };
 
-export const transitionMixin = (
-  properties: string[],
+type TransitionProps = {
+  properties: string[];
+  time?: number;
+  timing?: Property.TransitionTimingFunction;
+};
+
+export const transitionMixin = ({
+  properties,
   time = 0.3,
-  timing = "ease"
-) => {
-  const value = properties
-    .map((prop) => `${prop} ${time}s ${timing}`)
-    .join(", ");
+  timing = 'ease',
+}: TransitionProps) => {
+  const value = properties.map(prop => `${prop} ${time}s ${timing}`).join(', ');
   return css`
     transition: ${value};
   `;
 };
+
+// export const positionMixin = (
+//   position = "static",
+//   t = "0",
+//   b = "0",
+//   l = "0",
+//   r = "0"
+// ): CSS.Properties => {
+//   return css`
+//     position: ${position};
+//     top: ${t};
+//     bottom: ${b};
+//     left: ${l};
+//     right: ${r};
+//   `;
+// };

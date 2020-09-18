@@ -8,7 +8,7 @@ type RegularButton = {
 };
 
 const RegularButton = ({ type, handleClick, children }: RegularButton) => (
-  <Button name="regular" type={type} onClick={() => handleClick(type)}>
+  <Button name="regular" action={type} onClick={() => handleClick(type)}>
     {children}
   </Button>
 );

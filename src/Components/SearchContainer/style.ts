@@ -1,11 +1,19 @@
-import styled, { css } from "styled-components";
-import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
-import { transitionMixin } from "../../theme/mixins";
+import styled, { css } from 'styled-components';
+import { SearchAlt } from '@styled-icons/boxicons-regular/SearchAlt';
+import { transitionMixin } from '../../theme/mixins';
 
-export const paddingHorizontal = "10px";
-export const paddingVertical = "5px";
+type LabelProps = {
+  labelFloat: boolean;
+};
+
+type InptuProps = Pick<LabelProps, 'labelFloat'> & {
+  value: string;
+};
+
+export const paddingHorizontal = '10px';
+export const paddingVertical = '5px';
 const borderRadius = paddingHorizontal;
-const elementHeight = "30px";
+const elementHeight = '30px';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -19,7 +27,7 @@ export const InputWrapper = styled.div`
   height: ${elementHeight};
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<LabelProps>`
   position: absolute;
   left: 40px;
   right: 0;
@@ -29,9 +37,9 @@ export const Label = styled.label`
   font-style: italic;
   font-size: ${({ labelFloat, theme }) =>
     labelFloat ? theme.fontSize.s : theme.fontSize.m};
-  transform: translateY(${({ labelFloat }) => (labelFloat ? "-90%" : "0")});
+  transform: translateY(${({ labelFloat }) => (labelFloat ? '-90%' : '0')});
   cursor: text;
-  ${transitionMixin(["font-size", "transform"])};
+  ${transitionMixin({ properties: ['font-size', 'transform'] })};
 `;
 
 export const StyledIcon = styled(SearchAlt)`
@@ -47,7 +55,7 @@ export const StyledIcon = styled(SearchAlt)`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InptuProps>`
   ${({ theme, value }) => css`
     background: ${theme.buttonBcg};
     font-weight: ${theme.fontWeight.bold};
@@ -61,7 +69,7 @@ export const Input = styled.input`
   height: 100%;
   padding: ${`${paddingVertical} 40px`};
   outline: none;
-  ${transitionMixin(["background", "border-radius"])};
+  ${transitionMixin({ properties: ['background', 'border-radius'] })};
 
   &:focus {
     background: ${({ theme }) => theme.buttonBcgHover};

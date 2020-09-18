@@ -9,6 +9,8 @@ import SearchContainer from "../SearchContainer/SearchContainer";
 import SummaryBox from "../SummaryBox/SummaryBox";
 import Tabels from "../Tabels/Tabels";
 
+
+
 const App = () => {
   return (
     <ThemeProvider>

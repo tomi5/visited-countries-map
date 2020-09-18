@@ -1,23 +1,24 @@
-import styled, { css } from "styled-components";
-import { flexMixin, transitionMixin } from "../../theme/mixins";
+import styled, { css } from 'styled-components';
+import { flexMixin, transitionMixin } from '../../theme/mixins';
 
 export const Wrapper = styled.div`
-  ${flexMixin({
-    justify: "center",
-  })};
-
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 20;
+
+  ${flexMixin({
+    justify: 'center',
+  })};
 
   ${({ theme }) => css`
     background: ${theme.element};
     box-shadow: ${theme.shadow} 0px 3px 10px -8px;
   `};
 
-  ${transitionMixin(["background"])};
-  z-index: 20;
+  ${transitionMixin({ properties: ['background'] })};
+
   ${({ theme }) => theme.mq.xs} {
     height: 65px;
   }
@@ -25,8 +26,8 @@ export const Wrapper = styled.div`
 
 export const Header = styled.header`
   ${flexMixin({
-    justify: "center",
-    align: "center",
+    justify: 'center',
+    align: 'center',
   })};
   position: relative;
   flex: 1;

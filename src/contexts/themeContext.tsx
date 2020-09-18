@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { ThemeProvider as ThemeProviderSC } from "styled-components";
-import { darkTheme, lightTheme, Theme } from "../theme/theme";
+import { darkTheme, lightTheme } from "../theme/theme";
+import { DefaultTheme } from 'styled-components'
 import useLocalStorage from "../hooks/useLocalStorage";
 
 type Props = {
@@ -29,7 +30,7 @@ const ThemeProvider = ({ children }: Props) => {
     defaultStoredValue
   );
 
-  const setTheme = (mode: Theme, isDark: boolean) => {
+  const setTheme = (mode: DefaultTheme, isDark: boolean) => {
     setLocalStorage({ theme: mode, isDarkTheme: isDark });
     setIsDarkTheme(isDark);
     setAppTheme(mode);

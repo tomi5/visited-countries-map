@@ -22,6 +22,7 @@ const Modal = ({
 }: ModalProps) => {
   return (
     <ModalMaterialUi
+      disableScrollLock
       open={isModalOpen}
       onClose={handleToggleModal}
       aria-labelledby="simple-modal-title"
@@ -33,11 +34,11 @@ const Modal = ({
           handleClick={handleClick}
         />
       ) : (
-        <InfoBody
-          title={title as string}
-          handleToggleModal={handleToggleModal}
-        />
-      )}
+          <InfoBody
+            title={title as string}
+            handleToggleModal={handleToggleModal}
+          />
+        )}
     </ModalMaterialUi>
   );
 };

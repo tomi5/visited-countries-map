@@ -1,14 +1,18 @@
-import styled, { css } from "styled-components";
-import { paddingVertical, paddingHorizontal } from "../SearchContainer/style";
-import { flexMixin, transitionMixin } from "../../theme/mixins";
+import styled, { css } from 'styled-components';
+import { paddingVertical, paddingHorizontal } from '../SearchContainer/style';
+import { flexMixin, transitionMixin } from '../../theme/mixins';
 
-const FlagWidth = "45px";
+type ListProps = {
+  styled: boolean;
+};
 
-export const ListItem = styled.li`
+const FlagWidth = '45px';
+
+export const ListItem = styled.li<ListProps>`
   z-index: 1;
 
-  ${({ listType, theme }) =>
-    listType === "searchResult" &&
+  ${({ styled, theme }) =>
+    styled &&
     css`
       background: ${theme.buttonBcgHover};
 
@@ -27,19 +31,9 @@ export const ListItem = styled.li`
     `}
 `;
 
-export const Flag = styled.img`
-  padding-right: ${paddingVertical};
-  width: ${FlagWidth};
-  height: auto;
-`;
-
-export const CountryName = styled.p`
-  text-align: left;
-`;
-
 export const StyledButton = styled.button`
   ${flexMixin({
-    align: "center",
+    align: 'center',
   })}
   display: flex;
   padding: ${paddingHorizontal};
@@ -47,7 +41,7 @@ export const StyledButton = styled.button`
   height: 100%;
   background: transparent;
   color: inherit;
-  ${transitionMixin(["background"])};
+  ${transitionMixin({ properties: ['background'] })};
   cursor: pointer;
 
   &:active {
@@ -62,4 +56,14 @@ export const StyledDiv = styled.div`
   height: 100%;
   align-items: center;
   background: transparent;
+`;
+
+export const Flag = styled.img`
+  padding-right: ${paddingVertical};
+  width: ${FlagWidth};
+  height: auto;
+`;
+
+export const CountryName = styled.p`
+  text-align: left;
 `;

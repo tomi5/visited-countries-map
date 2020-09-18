@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import CountryItem from "../CountryItem/CountryItem";
-import RemoveContainer from "../Delete/DeleteContainer";
+
 import { List } from "./style";
 
 type TabelProps = {
@@ -20,9 +20,8 @@ const Tabel = ({ continentName, visitedCountry }: TabelProps) => {
             key={country.code}
             country={country}
             continent={continentName}
-          >
-            <RemoveContainer action={"delete"} />
-          </CountryItem>
+          />
+
         )
       )}
     </List>

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { flexMixin } from "../../theme/mixins";
+import styled from 'styled-components';
+import { flexMixin } from '../../theme/mixins';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -11,6 +11,6 @@ export const Wrapper = styled.div`
 export const Main = styled.main`
   padding-top: 80px;
   ${flexMixin({
-    justify: "space-between",
+    justify: 'space-between',
   })}
 `;

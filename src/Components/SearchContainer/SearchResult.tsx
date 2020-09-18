@@ -22,15 +22,15 @@ const SearchResult = ({
     } else {
       return countriesToShow.length
         ? countriesToShow.map(
-            (country): ReactElement => (
-              <CountryItem
-                listType={"searchResult"}
-                key={country.code}
-                country={country}
-                handleClick={handleClick}
-              />
-            )
+          (country): ReactElement => (
+            <CountryItem
+              searchList={true}
+              key={country.code}
+              country={country}
+              handleClick={handleClick}
+            />
           )
+        )
         : null;
     }
   }

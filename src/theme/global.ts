@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { transitionMixin } from "./mixins";
+import { createGlobalStyle } from 'styled-components';
+import { transitionMixin } from './mixins';
 export const GlobalStyle = createGlobalStyle`
 
   @font-face {
@@ -28,7 +28,7 @@ body {
   font-family: 'Mali', cursive;
   font-size: 1.6rem;
   overflow-x: hidden;
-  ${transitionMixin(["background", "color"])};
+  ${transitionMixin({ properties: ['background', 'color'] })};
  
  
 }
