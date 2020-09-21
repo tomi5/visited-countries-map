@@ -17,7 +17,7 @@ const CountryItem = ({
 
   const Tag = (listType === "searchResult" ? StyledButton : StyledDiv) as React.ElementType;
 
-  const TagContent = () => {
+  function TagContent() {
     return <>
       <Flag src={flag} alt={`flag of ${name}`} />
       <CountryName>{name}</CountryName>

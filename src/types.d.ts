@@ -1,7 +1,6 @@
 interface IEvent<T> {
   (e: { target: T });
 }
-
 interface IFetchState {
   error: string | null;
   isLoading: boolean;
@@ -56,6 +55,8 @@ type CountriesByContinent = {
 type ActionTypes = 'add' | 'delete' | 'reset';
 type ActionConfirm = 'confirm' | 'cancel';
 type DeleteOrReset = Exclude<ActionTypes, 'add'>;
+
+type ButtonName = 'info' | 'mode' | 'close' | ActionConfirm | DeleteOrReset;
 
 type ReducerAction = {
   type: ActionTypes;

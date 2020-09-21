@@ -27,6 +27,10 @@ const MapContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCountryCode]);
 
+  useEffect(() => {
+    setIsDoubleClicked(false);
+  }, [visitedCountries]);
+
   const handleColorPicker: IEvent<any> = (e) => {
     // FIXME - fix "any" type
     setPickedColor(e.target.dataset.color);
@@ -47,9 +51,9 @@ const MapContainer = () => {
   };
 
   const handleDoubleCLick = (e: any) => {
-    // FIXME - fix "any" type
-    setIsDoubleClicked((state) => !state);
-    shouldDeleteFromVisited(e);
+    // FIXME - fix "any" type  
+    if (!e.target.matches('path')) return
+    setIsDoubleClicked(state => !state);
   };
 
   return (

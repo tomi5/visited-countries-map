@@ -6,12 +6,12 @@ import { SettingsBackupRestore } from "@styled-icons/material/SettingsBackupRest
 import { Trash } from "@styled-icons/bootstrap/Trash";
 
 type DeleteContainerProps = {
-  action: Exclude<ActionTypes, "add">;
+  action: DeleteOrReset;
   removeUsingMap?: any; // FIXME - fix "any" type
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
-  let buttonText, buttonIcon, buttonName;
+
   const initialModalState = removeUsingMap ? true : false;
   const [isModalOpen, setIsModalOpen] = useState(initialModalState);
 
@@ -37,16 +37,26 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     deleteFromVisited(countryToRemove);
   };
 
+  let buttonText, props
+
   switch (action) {
     case 'reset':
       buttonText = "Reset the map";
-      buttonIcon = SettingsBackupRestore;
-      buttonName = 'reset';
+      props = {
+        name: 'reset',
+        icon: SettingsBackupRestore,
+        padding: "5px 10px",
+        paddingIcon: "0 5px 0 0"
+      }
       break;
     case "delete":
       buttonText = null;
-      buttonIcon = Trash;
-      buttonName = 'delete';
+      props = {
+        name: 'delete',
+        icon: Trash,
+        padding: "0",
+        paddingIcon: "5px"
+      }
       break;
   }
 
@@ -54,10 +64,9 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     <>
       {!removeUsingMap && (
         <Button
-          name={buttonName}
           onClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type          
           isModalOpen={isModalOpen}
-          icon={buttonIcon}
+          {...props}
         >{buttonText}</Button>
       )
       }

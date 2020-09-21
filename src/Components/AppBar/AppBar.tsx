@@ -12,7 +12,7 @@ const appTitle: string = "Interactive Visited Countries Map";
 const AppBar = () => {
   const { toggleTheme, isDarkTheme } = useContext(ThemeContext);
 
-  let buttonText, buttonIcon;
+  let buttonText, buttonIcon
 
   switch (isDarkTheme) {
     case true:
@@ -32,8 +32,10 @@ const AppBar = () => {
         <Heading title={appTitle} />
         <Button
           name="mode"
-          onClick={toggleTheme}
           icon={buttonIcon}
+          padding="5px 10px"
+          paddingIcon="0 5px 0 0"
+          onClick={toggleTheme}
           posAbsolute={true}
         >{buttonText}</Button>
       </Header>

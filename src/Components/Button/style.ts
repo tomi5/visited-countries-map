@@ -4,9 +4,8 @@ import { flexMixin, transitionMixin } from '../../theme/mixins';
 
 type ButtonProps = {
   padding?: string;
-  name?: string;
+  name?: ButtonName;
   posAbsolute?: boolean;
-  action?: ActionConfirm;
 };
 
 type IconProps = Pick<ButtonProps, 'padding'> & {
@@ -74,10 +73,6 @@ export const StyledButton = styled.button<ButtonProps>`
         width: auto;
         min-width: 130px;
         border-radius: 10px;
-
-        & svg {
-          padding-right: 5px;
-        }
       }
     `}
     
@@ -86,9 +81,43 @@ export const StyledButton = styled.button<ButtonProps>`
     name === 'close' &&
     css`
       border-radius: 50%;
-    `} /* styles for regular button */
+      align-self: flex-end;
+    `}
+
+     /* styles for reset button */
+  ${({ name, theme }) =>
+    name === 'reset' &&
+    css`
+      margin-left: auto;
+      border-radius: 10px;
+
+      &:hover {
+        background: ${theme.red100};
+        color: ${theme.light};
+      }
+    `}
+
+      /* styles for delete button */
+  ${({ name, theme }) =>
+    name === 'delete' &&
+    css`
+      border-radius: 10px;
+
+      svg {
+        ${transitionMixin({ properties: ['color'] })};
+      }
+
+      &:hover {
+        background: ${theme.red100};
+        svg {
+          color: ${theme.light};
+        }
+      }
+    `}
+    
+  /* styles for cancel/confirm buttons */
   ${({ name }) =>
-    name === 'regular' &&
+    (name === 'cancel' || name === 'confirm') &&
     css`
       margin: 10px;
       padding: 10px 15px;
@@ -96,8 +125,8 @@ export const StyledButton = styled.button<ButtonProps>`
       color: ${({ theme }) => theme.light};
     `}
 
-    ${({ action }) => {
-    if (action === 'cancel') {
+    ${({ name }) => {
+    if (name === 'cancel') {
       return css`
         background: ${({ theme }) => theme.red100};
         ${transitionMixin({ properties: ['opacity'] })};
@@ -107,7 +136,7 @@ export const StyledButton = styled.button<ButtonProps>`
         }
       `;
     }
-    if (action === 'confirm') {
+    if (name === 'confirm') {
       return css`
         background: ${({ theme }) => theme.green};
         ${transitionMixin({ properties: ['opacity'] })};
@@ -118,10 +147,6 @@ export const StyledButton = styled.button<ButtonProps>`
       `;
     }
   }}
-`;
-
-export const ButtonCLose = styled(StyledButton)`
-  align-self: flex-end;
 `;
 
 export const IconStyleWrapper = styled.div<IconProps>`

@@ -26,7 +26,7 @@ type ContextTypes = {
   resetHelpingStates: () => void;
   shouldDeleteFromVisited: (
     e: any,
-    action?: Exclude<ActionTypes, "add">
+    action?: DeleteOrReset
   ) => void; // FIXME - fix "any" type
   deleteFromVisited: (countryToRemove: CountryToRemove | null) => void;
 };
@@ -187,7 +187,7 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
 
   const shouldDeleteFromVisited = (
     e: any,
-    action?: Exclude<ActionTypes, "add">
+    action?: DeleteOrReset
   ) => {
     // FIXME - fix "any" type
     resetHelpingStates();

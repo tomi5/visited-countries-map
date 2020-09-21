@@ -80,7 +80,7 @@ export const Flag = styled.img`
 `;
 
 export const CountryName = styled.p`
-  text-align: left;
+  text-align: center;
   flex: 1;
   padding: 0 15px;
 `;

@@ -2,14 +2,13 @@ import React from 'react'
 import { StyledButton, IconStyleWrapper } from "./style";
 
 type ButtonProps = {
-    name: string;
+    name: ButtonName;
     icon?: any;
     onClick?: any;
     padding?: string;
     paddingIcon?: string
     isModalOpen?: boolean;
     "aria-expanded"?: boolean;
-    action?: ActionConfirm;
     posAbsolute?: boolean;
     children?: React.ReactNode;
 
@@ -18,7 +17,7 @@ type ButtonProps = {
 const Button = ((props: ButtonProps) => {
     const { icon: IconSVG, children: buttonText, paddingIcon } = props
 
-    const IconContainer = () => {
+    function IconContainer() {
         return (
             <IconStyleWrapper padding={paddingIcon}>
                 <IconSVG />
@@ -27,8 +26,8 @@ const Button = ((props: ButtonProps) => {
 
     return (
         <StyledButton {...props}>
-            {buttonText}
             {IconSVG ? <IconContainer /> : null}
+            {buttonText}
         </StyledButton>
     )
 })
