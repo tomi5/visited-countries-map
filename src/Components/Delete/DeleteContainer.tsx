@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
-import ButtonDelete from "../Buttons/ButtonDelete";
+import Button from "../Button/Button";
 import Modal from "../Modals/Modal";
+import { SettingsBackupRestore } from "@styled-icons/material/SettingsBackupRestore";
+import { Trash } from "@styled-icons/bootstrap/Trash";
 
 type DeleteContainerProps = {
   action: Exclude<ActionTypes, "add">;
@@ -9,6 +11,7 @@ type DeleteContainerProps = {
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
+  let buttonText, buttonIcon, buttonName;
   const initialModalState = removeUsingMap ? true : false;
   const [isModalOpen, setIsModalOpen] = useState(initialModalState);
 
@@ -34,15 +37,30 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     deleteFromVisited(countryToRemove);
   };
 
+  switch (action) {
+    case 'reset':
+      buttonText = "Reset the map";
+      buttonIcon = SettingsBackupRestore;
+      buttonName = 'reset';
+      break;
+    case "delete":
+      buttonText = null;
+      buttonIcon = Trash;
+      buttonName = 'delete';
+      break;
+  }
+
   return (
     <>
       {!removeUsingMap && (
-        <ButtonDelete
-          handleClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type
-          action={action}
+        <Button
+          name={buttonName}
+          onClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type          
           isModalOpen={isModalOpen}
-        />
-      )}
+          icon={buttonIcon}
+        >{buttonText}</Button>
+      )
+      }
       <Modal
         confirmDialog
         handleToggleModal={handleToggleModal}

@@ -83,7 +83,7 @@ export const ListContainer = styled.ul`
   right: 0;
   margin-bottom: 20px;
   list-style: none;
-  z-index: 1;
+  z-index: 100;
 `;
 
 export const StatusText = styled.p`

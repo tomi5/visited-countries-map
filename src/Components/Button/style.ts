@@ -13,7 +13,7 @@ type IconProps = Pick<ButtonProps, 'padding'> & {
   marginRight?: 'string';
 };
 
-export const Button = styled.button<ButtonProps>`
+export const StyledButton = styled.button<ButtonProps>`
   ${flexMixin({
     align: 'center',
     justify: 'center',
@@ -120,7 +120,7 @@ export const Button = styled.button<ButtonProps>`
   }}
 `;
 
-export const ButtonCLose = styled(Button)`
+export const ButtonCLose = styled(StyledButton)`
   align-self: flex-end;
 `;
 

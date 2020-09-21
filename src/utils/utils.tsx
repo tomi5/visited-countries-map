@@ -1,5 +1,15 @@
 import sortBy from "lodash.sortby";
 
+
+export const getCountryID: IEvent<any> = (e) => {
+  // FIXME - fix "any" type
+  let target = e.target
+  while (!target.dataset.id) {
+    target = target.parentNode
+  }
+  return target.dataset.id
+}
+
 export const findCountryInArray: MethodsOnArray<
   string,
   ICountry | undefined

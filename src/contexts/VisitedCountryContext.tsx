@@ -4,6 +4,7 @@ import {
   initialState,
 } from "../reducers/countriesByContinent";
 import {
+  getCountryID,
   addToContinent,
   getContinentName,
   findCountryInArray,
@@ -191,27 +192,11 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
     // FIXME - fix "any" type
     resetHelpingStates();
     if (action === "reset") return;
-    const node: NodeTypes = e.target.nodeName.toLowerCase();
-    let countryToRemoveID: string;
-    let continentName: ContinentsToShow;
 
-    switch (node) {
-      case "path":
-        countryToRemoveID = e.target.dataset.id;
-        const countryDetails = findCountryInArray(
-          allCountries,
-          countryToRemoveID
-        );
-        continentName = getContinentName(countryDetails as ICountry);
-        break;
-      case "button":
-        countryToRemoveID = e.target.parentNode.dataset.id;
-        continentName = e.target.parentNode.dataset.continent;
-        break;
-      default:
-        return;
-    }
+    const countryToRemoveID: string = getCountryID(e);
+    const continentName: ContinentsToShow = getContinentName(findCountryInArray(allCountries, countryToRemoveID) as ICountry);
     setCountryToRemove({ countryToRemoveID, continentName });
+
   };
 
   const value = {

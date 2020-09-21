@@ -24,7 +24,7 @@ const SearchResult = ({
         ? countriesToShow.map(
           (country): ReactElement => (
             <CountryItem
-              searchList={true}
+              listType="searchResult"
               key={country.code}
               country={country}
               handleClick={handleClick}

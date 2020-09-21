@@ -13,7 +13,7 @@ const Tabels = () => {
     <>
       {visitedCountries.length ? (
         <Wrapper>
-          <DeleteContainer action={"reset"} />
+          <DeleteContainer action="reset" />
 
           {countriesByContinent &&
             Object.entries(countriesByContinent).map(

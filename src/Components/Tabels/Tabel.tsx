@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import CountryItem from "../CountryItem/CountryItem";
 
-import { List } from "./style";
+import { ListWrapper, ListTitle, List } from "./style";
 
 type TabelProps = {
   continentName: string;
@@ -10,21 +10,23 @@ type TabelProps = {
 
 const Tabel = ({ continentName, visitedCountry }: TabelProps) => {
   return (
-    <List key={continentName}>
-      <h2>
+    <ListWrapper>
+      <ListTitle>
         {continentName} ({visitedCountry.length})
-      </h2>
-      {visitedCountry.map(
-        (country): ReactElement => (
-          <CountryItem
-            key={country.code}
-            country={country}
-            continent={continentName}
-          />
+      </ListTitle>
+      <List key={continentName}>
+        {visitedCountry.map(
+          (country): ReactElement => (
+            <CountryItem
+              listType="tabel"
+              key={country.code}
+              country={country}
+              continent={continentName}
+            />
 
-        )
-      )}
-    </List>
+          )
+        )}
+      </List></ListWrapper>
   );
 };
 

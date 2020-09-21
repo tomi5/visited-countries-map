@@ -3,7 +3,7 @@ import { paddingVertical, paddingHorizontal } from '../SearchContainer/style';
 import { flexMixin, transitionMixin } from '../../theme/mixins';
 
 type ListProps = {
-  styled: boolean;
+  listType: 'searchResult' | 'tabel';
 };
 
 const FlagWidth = '45px';
@@ -11,8 +11,8 @@ const FlagWidth = '45px';
 export const ListItem = styled.li<ListProps>`
   z-index: 1;
 
-  ${({ styled, theme }) =>
-    styled &&
+  ${({ listType, theme }) =>
+    listType === 'searchResult' &&
     css`
       background: ${theme.buttonBcgHover};
 
@@ -29,13 +29,21 @@ export const ListItem = styled.li<ListProps>`
         background: ${theme.buttonBcg};
       }
     `}
+
+  ${({ listType }) =>
+    listType === 'tabel' &&
+    css`
+      ${flexMixin({
+        align: 'stretch',
+      })}
+      flex: 0 0 33.3%;
+    `}
 `;
 
 export const StyledButton = styled.button`
   ${flexMixin({
     align: 'center',
   })}
-  display: flex;
   padding: ${paddingHorizontal};
   width: 100%;
   height: 100%;
@@ -50,12 +58,19 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledDiv = styled.div`
-  display: flex;
-  padding: ${paddingHorizontal};
-  width: 100%;
-  height: 100%;
+  ${flexMixin({
+    align: 'center',
+    justify: 'space-between',
+  })};
+  flex: 1;
+  margin: 10px;
+  padding: ${`${paddingVertical} 30px`};
   align-items: center;
-  background: transparent;
+  border-radius: 15px;
+  ${({ theme }) => css`
+    border: 1px solid ${theme.gray};
+    box-shadow: 0px 1px 2px ${theme.gray};
+  `};
 `;
 
 export const Flag = styled.img`
@@ -66,4 +81,6 @@ export const Flag = styled.img`
 
 export const CountryName = styled.p`
   text-align: left;
+  flex: 1;
+  padding: 0 15px;
 `;

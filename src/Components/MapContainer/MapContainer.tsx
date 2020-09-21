@@ -61,7 +61,7 @@ const MapContainer = () => {
         onMouseMove={handleToolTip}
         onDoubleClick={handleDoubleCLick}
       />
-      {isDoubleClicked && <DeleteContainer removeUsingMap action={"delete"} />}
+      {isDoubleClicked && <DeleteContainer removeUsingMap action="delete" />}
       <StyledReactTooltip
         id="countryTooltip"
         type="warning"

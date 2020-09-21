@@ -2,8 +2,6 @@ interface IEvent<T> {
   (e: { target: T });
 }
 
-type NodeTypes = "path" | "button";
-
 interface IFetchState {
   error: string | null;
   isLoading: boolean;
@@ -29,35 +27,35 @@ type UpdateVisited = {
 };
 
 type ContinentsToShow =
-  | "Africa"
-  | "Antarctica"
-  | "America North"
-  | "America South"
-  | "Asia"
-  | "Europe"
-  | "Oceania";
+  | 'Africa'
+  | 'Antarctica'
+  | 'America North'
+  | 'America South'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania';
 
 type AmericasSubregion =
-  | "Caribbean"
-  | "Central America"
-  | "Northern America"
-  | "South America";
+  | 'Caribbean'
+  | 'Central America'
+  | 'Northern America'
+  | 'South America';
 
 type ContinetsFromApi =
-  | "Africa"
-  | "Americas"
-  | "Asia"
-  | "Europe"
-  | "Oceania"
-  | "Polar";
+  | 'Africa'
+  | 'Americas'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania'
+  | 'Polar';
 
 type CountriesByContinent = {
   [key in ContinentsToShow]: ICountry[];
 };
 
-type ActionTypes = "add" | "delete" | "reset";
-type ActionConfirm = "confirm" | "cancel";
-type DeleteOrReset = Exclude<ActionTypes, "add">;
+type ActionTypes = 'add' | 'delete' | 'reset';
+type ActionConfirm = 'confirm' | 'cancel';
+type DeleteOrReset = Exclude<ActionTypes, 'add'>;
 
 type ReducerAction = {
   type: ActionTypes;

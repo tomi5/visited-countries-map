@@ -1,5 +1,5 @@
 import React from "react";
-import RegularButton from "../Buttons/RegularButton";
+import Button from "../Button/Button";
 import { ModalBodyWrapper, Text, ButtonsContainer } from "./style";
 
 type DialogConfirmBodyProps = {
@@ -19,12 +19,12 @@ const DialogConfirmBody = React.forwardRef<
         {action === "delete" ? "delete the country?" : "reset the map?"}
       </Text>
       <ButtonsContainer>
-        <RegularButton type={"confirm"} handleClick={handleClick}>
+        <Button name="regular" onClick={() => handleClick("confirm")} action="confirm">
           Confirm
-        </RegularButton>
-        <RegularButton type={"cancel"} handleClick={handleClick}>
+        </Button>
+        <Button name="regular" onClick={() => handleClick("cancel")} action="cancel" >
           Cancel
-        </RegularButton>
+        </Button>
       </ButtonsContainer>
     </ModalBodyWrapper>
   );

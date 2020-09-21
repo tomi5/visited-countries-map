@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import ButtonInfo from "../Buttons/ButtonInfo";
+import Button from "../Button/Button";
 import Modal from "../Modals/Modal";
+import { Help } from "@styled-icons/entypo/Help";
 
 type HowToUseProps = {
   title: string;
@@ -14,10 +15,14 @@ const HowToUse = ({ title }: HowToUseProps) => {
 
   return (
     <>
-      <ButtonInfo
-        name={"info"}
-        handleToggleModal={handleToggleModal}
-        openStatus={isModalOpen}
+      <Button
+        name="info"
+        onClick={handleToggleModal}
+        isModalOpen={isModalOpen}
+        icon={Help}
+        aria-expanded={isModalOpen}
+        paddingIcon="7px"
+        posAbsolute={true}
       />
       <Modal
         title={title}

@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonClose from "../Buttons/ButtonClose";
+import Button from "../Button/Button";
 import {
   ModalBodyWrapper,
   Heading,
@@ -8,6 +8,7 @@ import {
   ListItemTitle,
   ListItem,
 } from "./style";
+import { Close } from "@styled-icons/evil/Close";
 
 type InfoBodyProps = {
   handleToggleModal: () => void;
@@ -19,7 +20,7 @@ const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
   ({ handleToggleModal, title }, ref) => {
     return (
       <ModalBodyWrapper ref={ref} tabIndex={-1}>
-        <ButtonClose handleClose={handleToggleModal} />
+        <Button name="close" onClick={handleToggleModal} icon={Close} padding="3px" />
         <Heading>{title}</Heading>
         <StyledP>
           Using this map you can find out how many countries you have already
