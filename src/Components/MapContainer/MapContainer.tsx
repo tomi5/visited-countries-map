@@ -14,7 +14,6 @@ const MapContainer = () => {
     selectedCountryCode,
     resetHelpingStates,
     visitedCountries,
-    shouldDeleteFromVisited,
   } = useContext(VisitedCountryContext);
   const [pickedColor, setPickedColor] = useState(initialPickedColor);
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);

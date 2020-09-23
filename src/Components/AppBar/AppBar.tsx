@@ -7,7 +7,7 @@ import Button from "../Button/Button";
 import { MoonOutline } from "@styled-icons/evaicons-outline/MoonOutline";
 import { Sun } from "@styled-icons/boxicons-regular/Sun";
 
-const appTitle: string = "Interactive Visited Countries Map";
+const appTitle: string = "Visited Countries Map";
 
 const AppBar = () => {
   const { toggleTheme, isDarkTheme } = useContext(ThemeContext);

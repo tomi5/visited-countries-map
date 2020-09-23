@@ -92,8 +92,8 @@ export const StyledButton = styled.button<ButtonProps>`
       border-radius: 10px;
 
       &:hover {
-        background: ${theme.red100};
-        color: ${theme.light};
+        background: inherit;
+        color: ${theme.red100};
       }
     `}
 
@@ -103,15 +103,9 @@ export const StyledButton = styled.button<ButtonProps>`
     css`
       border-radius: 10px;
 
-      svg {
-        ${transitionMixin({ properties: ['color'] })};
-      }
-
       &:hover {
-        background: ${theme.red100};
-        svg {
-          color: ${theme.light};
-        }
+        background: inherit;
+        color: ${theme.red100};
       }
     `}
     
