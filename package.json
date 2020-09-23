@@ -20,7 +20,8 @@
     "react-tooltip": "^4.2.10",
     "styled-components": "^5.2.0",
     "styled-icons": "^10.21.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts start",

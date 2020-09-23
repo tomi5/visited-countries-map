@@ -1,12 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 import { flexMixin, transitionMixin } from './mixins';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: [
+      'Mali:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap',
+      'cursive',
+    ],
+  },
+});
+
 export const GlobalStyle = createGlobalStyle`
-
-  @font-face {
-  font-family: 'Mali', cursive;
-  src: url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap')
-    }
-
 
   *, *::before, *::after {
     box-sizing: border-box;

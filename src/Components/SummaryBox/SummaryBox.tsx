@@ -15,7 +15,7 @@ const SummaryBox = () => {
     <Wrapper>
       <p>
         You have visited:{" "}
-        <StyledSpan>
+        <StyledSpan key={visitedCountries.length}>
           {visitedCountries.length}
         </StyledSpan>{" "}
         {visitedCountries.length > 1 ? "countries" : "country"}

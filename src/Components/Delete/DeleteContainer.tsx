@@ -11,18 +11,14 @@ type DeleteContainerProps = {
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
-  console.log('removeUsingMap:', removeUsingMap)
-
   const initialModalState = removeUsingMap ? true : false;
   const [isModalOpen, setIsModalOpen] = useState(initialModalState);
-  console.log('isModalOpen:', isModalOpen)
 
   const {
     shouldDeleteFromVisited,
     deleteFromVisited,
     countryToRemove,
   } = useContext(VisitedCountryContext);
-  console.log('countryToRemove:', countryToRemove)
 
   const handleToggleModal = () => {
     setIsModalOpen((isModalOpen) => !isModalOpen);
@@ -33,6 +29,8 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     handleToggleModal();
     shouldDeleteFromVisited(e, action);
   };
+
+
 
   const onConfirm = (shouldDelete: ActionConfirm) => {
     handleToggleModal();
