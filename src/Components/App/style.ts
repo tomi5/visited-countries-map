@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { flexMixin } from '../../theme/mixins';
 
 export const Wrapper = styled.div`
+  flex: 1 0 0;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;

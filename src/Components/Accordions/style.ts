@@ -22,9 +22,7 @@ export const StyledAccordion = styled(Accordion)`
 export const StyledAccordionSummary = styled(AccordionSummary)`
   && {
     & div {
-      ${({ theme }) => css`
-        justify-content: center;
-      `};
+      justify-content: center;
     }
   }
 `;

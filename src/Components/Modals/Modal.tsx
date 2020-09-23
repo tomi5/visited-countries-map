@@ -20,6 +20,7 @@ const Modal = ({
   handleClick = () => null,
   title,
 }: ModalProps) => {
+
   return (
     <ModalMaterialUi
       disableScrollLock

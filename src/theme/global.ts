@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { transitionMixin } from './mixins';
+import { flexMixin, transitionMixin } from './mixins';
 export const GlobalStyle = createGlobalStyle`
 
   @font-face {
@@ -15,12 +15,14 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
    
-  html {
+  html, body {
    font-size: 62.5%;
+   height: 100%;
   }
 
+
   
-body {
+body {  
   background: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.text};
   margin: 0;
@@ -31,6 +33,13 @@ body {
   ${transitionMixin({ properties: ['background', 'color'] })};
  
  
+}
+
+#root {
+  ${flexMixin({
+    direction: 'column',
+  })}
+  min-height: 100%;
 }
 
 path {

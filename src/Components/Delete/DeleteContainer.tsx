@@ -7,19 +7,22 @@ import { Trash } from "@styled-icons/bootstrap/Trash";
 
 type DeleteContainerProps = {
   action: DeleteOrReset;
-  removeUsingMap?: any; // FIXME - fix "any" type
+  removeUsingMap?: boolean;
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
+  console.log('removeUsingMap:', removeUsingMap)
 
   const initialModalState = removeUsingMap ? true : false;
   const [isModalOpen, setIsModalOpen] = useState(initialModalState);
+  console.log('isModalOpen:', isModalOpen)
 
   const {
     shouldDeleteFromVisited,
     deleteFromVisited,
     countryToRemove,
   } = useContext(VisitedCountryContext);
+  console.log('countryToRemove:', countryToRemove)
 
   const handleToggleModal = () => {
     setIsModalOpen((isModalOpen) => !isModalOpen);

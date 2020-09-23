@@ -8,14 +8,15 @@ import MapContainer from "../MapContainer/MapContainer";
 import SearchContainer from "../SearchContainer/SearchContainer";
 import SummaryBox from "../SummaryBox/SummaryBox";
 import Accordions from "../Accordions/Accordions";
+import Footer from "../Footer/Footer";
 
 
 const App = () => {
   return (
     <ThemeProvider>
       <GlobalStyle />
+      <AppBar />
       <Wrapper>
-        <AppBar />
         <VisitedCountryContextProvider>
           <Main>
             <SearchContainer />
@@ -25,6 +26,7 @@ const App = () => {
           </Main>
         </VisitedCountryContextProvider>
       </Wrapper>
+      <Footer />
     </ThemeProvider>
   );
 };

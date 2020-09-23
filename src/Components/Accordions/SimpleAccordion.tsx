@@ -25,7 +25,7 @@ const SimpleAccordion = ({ continentName, visitedCountry }: SimpleAccordionProps
                     aria-controls={`${continentName}-content`}
                     id={`${continentName}-header`}
                 >
-                    <ListTitle>
+                    <ListTitle >
                         {continentName} ({visitedCountry.length})
                     </ListTitle>
                 </StyledAccordionSummary>
