@@ -1,19 +1,19 @@
-import styled, { css } from 'styled-components';
-import { SearchAlt } from '@styled-icons/boxicons-regular/SearchAlt';
-import { transitionMixin } from '../../theme/mixins';
+import styled, { css } from "styled-components";
+import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
+import { transitionMixin } from "../../theme/mixins";
 
 type LabelProps = {
   labelFloat: boolean;
 };
 
-type InptuProps = Pick<LabelProps, 'labelFloat'> & {
+type InptuProps = Pick<LabelProps, "labelFloat"> & {
   value: string;
 };
 
-export const paddingHorizontal = '10px';
-export const paddingVertical = '5px';
+export const paddingHorizontal = "10px";
+export const paddingVertical = "5px";
 const borderRadius = paddingHorizontal;
-const elementHeight = '30px';
+const elementHeight = "30px";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -37,9 +37,9 @@ export const Label = styled.label<LabelProps>`
   font-style: italic;
   font-size: ${({ labelFloat, theme }) =>
     labelFloat ? theme.fontSize.s : theme.fontSize.m};
-  transform: translateY(${({ labelFloat }) => (labelFloat ? '-90%' : '0')});
+  transform: translateY(${({ labelFloat }) => (labelFloat ? "-90%" : "0")});
   cursor: text;
-  ${transitionMixin({ properties: ['font-size', 'transform'] })};
+  ${transitionMixin({ properties: ["font-size", "transform"] })};
 `;
 
 export const StyledIcon = styled(SearchAlt)`
@@ -69,7 +69,7 @@ export const Input = styled.input<InptuProps>`
   height: 100%;
   padding: ${`${paddingVertical} 40px`};
   outline: none;
-  ${transitionMixin({ properties: ['background', 'border-radius'] })};
+  ${transitionMixin({ properties: ["background", "border-radius"] })};
 
   &:focus {
     background: ${({ theme }) => theme.buttonBcgHover};

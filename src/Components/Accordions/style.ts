@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
-import { flexMixin } from '../../theme/mixins';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import { ExpandMore } from '@styled-icons/material/ExpandMore';
+import styled, { css } from "styled-components";
+import { flexMixin } from "../../theme/mixins";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import { ExpandMore } from "@styled-icons/material/ExpandMore";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -48,7 +48,7 @@ export const List = styled.ul`
   flex: 1;
   list-style: none;
   ${flexMixin({
-    align: 'stretch',
+    align: "stretch",
   })}
   color: ${({ theme }) => theme.text};
 `;

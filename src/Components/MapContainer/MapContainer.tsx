@@ -14,7 +14,7 @@ const MapContainer = () => {
     selectedCountryCode,
     resetHelpingStates,
     visitedCountries,
-    shouldDeleteFromVisited
+    shouldDeleteFromVisited,
   } = useContext(VisitedCountryContext);
   const [pickedColor, setPickedColor] = useState(initialPickedColor);
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
@@ -51,9 +51,9 @@ const MapContainer = () => {
   };
 
   const handleDoubleCLick = (e: any) => {
-    // FIXME - fix "any" type  
-    if (!e.target.matches('path')) return
-    setIsDoubleClicked(state => !state);
+    // FIXME - fix "any" type
+    if (!e.target.matches("path")) return;
+    setIsDoubleClicked((state) => !state);
     shouldDeleteFromVisited(e, "delete");
   };
 

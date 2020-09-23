@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { colors } from '../../theme/theme';
-import { flexMixin } from '../../theme/mixins';
+import styled from "styled-components";
+import { colors } from "../../theme/theme";
+import { flexMixin } from "../../theme/mixins";
 
 type LabelProps = {
   color: string;
@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   background: #707070;
   border-radius: 5px;
   ${flexMixin({
-    direction: 'row',
+    direction: "row",
   })};
 
   ${({ theme }) => theme.mq.md} {
@@ -29,8 +29,8 @@ export const Wrapper = styled.div`
     height: 150px;
     margin-bottom: 0;
     ${flexMixin({
-      direction: 'column',
-      wrap: 'nowrap',
+      direction: "column",
+      wrap: "nowrap",
     })}
   }
 `;
@@ -39,7 +39,7 @@ export const Label = styled.label<LabelProps>`
   flex: 1;
   cursor: pointer;
   background: ${({ color }) => color};
-  box-shadow: ${({ checked }) => checked && 'inset 0 0 0 3px #ffff'};
+  box-shadow: ${({ checked }) => checked && "inset 0 0 0 3px #ffff"};
   &:first-of-type {
     border-radius: 5px 0 0 5px;
   }

@@ -12,7 +12,7 @@ const appTitle: string = "Visited Countries Map";
 const AppBar = () => {
   const { toggleTheme, isDarkTheme } = useContext(ThemeContext);
 
-  let buttonText, buttonIcon
+  let buttonText, buttonIcon;
 
   switch (isDarkTheme) {
     case true:
@@ -36,11 +36,12 @@ const AppBar = () => {
           padding="5px 10px"
           onClick={toggleTheme}
           posAbsolute={true}
-        >{buttonText}</Button>
+        >
+          {buttonText}
+        </Button>
       </Header>
     </Wrapper>
   );
 };
 
 export default AppBar;
-

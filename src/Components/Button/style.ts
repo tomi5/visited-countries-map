@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import { StyledIconBase } from '@styled-icons/styled-icon';
-import { flexMixin, transitionMixin } from '../../theme/mixins';
+import styled, { css } from "styled-components";
+import { StyledIconBase } from "@styled-icons/styled-icon";
+import { flexMixin, transitionMixin } from "../../theme/mixins";
 
 type ButtonProps = {
   padding?: string;
@@ -8,14 +8,14 @@ type ButtonProps = {
   posAbsolute?: boolean;
 };
 
-type IconProps = Pick<ButtonProps, 'padding'> & {
-  marginRight?: 'string';
+type IconProps = Pick<ButtonProps, "padding"> & {
+  marginRight?: "string";
 };
 
 export const StyledButton = styled.button<ButtonProps>`
   ${flexMixin({
-    align: 'center',
-    justify: 'center',
+    align: "center",
+    justify: "center",
   })};
 
   ${({ theme }) => css`
@@ -30,7 +30,7 @@ export const StyledButton = styled.button<ButtonProps>`
   line-height: 0;
   border: none;
   cursor: pointer;
-  ${transitionMixin({ properties: ['background', 'color'] })};
+  ${transitionMixin({ properties: ["background", "color"] })};
 
   ${({ theme }) => theme.mq.lg} {
     height: 35px;
@@ -54,7 +54,7 @@ export const StyledButton = styled.button<ButtonProps>`
 
   /* styles for information button */
   ${({ name }) =>
-    name === 'info' &&
+    name === "info" &&
     css`
       left: 20px;
       border-radius: 50%;
@@ -67,7 +67,7 @@ export const StyledButton = styled.button<ButtonProps>`
 
   /* styles for toogleMode button */ 
   ${({ name }) =>
-    name === 'mode' &&
+    name === "mode" &&
     css`
       right: 20px;
       border-radius: 50%;
@@ -90,7 +90,7 @@ export const StyledButton = styled.button<ButtonProps>`
     
   /* styles for close button */
   ${({ name }) =>
-    name === 'close' &&
+    name === "close" &&
     css`
       border-radius: 50%;
       align-self: flex-end;
@@ -98,7 +98,7 @@ export const StyledButton = styled.button<ButtonProps>`
 
      /* styles for reset button */
   ${({ name, theme }) =>
-    name === 'reset' &&
+    name === "reset" &&
     css`
       margin-left: auto;
       border-radius: 10px;
@@ -111,7 +111,7 @@ export const StyledButton = styled.button<ButtonProps>`
 
       /* styles for delete button */
   ${({ name, theme }) =>
-    name === 'delete' &&
+    name === "delete" &&
     css`
       border-radius: 10px;
 
@@ -123,7 +123,7 @@ export const StyledButton = styled.button<ButtonProps>`
     
   /* styles for cancel/confirm buttons */
   ${({ name }) =>
-    (name === 'cancel' || name === 'confirm') &&
+    (name === "cancel" || name === "confirm") &&
     css`
       margin: 10px;
       padding: 10px 15px;
@@ -134,20 +134,20 @@ export const StyledButton = styled.button<ButtonProps>`
     `}
 
     ${({ name }) => {
-    if (name === 'cancel') {
+    if (name === "cancel") {
       return css`
         background: ${({ theme }) => theme.red100};
-        ${transitionMixin({ properties: ['opacity'] })};
+        ${transitionMixin({ properties: ["opacity"] })};
         &:hover {
           background: ${({ theme }) => theme.red100};
           opacity: 0.9;
         }
       `;
     }
-    if (name === 'confirm') {
+    if (name === "confirm") {
       return css`
         background: ${({ theme }) => theme.green};
-        ${transitionMixin({ properties: ['opacity'] })};
+        ${transitionMixin({ properties: ["opacity"] })};
         &:hover {
           background: ${({ theme }) => theme.green};
           opacity: 0.9;
@@ -159,9 +159,9 @@ export const StyledButton = styled.button<ButtonProps>`
 
 export const IconStyleWrapper = styled.div<IconProps>`
   height: 100%;
-  padding: ${({ padding }) => (padding ? padding : '0')};
+  padding: ${({ padding }) => (padding ? padding : "0")};
   ${StyledIconBase} {
     height: 100%;
-    margin-right: ${({ marginRight }) => (marginRight ? marginRight : '0')};
+    margin-right: ${({ marginRight }) => (marginRight ? marginRight : "0")};
   }
 `;

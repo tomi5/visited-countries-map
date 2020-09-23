@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { ThemeProvider as ThemeProviderSC } from "styled-components";
 import { darkTheme, lightTheme } from "../theme/theme";
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from "styled-components";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 type Props = {

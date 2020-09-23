@@ -1,13 +1,13 @@
-import styled, { css } from 'styled-components';
-import ReactTooltip from 'react-tooltip';
-import { ReactComponent as Map } from '../../assets/world.svg';
-import { flexMixin } from '../../theme/mixins';
+import styled, { css } from "styled-components";
+import ReactTooltip from "react-tooltip";
+import { ReactComponent as Map } from "../../assets/world.svg";
+import { flexMixin } from "../../theme/mixins";
 
 export const Wrapper = styled.div`
   ${flexMixin({
-    direction: 'column',
-    align: 'flex-start',
-    justify: 'space-between',
+    direction: "column",
+    align: "flex-start",
+    justify: "space-between",
   })};
   position: relative;
   flex: 1 0 100%;
@@ -15,10 +15,10 @@ export const Wrapper = styled.div`
 
   ${({ theme }) => theme.mq.md} {
     ${flexMixin({
-      direction: 'row',
-      align: 'flex-start',
-      justify: 'space-between',
-      wrap: 'nowrap',
+      direction: "row",
+      align: "flex-start",
+      justify: "space-between",
+      wrap: "nowrap",
     })}
   }
 

@@ -1,13 +1,13 @@
-import styled, { css } from 'styled-components';
-import { StyledIconBase } from '@styled-icons/styled-icon';
-import { flexMixin, transitionMixin } from '../../theme/mixins';
+import styled, { css } from "styled-components";
+import { StyledIconBase } from "@styled-icons/styled-icon";
+import { flexMixin, transitionMixin } from "../../theme/mixins";
 
 export const StyledFooter = styled.footer`
   flex-shrink: 0;
   padding: 5px 0;
   ${flexMixin({
-    align: 'center',
-    justify: 'center',
+    align: "center",
+    justify: "center",
   })};
   ${({ theme }) => css`
     background: ${theme.buttonBcg};
@@ -21,8 +21,8 @@ export const Link = styled.a`
   color: ${({ theme }) => theme.text};
   text-decoration: none;
   ${flexMixin({
-    align: 'center',
-    justify: 'center',
+    align: "center",
+    justify: "center",
   })};
 
   &:hover {
@@ -37,7 +37,7 @@ export const Emoji = styled.span`
   margin: 0 5px;
   color: red;
   transform: scale(1);
-  ${transitionMixin({ properties: ['transform'] })}
+  ${transitionMixin({ properties: ["transform"] })}
 `;
 
 export const IconStyleWrapper = styled.div`

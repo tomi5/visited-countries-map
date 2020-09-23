@@ -18,9 +18,8 @@ const Modal = ({
   confirmDialog,
   action,
   handleClick = () => null,
-  title
+  title,
 }: ModalProps) => {
-
   return (
     <ModalMaterialUi
       disableScrollLock
@@ -35,11 +34,11 @@ const Modal = ({
           handleClick={handleClick}
         />
       ) : (
-          <InfoBody
-            title={title as string}
-            handleToggleModal={handleToggleModal}
-          />
-        )}
+        <InfoBody
+          title={title as string}
+          handleToggleModal={handleToggleModal}
+        />
+      )}
     </ModalMaterialUi>
   );
 };

@@ -1,14 +1,13 @@
 import sortBy from "lodash.sortby";
 
-
 export const getCountryID: IEvent<any> = (e) => {
   // FIXME - fix "any" type
-  let target = e.target
+  let target = e.target;
   while (!target.dataset.id) {
-    target = target.parentNode
+    target = target.parentNode;
   }
-  return target.dataset.id
-}
+  return target.dataset.id;
+};
 
 export const findCountryInArray: MethodsOnArray<
   string,
@@ -23,7 +22,7 @@ export const removeCountryFromArray: MethodsOnArray<string, ICountry[]> = (
   countryCode
 ) => {
   const updatedArr = arr.filter((el) => !countryCode.includes(el.code));
-
+  const a = "re"
   return updatedArr;
 };
 

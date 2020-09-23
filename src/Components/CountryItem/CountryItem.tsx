@@ -4,7 +4,7 @@ import DeleteContainer from "../Delete/DeleteContainer";
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
-  handleClick?: IEvent<any>; // FIXME - fix "any" type  
+  handleClick?: IEvent<any>; // FIXME - fix "any" type
   listType: "searchResult" | "tabel";
 };
 
@@ -14,15 +14,18 @@ const CountryItem = ({
   handleClick,
   listType,
 }: CountryItemProps) => {
-
-  const Tag = (listType === "searchResult" ? StyledButton : StyledDiv) as React.ElementType;
+  const Tag = (listType === "searchResult"
+    ? StyledButton
+    : StyledDiv) as React.ElementType;
 
   function TagContent() {
-    return <>
-      <Flag src={flag} alt={`flag of ${name}`} />
-      <CountryName>{name}</CountryName>
-      { listType === "tabel" ? <DeleteContainer action="delete" /> : null}
-    </>
+    return (
+      <>
+        <Flag src={flag} alt={`flag of ${name}`} />
+        <CountryName>{name}</CountryName>
+        {listType === "tabel" ? <DeleteContainer action="delete" /> : null}
+      </>
+    );
   }
 
   return (
@@ -35,7 +38,7 @@ const CountryItem = ({
       >
         <TagContent />
       </Tag>
-    </ListItem >
+    </ListItem>
   );
 };
 

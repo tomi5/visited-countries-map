@@ -30,34 +30,32 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     shouldDeleteFromVisited(e, action);
   };
 
-
-
   const onConfirm = (shouldDelete: ActionConfirm) => {
     handleToggleModal();
     if (shouldDelete === "cancel") return;
     deleteFromVisited(countryToRemove);
   };
 
-  let buttonText, props
+  let buttonText, props;
 
   switch (action) {
-    case 'reset':
+    case "reset":
       buttonText = "Reset the map";
       props = {
-        name: 'reset',
+        name: "reset",
         icon: SettingsBackupRestore,
         padding: "5px 10px",
-        paddingIcon: "0 5px 0 0"
-      }
+        paddingIcon: "0 5px 0 0",
+      };
       break;
     case "delete":
       buttonText = null;
       props = {
-        name: 'delete',
+        name: "delete",
         icon: Trash,
         padding: "0",
-        paddingIcon: "5px"
-      }
+        paddingIcon: "5px",
+      };
       break;
   }
 
@@ -65,12 +63,13 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     <>
       {!removeUsingMap && (
         <Button
-          onClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type          
+          onClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type
           isModalOpen={isModalOpen}
           {...props}
-        >{buttonText}</Button>
-      )
-      }
+        >
+          {buttonText}
+        </Button>
+      )}
       <Modal
         confirmDialog
         handleToggleModal={handleToggleModal}

@@ -22,7 +22,7 @@ const DialogConfirmBody = React.forwardRef<
         <Button name="confirm" onClick={() => handleClick("confirm")}>
           Confirm
         </Button>
-        <Button name="cancel" onClick={() => handleClick("cancel")} >
+        <Button name="cancel" onClick={() => handleClick("cancel")}>
           Cancel
         </Button>
       </ButtonsContainer>

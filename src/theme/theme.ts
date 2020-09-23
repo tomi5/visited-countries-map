@@ -11,21 +11,21 @@ const breakpoints: MediaQuery = {
 };
 
 export const colors = {
-  white: '#ffffff',
-  light: '#fafafa',
-  light100: '#e6e8ed',
-  light200: '#e0e2e6',
-  dark: '#18191a',
-  dark100: '#17171a',
-  gray: '#626262',
-  gray100: '#3a3b3c',
-  gray200: '#242526',
-  red: '#B93423',
-  red100: '#DB402B',
-  yellow: '#FBCC33',
-  green: '#428c08',
-  blue: '#1173DE',
-  blue100: '#5948EB',
+  white: "#ffffff",
+  light: "#fafafa",
+  light100: "#e6e8ed",
+  light200: "#e0e2e6",
+  dark: "#18191a",
+  dark100: "#17171a",
+  gray: "#626262",
+  gray100: "#3a3b3c",
+  gray200: "#242526",
+  red: "#B93423",
+  red100: "#DB402B",
+  yellow: "#FBCC33",
+  green: "#428c08",
+  blue: "#1173DE",
+  blue100: "#5948EB",
 };
 
 const sheredTheme = {
@@ -41,16 +41,19 @@ const sheredTheme = {
     bold: 700,
   },
   fontSize: {
-    xs: '1.2rem',
-    s: '1.4rem',
-    m: '1.6rem',
-    lg: '2rem',
-    xl: '2.4rem',
+    xs: "1.2rem",
+    s: "1.4rem",
+    m: "1.6rem",
+    lg: "2rem",
+    xl: "2.4rem",
   },
-  mq: Object.keys(breakpoints).reduce<Record<string, string>>((acc, breakpoint) => {
-    acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;
-    return acc;
-  }, {}),
+  mq: Object.keys(breakpoints).reduce<Record<string, string>>(
+    (acc, breakpoint) => {
+      acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;
+      return acc;
+    },
+    {}
+  ),
 };
 
 export const lightTheme = {

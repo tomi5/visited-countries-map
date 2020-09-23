@@ -24,10 +24,7 @@ type ContextTypes = {
   countryToRemove: CountryToRemove | null;
   addToVisited: IEvent<any>; // FIXME - fix "any" type
   resetHelpingStates: () => void;
-  shouldDeleteFromVisited: (
-    e: any,
-    action?: DeleteOrReset
-  ) => void; // FIXME - fix "any" type
+  shouldDeleteFromVisited: (e: any, action?: DeleteOrReset) => void; // FIXME - fix "any" type
   deleteFromVisited: (countryToRemove: CountryToRemove | null) => void;
 };
 
@@ -185,18 +182,16 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
     resetHelpingStates();
   };
 
-  const shouldDeleteFromVisited = (
-    e: any,
-    action?: DeleteOrReset
-  ) => {
+  const shouldDeleteFromVisited = (e: any, action?: DeleteOrReset) => {
     // FIXME - fix "any" type
     resetHelpingStates();
     if (action === "reset") return;
 
     const countryToRemoveID: string = getCountryID(e);
-    const continentName: ContinentsToShow = getContinentName(findCountryInArray(allCountries, countryToRemoveID) as ICountry);
+    const continentName: ContinentsToShow = getContinentName(
+      findCountryInArray(allCountries, countryToRemoveID) as ICountry
+    );
     setCountryToRemove({ countryToRemoveID, continentName });
-
   };
 
   const value = {

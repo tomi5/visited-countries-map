@@ -10,7 +10,6 @@ import SummaryBox from "../SummaryBox/SummaryBox";
 import Accordions from "../Accordions/Accordions";
 import Footer from "../Footer/Footer";
 
-
 const App = () => {
   return (
     <ThemeProvider>
