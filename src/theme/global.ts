@@ -50,6 +50,10 @@ body {
 path {
   cursor: pointer;
 }
+
+div[role="presentation"] {
+  position: absolute !important;  
+}
 `;
 
 export default GlobalStyle;

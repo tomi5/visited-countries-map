@@ -12,19 +12,27 @@ const { red, red100, yellow, green, blue, blue100 } = colors;
 export const colorsToPicked = [red, red100, yellow, green, blue, blue100];
 
 export const Wrapper = styled.div`
-  ${flexMixin({
-    direction: 'column',
-    wrap: 'nowrap',
-  })};
-
-  position: absolute;
-  bottom: 15%;
-  left: 0;
+  align-self: flex-end;
+  width: 150px;
+  height: 30px;
+  margin-bottom: 30px;
   border: 3px solid #707070;
   background: #707070;
   border-radius: 5px;
-  width: 30px;
-  height: 150px;
+  ${flexMixin({
+    direction: 'row',
+  })};
+
+  ${({ theme }) => theme.mq.md} {
+    align-self: center;
+    width: 30px;
+    height: 150px;
+    margin-bottom: 0;
+    ${flexMixin({
+      direction: 'column',
+      wrap: 'nowrap',
+    })}
+  }
 `;
 
 export const Label = styled.label<LabelProps>`
@@ -33,12 +41,21 @@ export const Label = styled.label<LabelProps>`
   background: ${({ color }) => color};
   box-shadow: ${({ checked }) => checked && 'inset 0 0 0 3px #ffff'};
   &:first-of-type {
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px 0 0 5px;
   }
   &:last-of-type {
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 5px 5px 0;
   }
   & input {
     visibility: hidden;
+  }
+
+  ${({ theme }) => theme.mq.md} {
+    &:first-of-type {
+      border-radius: 5px 5px 0 0;
+    }
+    &:last-of-type {
+      border-radius: 0 0 5px 5px;
+    }
   }
 `;

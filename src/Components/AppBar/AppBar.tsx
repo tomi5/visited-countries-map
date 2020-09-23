@@ -34,7 +34,6 @@ const AppBar = () => {
           name="mode"
           icon={buttonIcon}
           padding="5px 10px"
-          paddingIcon="0 5px 0 0"
           onClick={toggleTheme}
           posAbsolute={true}
         >{buttonText}</Button>

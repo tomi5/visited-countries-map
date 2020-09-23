@@ -19,7 +19,7 @@ type InfoBodyProps = {
 const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
   ({ handleToggleModal, title }, ref) => {
     return (
-      <ModalBodyWrapper ref={ref} tabIndex={-1}>
+      <ModalBodyWrapper info={true} ref={ref} tabIndex={-1} >
         <Button name="close" onClick={handleToggleModal} icon={Close} padding="3px" />
         <Heading>{title}</Heading>
         <StyledP>

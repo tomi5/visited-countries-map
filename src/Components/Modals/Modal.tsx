@@ -18,7 +18,7 @@ const Modal = ({
   confirmDialog,
   action,
   handleClick = () => null,
-  title,
+  title
 }: ModalProps) => {
 
   return (

@@ -36,7 +36,13 @@ export const ListItem = styled.li<ListProps>`
       ${flexMixin({
         align: 'stretch',
       })}
-      flex: 0 0 33.3%;
+      flex: 0 0 100%;
+      ${({ theme }) => theme.mq.s} {
+        flex: 0 0 49%;
+      }
+      ${({ theme }) => theme.mq.xl} {
+        flex: 0 0 33.3%;
+      }
     `}
 `;
 

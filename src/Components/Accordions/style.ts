@@ -22,15 +22,26 @@ export const StyledAccordion = styled(Accordion)`
 export const StyledAccordionSummary = styled(AccordionSummary)`
   && {
     & div {
-      justify-content: center;
+      justify-content: flex-start;
+      ${({ theme }) => theme.mq.s} {
+        justify-content: center;
+      }
     }
   }
 `;
 
 export const ListTitle = styled.h2`
-  text-align: center;
+  text-align: left;
   text-transform: upperCase;
   color: ${({ theme }) => theme.text};
+  font-size: ${({ theme }) => theme.fontSize.m};
+  ${({ theme }) => theme.mq.s} {
+    text-align: center;
+    margin-left: 55px;
+  }
+  ${({ theme }) => theme.mq.xl} {
+    font-size: ${({ theme }) => theme.fontSize.lg};
+  }
 `;
 
 export const List = styled.ul`

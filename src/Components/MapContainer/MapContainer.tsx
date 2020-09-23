@@ -59,6 +59,10 @@ const MapContainer = () => {
 
   return (
     <Wrapper>
+      <ColorPicker
+        pickedColor={pickedColor}
+        handleClick={memoizedHandleColorPicker}
+      />
       <StyledMap
         data-tip
         data-for="countryTooltip"
@@ -72,10 +76,6 @@ const MapContainer = () => {
         type="warning"
         effect="float"
         getContent={() => countryOnHover}
-      />
-      <ColorPicker
-        pickedColor={pickedColor}
-        handleClick={memoizedHandleColorPicker}
       />
     </Wrapper>
   );

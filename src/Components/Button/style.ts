@@ -26,11 +26,15 @@ export const StyledButton = styled.button<ButtonProps>`
   `};
 
   padding: ${({ padding }) => padding || 0};
-  height: 35px;
+  height: 30px;
   line-height: 0;
   border: none;
   cursor: pointer;
   ${transitionMixin({ properties: ['background', 'color'] })};
+
+  ${({ theme }) => theme.mq.lg} {
+    height: 35px;
+  }
 
   &:hover {
     background: ${({ theme }) => theme.buttonBcgHover};
@@ -67,13 +71,20 @@ export const StyledButton = styled.button<ButtonProps>`
     css`
       right: 20px;
       border-radius: 50%;
-      width: 35px;
+      width: 30px;
       font-size: 0;
       ${({ theme }) => theme.mq.s} {
-        font-size: inherit;
+        font-size: ${({ theme }) => theme.fontSize.s};
         width: auto;
         min-width: 130px;
         border-radius: 10px;
+
+        svg {
+          padding-right: 5px;
+        }
+      }
+      ${({ theme }) => theme.mq.lg} {
+        font-size: inherit;
       }
     `}
     
@@ -118,6 +129,8 @@ export const StyledButton = styled.button<ButtonProps>`
       padding: 10px 15px;
       border-radius: 10px;
       color: ${({ theme }) => theme.light};
+      font-size: ${({ theme }) => theme.fontSize.m};
+      height: 50px;
     `}
 
     ${({ name }) => {

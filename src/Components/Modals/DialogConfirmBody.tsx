@@ -13,7 +13,7 @@ const DialogConfirmBody = React.forwardRef<
   DialogConfirmBodyProps
 >(({ action, handleClick = () => null }, ref) => {
   return (
-    <ModalBodyWrapper ref={ref} tabIndex={-1}>
+    <ModalBodyWrapper info={false} ref={ref} tabIndex={-1}>
       <Text id="simple-modal-title">
         Are you sure to{" "}
         {action === "delete" ? "delete the country?" : "reset the map?"}

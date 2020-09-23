@@ -18,10 +18,14 @@ export const Wrapper = styled.div`
   ${flexMixin({
     direction: 'column',
   })};
-  margin: 15px 0;
+  margin: 15px 0 30px;
 
   & p:first-of-type {
     padding-bottom: 10px;
+  }
+
+  ${({ theme }) => theme.mq.lg} {
+    margin: 15px 0;
   }
 `;
 
