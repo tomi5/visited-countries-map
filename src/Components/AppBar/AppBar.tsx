@@ -17,11 +17,11 @@ const AppBar = () => {
   switch (isDarkTheme) {
     case true:
       buttonText = "Light Mode";
-      buttonIcon = MoonOutline;
+      buttonIcon = Sun;
       break;
     case false:
       buttonText = "Dark Mode";
-      buttonIcon = Sun;
+      buttonIcon = MoonOutline;
       break;
   }
 

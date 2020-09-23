@@ -31,6 +31,7 @@ export const StyledButton = styled.button<ButtonProps>`
   border: none;
   cursor: pointer;
   ${transitionMixin({ properties: ['background', 'color'] })};
+
   &:hover {
     background: ${({ theme }) => theme.buttonBcgHover};
   }

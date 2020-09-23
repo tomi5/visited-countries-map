@@ -7,8 +7,7 @@ import VisitedCountryContextProvider from "../../contexts/visitedCountryContext"
 import MapContainer from "../MapContainer/MapContainer";
 import SearchContainer from "../SearchContainer/SearchContainer";
 import SummaryBox from "../SummaryBox/SummaryBox";
-import Tabels from "../Tabels/Tabels";
-
+import Accordions from "../Accordions/Accordions";
 
 
 const App = () => {
@@ -22,7 +21,7 @@ const App = () => {
             <SearchContainer />
             <SummaryBox />
             <MapContainer />
-            <Tabels />
+            <Accordions />
           </Main>
         </VisitedCountryContextProvider>
       </Wrapper>
