@@ -16,7 +16,6 @@ const SearchContainer = () => {
   };
 
   const handleClick = (e: any) => {
-    // FIXME - fix "any" type
     addToVisited(e);
     setSearchValue("");
   };
@@ -43,7 +42,7 @@ const SearchContainer = () => {
       <SearchResult
         fetchState={fetchState}
         countriesToShow={countriesToShow}
-        handleClick={(e: any) => handleClick(e)} // FIXME - fix "any" type
+        handleClick={(e: any) => handleClick(e)}
       />
     </Wrapper>
   );

@@ -25,7 +25,6 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
   };
 
   const handleShouldDelete = (e: any) => {
-    // FIXME - fix "any" type
     handleToggleModal();
     shouldDeleteFromVisited(e, action);
   };
@@ -63,7 +62,7 @@ const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
     <>
       {!removeUsingMap && (
         <Button
-          onClick={(e: any) => handleShouldDelete(e)} // FIXME - fix "any" type
+          onClick={(e: any) => handleShouldDelete(e)}
           isModalOpen={isModalOpen}
           {...props}
         >

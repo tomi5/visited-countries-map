@@ -22,9 +22,9 @@ type ContextTypes = {
   selectedCountryCode: string | null;
   countriesByContinent: CountriesByContinent | null;
   countryToRemove: CountryToRemove | null;
-  addToVisited: IEvent<any>; // FIXME - fix "any" type
+  addToVisited: IEvent<any>;
   resetHelpingStates: () => void;
-  shouldDeleteFromVisited: (e: any, action?: DeleteOrReset) => void; // FIXME - fix "any" type
+  shouldDeleteFromVisited: (e: any, action?: DeleteOrReset) => void;
   deleteFromVisited: (countryToRemove: CountryToRemove | null) => void;
 };
 
@@ -140,7 +140,6 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
   }, [lastAddedCountry]);
 
   const addToVisited: IEvent<any> = (e) => {
-    // FIXME - fix "any" type
     const target = e.target.dataset.id || e.target.parentNode.dataset.id;
     const countryCode = target;
     countryCode && setSelectCountryCode(countryCode);
@@ -183,7 +182,6 @@ const VisitedCountryContextProvider = ({ children }: Props) => {
   };
 
   const shouldDeleteFromVisited = (e: any, action?: DeleteOrReset) => {
-    // FIXME - fix "any" type
     resetHelpingStates();
     if (action === "reset") return;
 

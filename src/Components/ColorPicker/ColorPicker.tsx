@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Wrapper, Label, colorsToPicked } from "./style";
 
 type ColorPickerProps = {
-  handleClick: IEvent<any>; // FIXME - fix "any" type
+  handleClick: IEvent<any>;
   pickedColor: string;
 };
 

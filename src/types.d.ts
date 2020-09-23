@@ -10,53 +10,42 @@ type ICountry = {
   [key in CountryFeatures]: string;
 };
 
-interface ICreateContext {
-  visitedCountries: ICountry[];
-  selectedCountry: string | null;
-  searchValue: string;
-  percentageVisisted: number;
-  pickedColor: string;
-  handleColorPicker: any; // FIXME - fix "any" type
-  selectCountryFn: any; // FIXME - fix "any" type
-  handleSearchInputChanges: any; // FIXME - fix "any" type
-}
-
 type UpdateVisited = {
   (arr: ICountry[]): void;
 };
 
 type ContinentsToShow =
-  | "Africa"
-  | "Antarctica"
-  | "America North"
-  | "America South"
-  | "Asia"
-  | "Europe"
-  | "Oceania";
+  | 'Africa'
+  | 'Antarctica'
+  | 'America North'
+  | 'America South'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania';
 
 type AmericasSubregion =
-  | "Caribbean"
-  | "Central America"
-  | "Northern America"
-  | "South America";
+  | 'Caribbean'
+  | 'Central America'
+  | 'Northern America'
+  | 'South America';
 
 type ContinetsFromApi =
-  | "Africa"
-  | "Americas"
-  | "Asia"
-  | "Europe"
-  | "Oceania"
-  | "Polar";
+  | 'Africa'
+  | 'Americas'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania'
+  | 'Polar';
 
 type CountriesByContinent = {
   [key in ContinentsToShow]: ICountry[];
 };
 
-type ActionTypes = "add" | "delete" | "reset";
-type ActionConfirm = "confirm" | "cancel";
-type DeleteOrReset = Exclude<ActionTypes, "add">;
+type ActionTypes = 'add' | 'delete' | 'reset';
+type ActionConfirm = 'confirm' | 'cancel';
+type DeleteOrReset = Exclude<ActionTypes, 'add'>;
 
-type ButtonName = "info" | "mode" | "close" | ActionConfirm | DeleteOrReset;
+type ButtonName = 'info' | 'mode' | 'close' | ActionConfirm | DeleteOrReset;
 
 type ReducerAction = {
   type: ActionTypes;

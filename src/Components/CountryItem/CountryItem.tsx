@@ -1,10 +1,11 @@
 import React from "react";
 import { ListItem, Flag, CountryName, StyledButton, StyledDiv } from "./style";
 import DeleteContainer from "../Delete/DeleteContainer";
+
 type CountryItemProps = {
   country: ICountry;
   continent?: string;
-  handleClick?: IEvent<any>; // FIXME - fix "any" type
+  handleClick?: IEvent<any>;
   listType: "searchResult" | "tabel";
 };
 

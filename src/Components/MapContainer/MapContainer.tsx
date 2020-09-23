@@ -14,7 +14,7 @@ const MapContainer = () => {
     selectedCountryCode,
     resetHelpingStates,
     visitedCountries,
-    shouldDeleteFromVisited,
+    shouldDeleteFromVisited
   } = useContext(VisitedCountryContext);
   const [pickedColor, setPickedColor] = useState(initialPickedColor);
   const [countryOnHover, setCountryOnHover] = useState<string | null>(null);
@@ -32,7 +32,6 @@ const MapContainer = () => {
   }, [visitedCountries]);
 
   const handleColorPicker: IEvent<any> = (e) => {
-    // FIXME - fix "any" type
     setPickedColor(e.target.dataset.color);
     resetHelpingStates();
   };
@@ -43,7 +42,6 @@ const MapContainer = () => {
   ]);
 
   const handleToolTip: IEvent<any> = (e) => {
-    // FIXME - fix "any" type
     const name = e.target.dataset.name;
     typeof name === "string"
       ? setCountryOnHover(name)
@@ -51,9 +49,8 @@ const MapContainer = () => {
   };
 
   const handleDoubleCLick = (e: any) => {
-    // FIXME - fix "any" type
-    if (!e.target.matches("path")) return;
-    setIsDoubleClicked((state) => !state);
+    if (!e.target.matches('path')) return
+    setIsDoubleClicked(state => !state);
     shouldDeleteFromVisited(e, "delete");
   };
 
@@ -70,6 +67,7 @@ const MapContainer = () => {
         onMouseMove={handleToolTip}
         onDoubleClick={handleDoubleCLick}
       />
+
       {isDoubleClicked && <DeleteContainer removeUsingMap action="delete" />}
       <StyledReactTooltip
         id="countryTooltip"

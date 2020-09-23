@@ -6,7 +6,7 @@ import { ListContainer } from "./style";
 type SearchResultProps = {
   fetchState: IFetchState;
   countriesToShow: ICountry[];
-  handleClick: (e: any) => void; // FIXME - fix "any" type
+  handleClick: (e: any) => void;
 };
 
 const SearchResult = ({
@@ -22,15 +22,15 @@ const SearchResult = ({
     } else {
       return countriesToShow.length
         ? countriesToShow.map(
-            (country): ReactElement => (
-              <CountryItem
-                listType="searchResult"
-                key={country.code}
-                country={country}
-                handleClick={handleClick}
-              />
-            )
+          (country): ReactElement => (
+            <CountryItem
+              listType="searchResult"
+              key={country.code}
+              country={country}
+              handleClick={handleClick}
+            />
           )
+        )
         : null;
     }
   }
@@ -44,8 +44,6 @@ const SearchResult = ({
       />
     </ListContainer>
   );
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 };
 
 export default SearchResult;

@@ -25,7 +25,6 @@ const useFetchCountry = (searchValue: string) => {
 
       if (response.ok) {
         const result = data.map((el: any) => {
-          // FIXME - fix "any" type
           const country: ICountry = {
             name: el.name,
             code: el.alpha2Code,
