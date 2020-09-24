@@ -11,7 +11,7 @@ Check out the demo! -
 
 ## Installation
 
-- Clone this repo to your local machine using `https://github.com/tomi5/tomasz-rysak-cv.git`
+- Clone this repo to your local machine using `https://github.com/tomi5/visited-countries-map.git`
 - Use yarn to install all dependencies for a project.
 
 ```shell
