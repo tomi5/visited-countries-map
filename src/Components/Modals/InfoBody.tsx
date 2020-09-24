@@ -36,7 +36,7 @@ const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
         <StyledP>FAQ:</StyledP>
         <InfoList id="simple-modal-description">
           <ListItemTitle>
-            How can i select the country i have visited?
+            How can I select the country I have visited?
           </ListItemTitle>
           <ListItem>
             You can click the country you are interested in on the map or
@@ -66,7 +66,7 @@ const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
             you clean it, you will be able to enjoy the created map, even you
             reopen the browser.
           </ListItem>
-          <ListItemTitle>What is the "reset the map" button?</ListItemTitle>
+          <ListItemTitle>What is the "reset the map" button for?</ListItemTitle>
           <ListItem>
             Be careful. It deletes all the countries you have been alredy
             selected.

@@ -19,11 +19,11 @@ const DialogConfirmBody = React.forwardRef<
         {action === "delete" ? "delete the country?" : "reset the map?"}
       </Text>
       <ButtonsContainer>
-        <Button name="confirm" onClick={() => handleClick("confirm")}>
-          Confirm
-        </Button>
         <Button name="cancel" onClick={() => handleClick("cancel")}>
           Cancel
+        </Button>
+        <Button name="confirm" onClick={() => handleClick("confirm")}>
+          {action}
         </Button>
       </ButtonsContainer>
     </ModalBodyWrapper>
