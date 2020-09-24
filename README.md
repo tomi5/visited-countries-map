@@ -7,6 +7,8 @@
 
 Check out the demo! -
 
+#### https://tomi5.github.io/visited-countries-map/
+
 ## Installation
 
 - Clone this repo to your local machine using `https://github.com/tomi5/tomasz-rysak-cv.git`
