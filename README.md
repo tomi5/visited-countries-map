@@ -44,9 +44,9 @@ Users are be able to:
 
 ## Screenshots
 
-![](2020-09-24-11-40-12.png)
+![](appScreenshoot-dark.png)
 
-![](2020-09-24-11-40-38.png)
+![](appScreenshoot-light.png)
 
 ## Credits and sources
 
