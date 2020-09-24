@@ -1,11 +1,10 @@
 # Visited Countries Map
 
-- Interactive Visited Countries Map app made with React.js and TypeScript for self learning.
-- _This is a refactored version of [my first project made with Vanilla JavaScript](https://github.com/tomi5/interactive_visited_countries_map)._
+Interactive Visited Countries Map app made with React.js and TypeScript for self learning.
 
 ## Demo
 
-Check out the demo! -
+Check out the demo!
 
 #### https://tomi5.github.io/visited-countries-map/
 
@@ -53,3 +52,12 @@ Users are be able to:
 - Country data: [REST Countries API](https://restcountries.eu/)
 - Icons: [styled-icons](https://styled-icons.js.org/)
 - SVG Map: [Simplemaps.com](http://simplemaps.com)
+
+### Notes
+
+1. App features to be added in the future:
+
+- zoom & pan for map,
+- the ability to add notes to the visited country (e.g. date of visit, sample photo)
+
+2. _This is a refactored version of [my first project made with Vanilla JavaScript](https://github.com/tomi5/interactive_visited_countries_map)._
