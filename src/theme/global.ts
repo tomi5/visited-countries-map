@@ -1,12 +1,12 @@
-import { createGlobalStyle } from "styled-components";
-import { flexMixin, transitionMixin } from "./mixins";
-import WebFont from "webfontloader";
+import { createGlobalStyle } from 'styled-components';
+import { flexMixin, transitionMixin } from './mixins';
+import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
     families: [
-      "Mali:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap",
-      "cursive",
+      'Mali:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap',
+      'cursive',
     ],
   },
 });
@@ -35,24 +35,20 @@ body {
   font-family: 'Mali', cursive;
   font-size: 1.6rem;
   overflow-x: hidden;
-  ${transitionMixin({ properties: ["background", "color"] })};
+  ${transitionMixin({ properties: ['background', 'color'] })};
  
  
 }
 
 #root {
   ${flexMixin({
-    direction: "column",
+    direction: 'column',
   })}
   min-height: 100%;
 }
 
 path {
   cursor: pointer;
-}
-
-div[role="presentation"] {
-  position: absolute !important;  
 }
 `;
 

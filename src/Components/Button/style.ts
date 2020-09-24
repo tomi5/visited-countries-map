@@ -92,6 +92,7 @@ export const StyledButton = styled.button<ButtonProps>`
   ${({ name }) =>
     name === 'close' &&
     css`
+      margin-left: auto;
       border-radius: 50%;
       align-self: flex-end;
     `}

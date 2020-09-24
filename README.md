@@ -1,44 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Visited Countries Map
 
-## Available Scripts
+Interactive Visited Countries Map app made with React.js and TypeScript for self learning.
+_This is a refactored version of [my first project made with Vanilla JavaScript](https://github.com/tomi5/interactive_visited_countries_map)._
 
-In the project directory, you can run:
+## Demo
 
-### `yarn start`
+Check out the demo! -
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Clone this repo to your local machine using `https://github.com/tomi5/tomasz-rysak-cv.git`
+- Use yarn to install all dependencies for a project.
 
-### `yarn test`
+```shell
+$ yarn install
+$ yarn start
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn build`
+## Technologies
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React v16.13.1
+- TypeScript
+- React Hooks
+- Styled Components
+- Local Storage
+- Rest API
+- Material-UI
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Users are be able to:
 
-### `yarn eject`
+- Check out how many countries have been visited (with details of the continents as well) and what percetage of the world it is
+- Display the visited countries on the map and in the table below.
+- Search for a country using an search field typing country's name (in English or in native language)
+- Choose between light and dark mode
+- Maintain selected both the cisited countries and the theme as well after refreshing the browser
+- View the optimal layout depending on their device's screen size
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Screenshots
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](2020-09-24-11-40-12.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![](2020-09-24-11-40-38.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Credits and sources
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Country data: [REST Countries API](https://restcountries.eu/)
+Icons: [styled-icons](https://styled-icons.js.org/)
+SVG Map: [Simplemaps.com](http://simplemaps.com)

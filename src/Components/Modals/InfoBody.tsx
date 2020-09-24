@@ -62,9 +62,9 @@ const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
           </ListItem>
           <ListItemTitle>Will my results be saved?</ListItemTitle>
           <ListItem>
-            Your settings are storaged in browser's memory (local storage).Until
-            you clean it, you will be able to enjoy the created map, even you
-            reopen the browser.
+            Your settings are storaged in browser's memory (local storage). Until
+            you clean it, you will be able to enjoy the created map, after
+            refreshing the browser.
           </ListItem>
           <ListItemTitle>What is the "reset the map" button for?</ListItemTitle>
           <ListItem>
