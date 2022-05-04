@@ -49,7 +49,7 @@ Users are be able to:
 
 ## Credits and sources
 
-- Country data: [REST Countries API](https://restcountries.eu/)
+- Country data: [REST Countries API](https://restcountries.com/)
 - Icons: [styled-icons](https://styled-icons.js.org/)
 - SVG Map: [Simplemaps.com](http://simplemaps.com)
 
