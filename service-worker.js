@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/visited-countries-map/precache-manifest.22748d8fe328903d9feb63a5a8e00575.js"
+  "/visited-countries-map/precache-manifest.0cd6dd0bef29e5e0828a886672b8115b.js"
 );
 
 self.addEventListener('message', (event) => {

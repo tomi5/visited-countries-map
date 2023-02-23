@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c975f635e8432a2834783c57743b132d",
+    "revision": "af4307f7c55d2c6670f789fec2dfdd84",
     "url": "/visited-countries-map/index.html"
   },
   {
@@ -16,15 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/visited-countries-map/static/js/2.ee9c6305.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "849c9eb3f9a6802ad81d",
-    "url": "/visited-countries-map/static/js/main.d01a2457.chunk.js"
+    "revision": "b7b2e28a8f30e18b4146",
+    "url": "/visited-countries-map/static/js/main.033493a4.chunk.js"
   },
   {
     "revision": "2354b943ec9ee7ede6e1",
     "url": "/visited-countries-map/static/js/runtime-main.8882f1d8.js"
   },
   {
-    "revision": "c8612c73ee16255430f5cc977940edfd",
-    "url": "/visited-countries-map/static/media/world.c8612c73.svg"
+    "revision": "0db6e6e5b711b80015e238d304af9b35",
+    "url": "/visited-countries-map/static/media/world.0db6e6e5.svg"
   }
 ]);
