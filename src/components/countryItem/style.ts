@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import { paddingVertical, paddingHorizontal } from "../SearchContainer/style";
-import { flexMixin, transitionMixin } from "../../theme/mixins";
+import { paddingVertical, paddingHorizontal } from "../searchContainer/style";
+import { flexMixin, transitionMixin } from "theme/mixins";
 
 type ListProps = {
   listType: "searchResult" | "tabel";

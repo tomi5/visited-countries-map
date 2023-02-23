@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Wrapper, Header } from "./style";
-import Heading from "../Heading/Heading";
-import { ThemeContext } from "../../contexts/themeContext";
-import HowToUse from "../HowToUse/HowToUse";
-import Button from "../Button/Button";
+import Heading from "../heading/Heading";
+import { ThemeContext } from "contexts/themeContext";
+import HowToUse from "../howToUse/HowToUse";
+import Button from "../button/Button";
 import { MoonOutline } from "@styled-icons/evaicons-outline/MoonOutline";
 import { Sun } from "@styled-icons/boxicons-regular/Sun";
 

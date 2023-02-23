@@ -1,6 +1,6 @@
 import sortBy from "lodash.sortby";
 
-export const getCountryID: IEvent<any> = (e) => {
+export const getCountryID: IEvent<any> = (e) => {    
   let target = e.target;
   while (!target.dataset.id) {
     target = target.parentNode;
@@ -11,7 +11,7 @@ export const getCountryID: IEvent<any> = (e) => {
 export const findCountryInArray: MethodsOnArray<
   string,
   ICountry | undefined
-> = (arr, countryCode) => {
+> = (arr, countryCode) => {    
   const result = arr.find((el) => el.code === countryCode);
   return result;
 };
@@ -28,8 +28,8 @@ export const addToContinent: MethodsOnArray<ICountry, ICountry[]> = (
   arr,
   country
 ) => {
-  const isVisted = findCountryInArray(arr, country.code);
-  if (!isVisted) {
+  const isVisited = findCountryInArray(arr, country.code);
+  if (!isVisited) {
     arr.push(country);
     arr = sortBy(arr, "name");
     return arr;

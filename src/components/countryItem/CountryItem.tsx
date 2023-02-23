@@ -1,6 +1,6 @@
 import React from "react";
 import { ListItem, Flag, CountryName, StyledButton, StyledDiv } from "./style";
-import DeleteContainer from "../Delete/DeleteContainer";
+import DeleteContainer from "../delete/DeleteContainer";
 
 type CountryItemProps = {
   country: ICountry;

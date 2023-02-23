@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import CountryItem from "../CountryItem/CountryItem";
+import CountryItem from "../countryItem/CountryItem";
 import FetchStatus from "./FetchStatus";
 import { ListContainer } from "./style";
 

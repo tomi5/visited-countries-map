@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
-import ColorPicker from "../ColorPicker/ColorPicker";
+import ColorPicker from "../colorPicker/ColorPicker";
 import { fillWithColor, addColorProperties } from "../../utils/utils";
-import DeleteContainer from "../Delete/DeleteContainer";
+import DeleteContainer from "../delete/DeleteContainer";
 import { Wrapper, StyledReactTooltip, StyledMap } from "./style";
 import { colors } from "../../theme/theme";
 

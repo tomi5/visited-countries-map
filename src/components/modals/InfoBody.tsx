@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button/Button";
+import Button from "../button/Button";
 import {
   ModalBodyWrapper,
   Heading,
@@ -29,7 +29,7 @@ const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
         <Heading>{title}</Heading>
         <StyledP>
           Using this map you can find out how many countries you have already
-          visited and what percetage of the world it is. If you have 1 country
+          visited and what percentage of the world it is. If you have 1 country
           visited at least, detailed table with the division into continents
           will shown below the map.
         </StyledP>
@@ -62,13 +62,13 @@ const InfoBody = React.forwardRef<HTMLDivElement, InfoBodyProps>(
           </ListItem>
           <ListItemTitle>Will my results be saved?</ListItemTitle>
           <ListItem>
-            Your settings are storaged in browser's memory (local storage). Until
+            Your settings are storage in browser's memory (local storage). Until
             you clean it, you will be able to enjoy the created map, after
             refreshing the browser.
           </ListItem>
           <ListItemTitle>What is the "reset the map" button for?</ListItemTitle>
           <ListItem>
-            Be careful. It deletes all the countries you have been alredy
+            Be careful. It deletes all the countries you have been already
             selected.
           </ListItem>
         </InfoList>

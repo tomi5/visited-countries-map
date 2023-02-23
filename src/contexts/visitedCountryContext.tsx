@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useReducer } from "react";
 import {
   continentReducer,
   initialState,
-} from "../reducers/countriesByContinent";
+} from "reducers/countriesByContinent";
 import {
   getCountryID,
   addToContinent,
@@ -11,7 +11,7 @@ import {
   removeCountryFromArray,
   fillWithColor,
   resetMapColoring,
-} from "../utils/utils";
+} from "utils/utils";
 import useFetchCountry from "../hooks/useFetchCountry";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useHelpingStates from "../hooks/useHelpingStates";

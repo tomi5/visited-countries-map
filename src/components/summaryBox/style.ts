@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
-import { flexMixin } from "../../theme/mixins";
+import { flexMixin } from "theme/mixins";
 
 const keyframe = keyframes`
   0% {

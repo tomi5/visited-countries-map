@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "../Button/Button";
-import Modal from "../Modals/Modal";
+import Button from "../button/Button";
+import Modal from "../modals/Modal";
 import { Help } from "@styled-icons/entypo/Help";
 
 type HowToUseProps = {

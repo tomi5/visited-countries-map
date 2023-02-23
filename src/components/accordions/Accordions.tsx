@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
-import DeleteContainer from "../Delete/DeleteContainer";
+import DeleteContainer from "../delete/DeleteContainer";
 import SimpleAccordion from "./SimpleAccordion";
 import { Wrapper } from "./style";
 

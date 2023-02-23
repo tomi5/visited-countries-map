@@ -2,13 +2,13 @@ import React from "react";
 import ThemeProvider from "../../contexts/themeContext";
 import GlobalStyle from "../../theme/global";
 import { Wrapper, Main } from "./style";
-import AppBar from "../AppBar/AppBar";
+import AppBar from "../appBar/AppBar";
 import VisitedCountryContextProvider from "../../contexts/visitedCountryContext";
-import MapContainer from "../MapContainer/MapContainer";
-import SearchContainer from "../SearchContainer/SearchContainer";
-import SummaryBox from "../SummaryBox/SummaryBox";
-import Accordions from "../Accordions/Accordions";
-import Footer from "../Footer/Footer";
+import MapContainer from "../mapContainer/MapContainer";
+import SearchContainer from "../searchContainer/SearchContainer";
+import SummaryBox from "../summaryBox/SummaryBox";
+import Accordions from "../accordions/Accordions";
+import Footer from "../footer/Footer";
 
 const App = () => {
   return (

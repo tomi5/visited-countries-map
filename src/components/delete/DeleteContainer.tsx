@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { VisitedCountryContext } from "../../contexts/visitedCountryContext";
-import Button from "../Button/Button";
-import Modal from "../Modals/Modal";
+import { VisitedCountryContext } from "contexts/visitedCountryContext";
+import Button from "../button/Button";
+import Modal from "../modals/Modal";
 import { SettingsBackupRestore } from "@styled-icons/material/SettingsBackupRestore";
 import { Trash } from "@styled-icons/bootstrap/Trash";
 
@@ -11,7 +11,7 @@ type DeleteContainerProps = {
 };
 
 const DeleteContainer = ({ action, removeUsingMap }: DeleteContainerProps) => {
-  const initialModalState = removeUsingMap ? true : false;
+  const initialModalState = !!removeUsingMap;
   const [isModalOpen, setIsModalOpen] = useState(initialModalState);
 
   const {
