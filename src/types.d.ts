@@ -27,6 +27,7 @@ type AmericasSubregion =
   | 'Caribbean'
   | 'Central America'
   | 'Northern America'
+  | 'North America'
   | 'South America';
 
 type ContinetsFromApi =

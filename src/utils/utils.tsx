@@ -43,6 +43,7 @@ export const assignSubregionToContinent = (
     case "South America":
       return "America South";
     case "Northern America":
+    case "North America":
     case "Central America":
     case "Caribbean":
       return "America North";
